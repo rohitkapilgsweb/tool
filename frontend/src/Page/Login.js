@@ -41,6 +41,10 @@ function Login() {
           meindata.userdata.push({page_id: fbPageData.data[0].id})
           meindata.userdata.push({category: fbPageData.data[0].category})
           localStorage?.setItem("userRole","fbUser")
+          dispatch(LoginActions(meindata))
+          .then((res)=>{
+            console.log(res)
+          })
         } catch (error) {
           console.error("Error fetching user data:", error);
         } 
@@ -48,10 +52,7 @@ function Login() {
 
       console.log(meindata,"aaaaaaaaaaaaaaaa")
 
-      dispatch(LoginActions({hello: true}))
-      .then((res)=>{
-        console.log(res)
-      })
+    
   return (
     <div>
         
