@@ -1,6 +1,15 @@
 import React from 'react'
 import FacebookLogin from '@greatsumini/react-facebook-login';
+import { useDispatch } from 'react-redux'
+import { LoginActions } from '../redux/actions/LoginAction';
 function Login() {
+  
+  const dispatch = useDispatch();
+
+  var meindata = {
+    userdata:[]
+  }
+
     async function getUserData(accessToken) {
         const url = "https://graph.facebook.com/v17.0/me?access_token=" + accessToken;
         
@@ -8,6 +17,8 @@ function Login() {
           const response = await fetch(url);
           const userData = await response.json();
           console.log(userData,"userdata");
+         
+          meindata.userdata.push({accessToken: accessToken})
           facepageData(userData.id, accessToken)
           localStorage.setItem("accessToken", accessToken)
         } catch (error) {
@@ -25,11 +36,22 @@ function Login() {
           const fbPageData = await response.json();
           console.log(fbPageData.data[0],"fbpagedata");
           localStorage.setItem("pageToken", fbPageData.data[0].access_token)
+          meindata.userdata.push({page_token: fbPageData.data[0].access_token})
+          meindata.userdata.push({page_name: fbPageData.data[0].name})
+          meindata.userdata.push({page_id: fbPageData.data[0].id})
+          meindata.userdata.push({category: fbPageData.data[0].category})
           localStorage?.setItem("userRole","fbUser")
         } catch (error) {
           console.error("Error fetching user data:", error);
         } 
       }
+
+      console.log(meindata,"aaaaaaaaaaaaaaaa")
+
+      dispatch(LoginActions({hello: true}))
+      .then((res)=>{
+        console.log(res)
+      })
   return (
     <div>
         
@@ -44,6 +66,7 @@ function Login() {
   }}
   onProfileSuccess={(response) => {
     console.log('Get Profile Success!', response);
+    meindata.userdata.push(response)
   }}
 />
     </div>
