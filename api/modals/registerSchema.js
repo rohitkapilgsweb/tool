@@ -3,11 +3,11 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
-        required:false
+        required:true
     },
     fullname: {
         type: String,
-        required:true
+        required:false
     },
     email: {
         type: String,
@@ -15,22 +15,16 @@ const userSchema = new mongoose.Schema({
     },
     mobile: {
         type: Number,
-        required:true
+        required:false
     },
     password: {
         type: String,
-        required:true
-    },
-    otp: {
-        type: Number,
-        required: true
+        required:false
     },
     role: {
         type: String,
         required: true
     }
-    
-
 })
 userSchema.set('timestamps', true);
 
