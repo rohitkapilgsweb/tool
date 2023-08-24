@@ -3,20 +3,44 @@ const dotenv = require("dotenv");
 const User = require("../modals/registerSchema");
 dotenv.config();
 const LoginCL = expressAsyncHandler(async (req, res) => {
-  const { username, email, fullname, mobile, password } = req.body;
+  const {
+    username,
+    email,
+    Profile_img,
+    facebook_page_Profile_img,
+    facebook_page_token,
+    facebook_User_id,
+    facebook_User_login_token,
+    mobile,
+    token,
+    role,
+  } = req.body;
   const data = new User({
-    fullname: req.body.fullname,
-    email: req.body.email,
-    password: req.body.password,
-    mobile: req.body.mobile,
-    role: "fbUser"
+    username: req.body.username ? req.body.username : "null",
+    email: req.body.email ? req.body.email : "null",
+    Profile_img: req.body.Profile_img ? req.body.Profile_img : "null",
+    facebook_page_Profile_img: req.body.facebook_page_Profile_img
+      ? req.body.facebook_page_Profile_img
+      : "null",
+    facebook_User_id: req.body.facebook_User_id
+      ? req.body.facebook_User_id
+      : "null",
+    facebook_User_login_token: req.body.facebook_User_login_token
+      ? req.body.facebook_User_login_token
+      : "null",
+    facebook_page_token: req.body.facebook_page_token
+      ? req.body.facebook_page_token
+      : "null",
+    mobile: req.body.mobile ? req.body.mobile : 0,
+    token: req.body.token ? req.body.token : "null",
+    role: req.body.role ? req.body.role : "null",
   });
+
   try {
     const dataToSave = await data.save();
-    console.log(data, "data", truereq.body);
-    res.status(200).send({success:true});
-  } catch (error) {
-    res.status(400).send({ message: error.message });
+    res.status(200).send({ dataToSave, success: true });
+  } catch {
+    res.status(400).send({ success: false });
   }
 });
 
