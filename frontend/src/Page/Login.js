@@ -65,7 +65,6 @@ function Login() {
             <Row className=" new_google_form d-flex align-items-center ">
               <Col sm={4}></Col>
               <Col sm={4} className="new_form " >
-
                 <Form>
                     <Form.Group as={Row} className="mb-3">
                       <Col sm={{ span: 12}}>
@@ -99,7 +98,7 @@ function Login() {
                           <Link className="new_link_a" to="/resetpassword">  Reset password </Link>
                       </Col>
                       <Col sm={{ span: 12}} className=" text-center">
-                          <p className="new_link_a mb-0" > No account? <span><a href="/Createone">Create one</a></span> </p>
+                          <p className="new_link_a mb-0" > No account? <span><Link to="/Createone">Create one</Link></span> </p>
                       </Col>
                   </Form>
               </Col>  

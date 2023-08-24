@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
 
 function ResetPassword() {
 
@@ -29,7 +30,7 @@ function ResetPassword() {
                       </Col>
                     </Form.Group>
                       <Col sm={{ span: 12}} className="pt-3 text-center">
-                          <p className="new_link_a mb-0" > No account? <span><a href="/Createone">Create one</a></span> </p>
+                          <p className="new_link_a mb-0" > No account? <span><Link to="/Createone">Create one</Link></span> </p>
                       </Col>
                   </Form>
               </Col>  
