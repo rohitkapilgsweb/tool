@@ -4,6 +4,8 @@ import LoginLayout from "./LoginLayout";
 import Login from "../Page/Login";
 import Dashboard from "../Page/Dashboard";
 import DashboardLayout from "./DashboardLayout";
+import ResetPassword from "../Page/ResetPassword";
+import Createone from "../Page/Createone";
 
 // const role = getUserId() ? getUserId()?.user?.role : null;
 const role = LocalFbRole() ? LocalFbRole() : null;
@@ -41,7 +43,9 @@ const protects = {
         element: <LoginLayout />,
         children: [
           {path: "/", element: <Login/> },
-          {path: "/login", element: "<Login />" },
+          {path: "/login", element: <Login /> },
+          {path: "/resetpassword", element: <ResetPassword /> },
+          {path: "/createone", element: <Createone /> },
           {path: "*", element: "No PAGE FOUNG" },
         ],
       },
