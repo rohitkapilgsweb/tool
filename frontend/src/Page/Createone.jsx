@@ -24,7 +24,7 @@ function Createone() {
   }
 
   return (
-    <div>
+    <div className="bg-login">
       <Container>
         <div className="new_google_form text-center">
           <Row className=" new_google_form d-flex align-items-center justify-content-center ">

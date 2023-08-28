@@ -3,7 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 
 const LoginLayout = () => {
-  const tokensss = localStorage.getItem("accessToken");
+  const tokensss = localStorage.getItem("token");
 
   return !tokensss ? (
     <>

@@ -35,7 +35,7 @@ const LoginCL = expressAsyncHandler(async (req, res) => {
       : "null",
     mobile: req.body.mobile ? req.body.mobile : 0,
     token: req.body.token ? req.body.token : "null",
-    role: req.body.role ? req.body.role : "null",
+    role: "user",
   });
 
   try {
