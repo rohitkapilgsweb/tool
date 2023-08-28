@@ -22,6 +22,7 @@ const protects = {
             children: [
             { path: "/", element: <Dashboard/> },
             { path: "/home", element: <Dashboard/> },
+            { path: "/dashboard", element: <Dashboard/> },
             { path: "/telegram", element: <Telegram/> },
             { path: "/whatsapp", element: <Whatsapp/> },
             { path: "/facebook", element: <Facebook/> },
@@ -37,6 +38,7 @@ const protects = {
           // element: "ghjklhgjk" ,
           children: [
           { path: "/", element: <Dashboard/> },
+          { path: "/dashboard", element: <Dashboard/> },
           { path: "/home", element: <Dashboard/> },
           { path: "/telegram", element: <Telegram/> },
           { path: "/whatsapp", element: <Whatsapp/> },

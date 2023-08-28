@@ -18,3 +18,8 @@ export const userLoginAction = createAsyncThunk("Postjob", async (payload) => {
   const response = await axiosInstance.post(`api/login`, payload);
   return response.data;
 });
+
+export const getTelegramToken = createAsyncThunk("TelegramToken", async (payload) => {
+  const response = await axiosInstance.post(`api/gettelegramToken`, payload);
+  return response.data;
+});

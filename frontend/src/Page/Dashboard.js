@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Dashboard() {
   return (
-    <div className="container-fluid">
+    <div className="container-fluid pt-4">
     <div className="row">
       <div className="col-lg-8 d-flex align-items-strech">
         <div className="card w-100">
@@ -345,9 +345,7 @@ function Dashboard() {
         </div>
       </div>
     </div>
-    <div className="py-6 px-6 text-center">
-      <p className="mb-0 fs-4">Design and Developed by <Link href="https://adminmart.com/" target="_blank" className="pe-1 text-primary text-decoration-underline">AdminMart.com</Link></p>
-    </div>
+    
   </div>
     
   )

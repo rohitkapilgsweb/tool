@@ -17165,7 +17165,10 @@ code {
   background-repeat: no-repeat;
   width: 100%;
 }
-
+.menu-box .tab-content {
+  border: 1px solid #f7f7f7;
+  padding: 18px;
+}
 .screen-preant
 {
   padding-top: 70px;
