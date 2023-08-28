@@ -11,7 +11,6 @@ import Whatsapp from "../Page/automationComponents/Whatsapp";
 import Facebook from "../Page/automationComponents/Facebook";
 
 const role = getUserId() ? getUserId()?.role : null;
-console.log(role,"fghjhgh")
 // const role = LocalFbRole() ? LocalFbRole() : null;
 const isLoggedIn = getToken();
 // console.log(role)

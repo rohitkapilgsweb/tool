@@ -12,10 +12,8 @@ function Createone() {
  const navigate = useNavigate()
 
   const onSubmit = async values => {
-   console.log(JSON.stringify(values))
    dispatch(LoginActions(JSON.stringify(values)))
    .then((res)=>{
-    console.log(res.payload.success,"ghjkhgh")
     if(res?.payload?.success){
       navigate("/login")
      }

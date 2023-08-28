@@ -12,16 +12,11 @@ function Login() {
   const dispatch = useDispatch();
 
   const isLoading = useSelector(state=> state)
-  console.log(isLoading,"state")
    const onSubmit = async values => {
-   console.log(JSON.stringify(values))
    dispatch(userLoginAction(JSON.stringify(values)))
    .then((res)=>{
     let status = res.payload.success;
     if(status === true){
-      console.log(res.meta.requestStatus)
-      // console.log(res,"ghjkhgh")
-      console.log(res.payload.userToken,"ghjkhgh")
       if(res.meta.requestStatus === "fulfilled"){
         localStorage.setItem("token", res.payload.userToken)
         window.location.reload()
