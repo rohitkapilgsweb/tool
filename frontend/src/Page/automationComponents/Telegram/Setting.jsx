@@ -24,7 +24,6 @@ function Setting(props) {
     console.log(JSON.stringify(values));
   };
 
-  const names = "hello";
   return (
     <div>
       <Form
@@ -39,6 +38,7 @@ function Setting(props) {
                 name="key"
                 component="input"
                 type="text"
+                // value={telegramToken}
                 placeholder={userId ? telegramToken : "Enter Bot Token"}
                 disabled={userId ? true : false}
               />
@@ -52,15 +52,22 @@ function Setting(props) {
                 >
                   Save
                 </button>
+                {console.log(userId)}
+                {!userId && <button
+                  // onClick={setUserId(true)}
+                    className="mt-3 btn btn-danger text-white"
+                    type="submit"                 >
+                    Cancel
+                  </button>}
               </Col>
+          
             ) : (
               <>
                 <Col sm={{ span: 12 }}>
                   <button
+                  // onClick={setUserId(false)}
                     className="mt-3 bg-black btn text-white"
-                    type="submit"
-                    disabled={submitting || pristine}
-                  >
+                    type="submit"                 >
                     Edit
                   </button>
                   <button
