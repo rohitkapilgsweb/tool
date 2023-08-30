@@ -6,6 +6,7 @@ var cors = require('cors')
 const login = require("./routes/login");
 const register = require("./routes/register");
 const telegramToken = require("./routes/telegramToken");
+const facebookRoutes = require("./routes/facebookRoutes");
 app.use(cors())
 const DBLogin =  process.env.DATABASE;
 app.use(express.json());
@@ -23,6 +24,7 @@ mongoose.connect(DB, {
 app.use("/api", login);
 app.use("/api", register);
 app.use("/api", telegramToken);
+app.use('/api', facebookRoutes);
 
 
 
