@@ -7,11 +7,16 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form } from 'react-final-form';
 import { userLoginAction } from '../redux/actions/LoginAction';
+import Loader from './Components/Loader';
+
 
 function Login() {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(state=> state)
+  const isLoading = useSelector((state)=> state?.UserLogin?.isLoading)
+
+  console.log(isLoading)
+  // const isLoading = useSelector(state=> state)
    const onSubmit = async values => {
    dispatch(userLoginAction(JSON.stringify(values)))
    .then((res)=>{
@@ -24,8 +29,6 @@ function Login() {
     }else{
       console.log(status,"ghjkhgh")
     }
-    
-  
    })
   
   }
@@ -33,6 +36,7 @@ function Login() {
     
   return (
     <div className='bg-login'>
+      {isLoading && <Loader/>}
        <Container>
           <div className="new_google_form text-center">
             <Row className=" new_google_form d-flex align-items-center justify-content-center ">

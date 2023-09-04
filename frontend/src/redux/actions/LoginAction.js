@@ -30,7 +30,7 @@ export const add_Facebook_Data = createAsyncThunk("FacebookData", async (payload
   return response.data;
 });
 export const get_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
-  const response = await axiosInstance.get(`api/facebookaccount`, payload);
+  const response = await axiosInstance.post(`api/facebookaccount`, payload);
   return response.data;
 });
 

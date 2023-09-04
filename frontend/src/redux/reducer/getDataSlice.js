@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {  add_Facebook_Data, getTelegramToken, get_Facebook_Data } from "../actions/LoginAction";
+import {  get_Facebook_Data } from "../actions/LoginAction";
 
 const initialState = {
   isLoading: false,

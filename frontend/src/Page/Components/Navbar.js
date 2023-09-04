@@ -1,11 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 function Navbar() {
 
+  const navigate = useNavigate()
+
   const Logut = () =>{
     localStorage.clear()
+    navigate('/')
     window.location.reload()
   }
   return (
@@ -39,7 +42,7 @@ function Navbar() {
             </Link>
           </li>
             <li className="nav-item ">
-            <Link onClick={Logut}  to="/" className="btn btn-outline-primary mx-3 mt-2 d-block">Logout</Link>
+            <Link onClick={Logut}  className="btn btn-outline-primary mx-3 mt-2 d-block">Logout</Link>
             </li>
         </ul>
       </div>

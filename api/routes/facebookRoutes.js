@@ -6,6 +6,6 @@ const router = express.Router();
 
 
 router.post("/add_facebook_account", addFacebookAccount);
-router.get("/facebookaccount", getFacebookAccount);
+router.post("/facebookaccount", getFacebookAccount);
 
 module.exports = router;

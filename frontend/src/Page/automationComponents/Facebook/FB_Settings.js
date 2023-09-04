@@ -1,163 +1,162 @@
-import React from "react";
-import Table from 'react-bootstrap/Table';
+import React, { useEffect, useState } from "react";
+import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { FacebookProvider, LoginButton } from "react-facebook";
-import { useDispatch } from "react-redux";
-import { add_Facebook_Data, get_Facebook_Data } from "../../../redux/actions/LoginAction";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  add_Facebook_Data,
+  get_Facebook_Data,
+} from "../../../redux/actions/LoginAction";
+import { getUserId } from "../../../utils/auth";
+import { toast } from "react-toastify";
+
 function FB_Settings() {
+  const [facebookToken, setFacebookToken] = useState();
+  const [getFacebookAccounts, setGetFacebookAccounts] = useState();
+
   const dispatch = useDispatch();
   var meindata = {
     userdata: [],
   };
 
-  const DataObjects = {
-    user_id: "usereFeefeefe23",
-    accessToken: "abcd1234",
-    page_access_token: "efgh5678",
-    fb_userId: "fbuser567",
-    fb_userImg:"https://example.com/user-img.jpg",
-    fb_Username: "john.doe",
-    fb_pages: "Page 1",
-    fb_groups: "groups"
-}
+
+  useEffect(()=>{
+    GetAccountsData()
+    
+  },[])
 
 
-  async function getUserData(accessToken,response) {
+  function handleSuccess(response) {
+    console.log(response);
+    console.log(response.authResponse.accessToken);
+    setFacebookToken(response.authResponse.accessToken);
+    getUserData(response.authResponse.accessToken, response);
+  }
+  function handleError(error) {
+    console.log(error);
+  }
+  const notify = (msg) => toast(msg);
+
+  async function getUserData(accessToken, response) {
     const url =
-      "https://graph.facebook.com/v17.0/me?access_token=" + accessToken;
+      "https://graph.facebook.com/v17.0/me?fields=id,name,email,picture&access_token=" +
+      accessToken;
 
     try {
       const response = await fetch(url);
       const userData = await response.json();
+
       console.log(userData, "userdata");
 
+      const DataObjects = {
+        user_id: getUserId() ? getUserId()?.id : null,
+        accessToken: facebookToken,
+        page_access_token: null,
+        fb_userId: userData.id,
+        fb_userImg: userData.picture.data.url,
+        fb_Username: userData.name,
+        fb_pages: null,
+        fb_groups: null,
+      };
+
       meindata.userdata.push({ accessToken: accessToken });
-    //   facepageData(userData.id, accessToken);
+      //   facepageData(userData.id, accessToken);
       localStorage.setItem("accessToken", accessToken);
 
-
-      dispatch(add_Facebook_Data(DataObjects))
-.then((res)=>{
-    console.log(res)
-})
-
+      dispatch(add_Facebook_Data(DataObjects)).then((res) => {
+        console.log(res);
+        notify(res.payload.status)
+        GetAccountsData()
+   
+      });
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   }
 
-  const tableData = [
-    {
-      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      name:"First Jon",
-    },
-    {
-      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      name:"First Jon",
-    },
-    {
-      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      name:"First Jon",
-    },
-    {
-      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-      name:"First Jon",
-    }
-  ]
-
-//   async function facepageData(facepageData, accessToken) {
-//     const url =
-//       `https://graph.facebook.com/v17.0/${facepageData}/accounts?access_token=` +
-//       accessToken;
-
-//     try {
-//       const response = await fetch(url);
-//       const fbPageData = await response.json();
-//       console.log(fbPageData.data[0], "fbpagedata");
-//       localStorage.setItem("pageToken", fbPageData.data[0].access_token);
-//       meindata.userdata.push({ page_token: fbPageData.data[0].access_token });
-//       meindata.userdata.push({ page_name: fbPageData.data[0].name });
-//       meindata.userdata.push({ page_id: fbPageData.data[0].id });
-//       meindata.userdata.push({ category: fbPageData.data[0].category });
-//       localStorage?.setItem("userRole", "fbUser");
-//     } catch (error) {
-//       console.error("Error fetching user data:", error);
-//     }
-//   }
-
-  function handleSuccess(response) {
-    console.log(response);
-    console.log(response.authResponse.accessToken);
-    getUserData(response.authResponse.accessToken,response)
+  const datanew = {
+    userId: "64ec576bc607966985a45e3a"
   }
-  function handleError(error) {
-    console.log(error);
+  const GetAccountsData = () =>{
+    dispatch(get_Facebook_Data(datanew))
+    .then((res)=>{
+      setGetFacebookAccounts(res?.payload)
+      console.log(res,"responseresponseresponse")
+    })
   }
 
   return (
     <div>
-        <Container>
-          <Row>
-            <h4 className="my-4 text-black">Facebook General Settings</h4>
-            <Col sm={4}>
-              <p>Enable Autoposting to Facebook</p>
-            </Col>
+      
+      <Container>
+        <Row>
+          <h4 className="my-4 text-black">Facebook General Settings</h4>
+          <Col sm={4}>
+            <p>Enable Autoposting to Facebook</p>
+          </Col>
 
-            <Col sm={8}>
-              <Form.Check // prettier-ignore
-                type="switch"
-                id="custom-switch"
-              />
-            </Col>
-          </Row>
+          <Col sm={8}>
+            <Form.Check // prettier-ignore
+              type="switch"
+              id="custom-switch"
+            />
+          </Col>
+        </Row>
 
-          <Row className="justify-content-between mb-3">
-            <h4 className="my-4 text-black">Facebook API Settings </h4>
-            <Col sm={4}>
-              <p>Facebook APP Method</p>
-            </Col>
+        <Row className="justify-content-between mb-3">
+          <h4 className="my-4 text-black">Facebook API Settings </h4>
+          <Col sm={4}>
+            <p>Facebook APP Method</p>
+          </Col>
 
-
-            <Col sm={4}>
-              <FacebookProvider appId="158402927285129">
-                <LoginButton
-                  className="btn btn-primary"
-                  scope="email"
-                  onError={handleError}
-                  onSuccess={handleSuccess}>
-                  Add Account
-                </LoginButton>
-              </FacebookProvider>
-            </Col>
-            <Col sm={12}>
-            <Table striped bordered hover className="mt-4">
-      <thead>
-        <tr>
-          <th>User Data</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-          {tableData.map((item)=>{
-return(
-  <tr>
-  <td><img width={24} src={item.img} class="img-fluid rounded-top" alt=""/> {item.name}</td>
-  </tr>
-)
-          })}
-      </tbody>
-    </Table>
-            </Col>
-            <Col sm={12} className="">
-              <Button variant="primary">Save</Button>
-            </Col>
-          </Row>
-        </Container>
+          <Col sm={4}>
+            <FacebookProvider appId="158402927285129">
+              <LoginButton
+                className="btn btn-primary"
+                scope="email"
+                onError={handleError}
+                onSuccess={handleSuccess}
+              >
+                Add Account
+              </LoginButton>
+            </FacebookProvider>
+          </Col>
+          <Col sm={12}>
+            <Table striped bordered className="mt-4">
+              <thead>
+                <tr>
+                  <th>User Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* {console.log(getFacebookAccounts,"getFacebookAccountsgetFacebookAccounts")} */}
+                {getFacebookAccounts?.map((item) => {
+                  return (
+                    <tr>
+                      <td>
+                        <img
+                          width={24}
+                          src={item.fb_userImg}
+                          className="img-fluid rounded-top"
+                          alt=""
+                        />{" "}
+                        {item.fb_Username}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </Table>
+          </Col>
+          <Col sm={12} className="">
+            <Button variant="primary">Save</Button>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
