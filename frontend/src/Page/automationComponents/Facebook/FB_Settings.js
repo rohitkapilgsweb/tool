@@ -1,5 +1,5 @@
 import React from "react";
-
+import Table from 'react-bootstrap/Table';
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -50,6 +50,25 @@ function FB_Settings() {
     }
   }
 
+  const tableData = [
+    {
+      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      name:"First Jon",
+    },
+    {
+      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      name:"First Jon",
+    },
+    {
+      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      name:"First Jon",
+    },
+    {
+      img:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      name:"First Jon",
+    }
+  ]
+
 //   async function facepageData(facepageData, accessToken) {
 //     const url =
 //       `https://graph.facebook.com/v17.0/${facepageData}/accounts?access_token=` +
@@ -71,7 +90,7 @@ function FB_Settings() {
 //   }
 
   function handleSuccess(response) {
-    console.log(response.status);
+    console.log(response);
     console.log(response.authResponse.accessToken);
     getUserData(response.authResponse.accessToken,response)
   }
@@ -102,6 +121,7 @@ function FB_Settings() {
               <p>Facebook APP Method</p>
             </Col>
 
+
             <Col sm={4}>
               <FacebookProvider appId="158402927285129">
                 <LoginButton
@@ -112,6 +132,26 @@ function FB_Settings() {
                   Add Account
                 </LoginButton>
               </FacebookProvider>
+            </Col>
+            <Col sm={12}>
+            <Table striped bordered hover className="mt-4">
+      <thead>
+        <tr>
+          <th>User Data</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          {tableData.map((item)=>{
+return(
+  <tr>
+  <td><img width={24} src={item.img} class="img-fluid rounded-top" alt=""/> {item.name}</td>
+  </tr>
+)
+          })}
+      </tbody>
+    </Table>
             </Col>
             <Col sm={12} className="">
               <Button variant="primary">Save</Button>

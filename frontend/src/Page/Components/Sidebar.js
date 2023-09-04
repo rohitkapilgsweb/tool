@@ -1,5 +1,5 @@
 import React from 'react';
-import {BsTelegram} from 'react-icons/bs';
+import {BsFillFileEarmarkPostFill, BsTelegram} from 'react-icons/bs';
 import {IoLogoWhatsapp} from 'react-icons/io';
 import {BsFacebook} from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -57,6 +57,14 @@ function Sidebar() {
                 <BsFacebook size={23}/>
               </span>
               <span className="hide-menu">Facebook</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/create_post" aria-expanded="false">
+              <span>
+                <BsFillFileEarmarkPostFill size={23}/>
+              </span>
+              <span className="hide-menu">Create Post</span>
             </Link>
           </li>
         
