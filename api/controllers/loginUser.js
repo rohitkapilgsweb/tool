@@ -21,8 +21,10 @@ const loginUser = expressAsyncHandler(async (req, res) => {
       const token = jwt.sign({id: dataToSave._id, user: dataToSave.username, email: dataToSave.email,role:dataToSave.role, img: dataToSave.Profile_img},secretkey,{expiresIn:"8h"}) 
       // res.json({loginStatus: LoginVeryfy,tokenuigiugitygtyigtyi:token})   
         res.status(200).send({success: true, userToken:token });
-    }else{
+    }else if(dataToSave.password !== req.body.password){
         res.status(200).send({success: false, status: "Wrong Password" });
+    }else if(!dataToSave){
+      res.status(200).send({success: false, status: "User Not Exist Password" });
     }
 
   } catch {

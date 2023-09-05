@@ -8,26 +8,36 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form } from 'react-final-form';
 import { userLoginAction } from '../redux/actions/LoginAction';
 import Loader from './Components/Loader';
+import { toast } from 'react-toastify';
 
 
 function Login() {
   const dispatch = useDispatch();
 
   const isLoading = useSelector((state)=> state?.UserLogin?.isLoading)
-
+  const notify = (msg) => toast(msg);
   console.log(isLoading)
   // const isLoading = useSelector(state=> state)
    const onSubmit = async values => {
    dispatch(userLoginAction(JSON.stringify(values)))
    .then((res)=>{
-    let status = res.payload.success;
-    if(status === true){
+    let success = res?.payload?.success;
+    let status = res?.payload?.status;
+    if(success === true){
       if(res.meta.requestStatus === "fulfilled"){
         localStorage.setItem("token", res.payload.userToken)
         window.location.reload()
       }
     }else{
       console.log(status,"ghjkhgh")
+      if(success === false && !status){
+        let msg = "User Not Registered"
+        notify(msg)
+      }else if(success === false && status){
+       let msg = "Wrong Password"
+        notify(msg)
+      }
+     
     }
    })
   

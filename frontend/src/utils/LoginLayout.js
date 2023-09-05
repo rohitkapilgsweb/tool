@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 
 const LoginLayout = () => {
@@ -7,6 +8,7 @@ const LoginLayout = () => {
 
   return !tokensss ? (
     <>
+     <ToastContainer/>
     <Outlet />
     </>
   ) : (
