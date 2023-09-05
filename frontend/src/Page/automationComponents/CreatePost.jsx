@@ -3,7 +3,6 @@ import Container from "react-bootstrap/Container";
 import Table from 'react-bootstrap/Table';
 import {FaRegEdit} from 'react-icons/fa';
 import {AiOutlineDelete} from 'react-icons/ai';
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
 
 function CreatePost() {
   return (
