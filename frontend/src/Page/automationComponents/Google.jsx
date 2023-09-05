@@ -52,7 +52,7 @@ function Google() {
                           name="search"
                           component="input"
                           type="search"
-                          placeholder="search Business"
+                          placeholder="Search Business"
                         />
                     <button  className="mt-3 mb-3 bg-black btn text-white" type="submit" disabled={submitting || pristine}>
                         Search

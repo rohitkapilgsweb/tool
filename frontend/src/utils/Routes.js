@@ -10,6 +10,7 @@ import Telegram from "../Page/automationComponents/Telegram";
 import Whatsapp from "../Page/automationComponents/Whatsapp";
 import Facebook from "../Page/automationComponents/Facebook";
 import CreatePost from "../Page/automationComponents/CreatePost";
+import Google from "../Page/automationComponents/Google";
 
 const role = getUserId() ? getUserId()?.role : null;
 // const role = LocalFbRole() ? LocalFbRole() : null;
@@ -28,6 +29,7 @@ const protects = {
             { path: "/whatsapp", element: <Whatsapp/> },
             { path: "/facebook", element: <Facebook/> },
             { path: "/create_post", element: <CreatePost/> },
+            { path: "/google", element: <Google/> },
             { path: "*", element: <div>no page found</div> },
             ],
           },
