@@ -33,4 +33,9 @@ export const get_Facebook_Data = createAsyncThunk("FacebookData", async (payload
   const response = await axiosInstance.post(`api/facebookaccount`, payload);
   return response.data;
 });
+export const GoogleApi = createAsyncThunk("GooglePlace", async (payload) => {
+  const response = await axiosInstance.post(`api/place-api-search`, payload);
+  return response.data;
+});
+
 

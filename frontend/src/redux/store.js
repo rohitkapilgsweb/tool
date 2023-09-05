@@ -4,6 +4,7 @@ import UserLoginReducer from './reducer/userLogin';
 import TelegramTokenReducer from './reducer/getTelegramTokenSlice'
 import GetFacebookSliceReducer from './reducer/getDataSlice'
 import addFacebookSliceReducer from './reducer/facebookSlice'
+import GooglePlaceSearchReducer from './reducer/GooglePlaceSearch'
 
 const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
     UserLogin: UserLoginReducer,
     getTelegramToken: TelegramTokenReducer,
     addFacebookAccount: addFacebookSliceReducer,
-    GetFacebookAccount: GetFacebookSliceReducer
+    GetFacebookAccount: GetFacebookSliceReducer,
+    GooglePlaceSearch: GooglePlaceSearchReducer,
   },
 });
 

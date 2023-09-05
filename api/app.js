@@ -7,6 +7,7 @@ const login = require("./routes/login");
 const register = require("./routes/register");
 const telegramToken = require("./routes/telegramToken");
 const facebookRoutes = require("./routes/facebookRoutes");
+const googlePlace = require("./routes/googlePlace")
 app.use(cors())
 const DBLogin =  process.env.DATABASE;
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use("/api", login);
 app.use("/api", register);
 app.use("/api", telegramToken);
 app.use('/api', facebookRoutes);
+app.use('/api', googlePlace);
 
 
 

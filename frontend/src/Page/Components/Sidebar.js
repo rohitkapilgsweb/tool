@@ -2,6 +2,7 @@ import React from 'react';
 import {BsFillFileEarmarkPostFill, BsTelegram} from 'react-icons/bs';
 import {IoLogoWhatsapp} from 'react-icons/io';
 import {BsFacebook} from 'react-icons/bs';
+import {FcGoogle} from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 function Sidebar() {
 
@@ -33,31 +34,7 @@ function Sidebar() {
           </li>
           <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span className="hide-menu">Automations</span>
-          </li>
-          <li className="sidebar-item">
-            <Link className="sidebar-link" to="/telegram" aria-expanded="false">
-              <span>
-                <BsTelegram size={23}/>
-              </span>
-              <span className="hide-menu">Telegram</span>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link className="sidebar-link" to="/whatsapp" aria-expanded="false">
-              <span>
-                <IoLogoWhatsapp size={23}/>
-              </span>
-              <span className="hide-menu">Whatsapp</span>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link className="sidebar-link" to="/facebook" aria-expanded="false">
-              <span>
-                <BsFacebook size={23}/>
-              </span>
-              <span className="hide-menu">Facebook</span>
-            </Link>
+            <span className="hide-menu">Post Managment</span>
           </li>
           <li className="sidebar-item">
             <Link className="sidebar-link" to="/create_post" aria-expanded="false">
@@ -67,6 +44,43 @@ function Sidebar() {
               <span className="hide-menu">Create Post</span>
             </Link>
           </li>
+          <li className="nav-small-cap">
+            <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span className="hide-menu">Automations</span>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/google" aria-expanded="false">
+              <span>
+                <FcGoogle size={23}/>
+              </span>
+              <span className="hide-menu">Google</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/telegram" aria-expanded="false">
+              <span>
+                <BsTelegram color='#0088cc' size={23}/>
+              </span>
+              <span className="hide-menu">Telegram</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/whatsapp" aria-expanded="false">
+              <span>
+                <IoLogoWhatsapp color='#075e54' size={23}/>
+              </span>
+              <span className="hide-menu">Whatsapp</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/facebook" aria-expanded="false">
+              <span>
+                <BsFacebook color='#1877F2' size={23}/>
+              </span>
+              <span className="hide-menu">Facebook</span>
+            </Link>
+          </li>
+          
         
           
           {/* <li className="nav-small-cap">
