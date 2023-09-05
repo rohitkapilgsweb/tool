@@ -26,9 +26,9 @@ function CreatePost() {
               <td>4-9-2023</td>
               <td><FaRegEdit/> <AiOutlineDelete/> </td>
               <td >
-                <ul className='d-flex gap-3'>
-                  <li><span>Publish</span></li>
-                  <li> <span className=''>UnPublish</span></li>
+                <ul className='d-flex gap-3 mt-1'>
+                  <li> <span class="alert alert-success p-1" > Publish </span> </li>
+                  <li> <span class="alert alert-danger p-1" > UnPublish </span> </li>
                 </ul> 
               </td>
             </tr>
