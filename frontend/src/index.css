@@ -18612,3 +18612,12 @@ position: fixed;
 .Data_export_btn svg{
     color: #fff;
 }
+.pointer-event-none
+{
+    pointer-events: none;
+    background-color: #2359D5;
+    color: #fff;
+}
+.height-46{
+    height: 46px !important;
+}
