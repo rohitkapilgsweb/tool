@@ -18578,17 +18578,37 @@ code {
 }
 
 .h-100-vh {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     background-color: #f7f7f7bf;
-    height: 100vh;
+    height: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
+    z-index: 999;
 }
 
 .new_textarea {
     width: 100%;
+}
+.body-wrapper
+{
+position: unset;
+}
+
+.Data_export_btn{
+position: fixed;
+    right: 16px;
+    bottom: 10%;
+    background: #0088cc;
+    border-radius: 100%;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+
+}
+.Data_export_btn svg{
+    color: #fff;
 }
