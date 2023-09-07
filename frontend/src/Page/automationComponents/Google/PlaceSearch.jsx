@@ -112,6 +112,9 @@ dispatch(GoogleApi({next_page: Old_Token}))
               render={({ handleSubmit, form, submitting, pristine, values }) => (
                 <form onSubmit={handleSubmit}>
 
+<h1 className='text-center mb-4'>
+  Extract Google Place Data
+  </h1>
              <div className='d-flex gap-3 align-item-center justify-content-center mt-2 mb-4'>
              <Field
                         className="form-control w-50 "
@@ -136,7 +139,7 @@ dispatch(GoogleApi({next_page: Old_Token}))
                 <div className="row">
                   <div className="col-md-12">
                     {show && (<button className='Data_export_btn' onClick={()=>downloadExcel(getdata)}>
- <IoMdCloudDownload size={45}/>
+ <IoMdCloudDownload color='#fff' size={45}/>
 </button>) }
                   
                 

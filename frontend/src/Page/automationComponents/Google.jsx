@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import PlaceSearch from './Google/PlaceSearch';
+import CommingSoon from '../CommingSoon';
 function Google() {
   
 
@@ -20,12 +21,6 @@ function Google() {
  >
    <Tab eventKey="GoogleSearch" title="Google Busines Places">
  <PlaceSearch/>
-   </Tab>
-   <Tab eventKey="SendMessage" title="Send Message">
-   Secound
-   </Tab>
-   <Tab  eventKey="Setting" title="Setting" >
-    {/* <FB_Settings /> */}
    </Tab>
   
  </Tabs>
