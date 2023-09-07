@@ -18578,7 +18578,7 @@ code {
 }
 
 .h-100-vh {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -18587,6 +18587,7 @@ code {
     align-items: center;
     display: flex;
     justify-content: center;
+    z-index: 999;
 }
 
 .new_textarea {

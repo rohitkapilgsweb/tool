@@ -1,22 +1,107 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { BsFacebook, BsFillFileEarmarkPostFill, BsTelegram } from 'react-icons/bs';
+import { IoLogoWhatsapp } from 'react-icons/io';
+import { FcGoogle } from 'react-icons/fc';
 
 
 function Navbar() {
 
   const navigate = useNavigate()
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   const Logut = () =>{
     localStorage.clear()
     navigate('/')
     window.location.reload()
   }
   return (
+
+    
     <header className="app-header">
+          <Offcanvas show={show} onHide={handleClose}>
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Menu</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+        <nav className="sidebar-nav scroll-sidebar" data-simplebar="">
+        <ul id="sidebarnav">
+          <li className="nav-small-cap">
+            <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span className="hide-menu">Home</span>
+          </li>
+          <li className="sidebar-item">
+            <Link  className="sidebar-link" to="/dashboard" aria-expanded="false">
+              <span>
+                <i className="ti ti-layout-dashboard"></i>
+              </span>
+              <span className="hide-menu">Dashboard</span>
+            </Link>
+          </li>
+          <li className="nav-small-cap">
+            <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span className="hide-menu">Post Managment</span>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/create_post" aria-expanded="false">
+              <span>
+                <BsFillFileEarmarkPostFill size={23}/>
+              </span>
+              <span className="hide-menu">Create Post</span>
+            </Link>
+          </li>
+          <li className="nav-small-cap">
+            <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+            <span className="hide-menu">Automations</span>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/google" aria-expanded="false">
+              <span>
+                <FcGoogle size={23}/>
+              </span>
+              <span className="hide-menu">Google</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/telegram" aria-expanded="false">
+              <span>
+                <BsTelegram color='#0088cc' size={23}/>
+              </span>
+              <span className="hide-menu">Telegram</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/whatsapp" aria-expanded="false">
+              <span>
+                <IoLogoWhatsapp color='#075e54' size={23}/>
+              </span>
+              <span className="hide-menu">Whatsapp</span>
+            </Link>
+          </li>
+          <li className="sidebar-item">
+            <Link className="sidebar-link" to="/facebook" aria-expanded="false">
+              <span>
+                <BsFacebook color='#1877F2' size={23}/>
+              </span>
+              <span className="hide-menu">Facebook</span>
+            </Link>
+          </li>
+         
+          
+        </ul>
+
+      </nav>
+        </Offcanvas.Body>
+      </Offcanvas>
+          
     <nav className="navbar navbar-expand-lg navbar-light">
       <ul className="navbar-nav">
         <li className="nav-item d-block d-xl-none">
-          <Link className="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" >
+          <Link onClick={handleShow} className="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" >
             <i className="ti ti-menu-2"></i>
           </Link>
         </li>

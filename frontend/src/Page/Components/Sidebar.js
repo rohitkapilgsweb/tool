@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {BsFillFileEarmarkPostFill, BsTelegram} from 'react-icons/bs';
 import {IoLogoWhatsapp} from 'react-icons/io';
 import {BsFacebook} from 'react-icons/bs';
 import {FcGoogle} from 'react-icons/fc';
 import { Link } from 'react-router-dom';
+import Offcanvas from 'react-bootstrap/Offcanvas';
 function Sidebar() {
+
 
 
   return (
@@ -14,7 +16,7 @@ function Sidebar() {
         <Link to="/" className="text-nowrap logo-img">
           <img src="https://gswebtech.in/gswebtech.in/assets/img/site-logo.png" width="180" alt="" />
         </Link>
-        <div className="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <div  className="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i className="ti ti-x fs-8"></i>
         </div>
       </div>
@@ -25,7 +27,7 @@ function Sidebar() {
             <span className="hide-menu">Home</span>
           </li>
           <li className="sidebar-item">
-            <Link className="sidebar-link" to="/dashboard" aria-expanded="false">
+            <Link  className="sidebar-link" to="/dashboard" aria-expanded="false">
               <span>
                 <i className="ti ti-layout-dashboard"></i>
               </span>
@@ -80,9 +82,7 @@ function Sidebar() {
               <span className="hide-menu">Facebook</span>
             </Link>
           </li>
-          
-        
-          
+
           {/* <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span className="hide-menu">AUTH</span>
