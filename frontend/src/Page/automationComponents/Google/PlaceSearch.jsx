@@ -40,7 +40,9 @@ console.log(isLoading)
 const fetchUserData = async (Place_Id) => {
   const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,formatted_address,url,photo,business_status&place_id=${Place_Id}&key=${PLACE_API_KEY}`;
   try {
-    const phoneData = await fetch(url);
+    const phoneData = await fetch(url,{
+
+    });
     const userData = await phoneData?.json();
     return userData?.result;
   } catch (error) {
@@ -95,6 +97,9 @@ dispatch(GoogleApi({next_page: Old_Token}))
     XLSX.writeFile(workbook, "DataSheet_GoogleMap_place.xlsx");
   };
 
+
+  
+  
   return (
     <div className=''>{isLoading && <Loader />}
 

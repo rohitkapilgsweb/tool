@@ -12,12 +12,30 @@ import Facebook from "../Page/automationComponents/Facebook";
 import CreatePost from "../Page/automationComponents/CreatePost";
 import Google from "../Page/automationComponents/Google";
 import SinglePost from "../Page/automationComponents/SinglePost";
+import CommingSoon from "../Page/CommingSoon";
 
 const role = getUserId() ? getUserId()?.role : null;
 // const role = LocalFbRole() ? LocalFbRole() : null;
 const isLoggedIn = getToken();
 // console.log(role)
 const protects = {
+  tempuser: [
+    {
+        path: "/",
+        element: isLoggedIn ? <DashboardLayout/> : <Navigate to="/" />,
+        children: [
+        { path: "/", element: <Dashboard/> },
+        { path: "/home", element: <Dashboard/> },
+        { path: "/dashboard", element: <Dashboard/> },
+        { path: "/telegram", element: <Telegram/> },
+        { path: "/whatsapp", element: <CommingSoon/> },
+        { path: "/facebook", element: <CommingSoon/> },
+        { path: "/create_post", element: <CommingSoon/> },
+        { path: "/google", element: <Google/> },
+        { path: "*", element: <div>no page found</div> },
+        ],
+      },
+],
     user: [
         {
             path: "/",
