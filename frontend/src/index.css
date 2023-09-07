@@ -18578,46 +18578,22 @@ code {
 }
 
 .h-100-vh {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     background-color: #f7f7f7bf;
-    height: 100%;
+    height: 100vh;
     align-items: center;
     display: flex;
     justify-content: center;
-    z-index: 999;
 }
 
 .new_textarea {
     width: 100%;
 }
-.body-wrapper
-{
-position: unset;
-}
 
-.Data_export_btn{
-position: fixed;
-    right: 16px;
-    bottom: 10%;
-    background: #0088cc;
-    border-radius: 100%;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-
-}
-.Data_export_btn svg{
-    color: #fff;
-}
-.pointer-event-none
-{
-    pointer-events: none;
-    background-color: #2359D5;
-    color: #fff;
-}
-.height-46{
-    height: 46px !important;
+.new_border-color {
+    border-radius: 7px;
+    box-shadow: 0px 0px 4px 0px #939393;
 }

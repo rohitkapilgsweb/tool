@@ -11,6 +11,7 @@ import Whatsapp from "../Page/automationComponents/Whatsapp";
 import Facebook from "../Page/automationComponents/Facebook";
 import CreatePost from "../Page/automationComponents/CreatePost";
 import Google from "../Page/automationComponents/Google";
+import SinglePost from "../Page/automationComponents/SinglePost";
 
 const role = getUserId() ? getUserId()?.role : null;
 // const role = LocalFbRole() ? LocalFbRole() : null;
@@ -30,6 +31,7 @@ const protects = {
             { path: "/facebook", element: <Facebook/> },
             { path: "/create_post", element: <CreatePost/> },
             { path: "/google", element: <Google/> },
+            {path:"/singlepost", element : <SinglePost/>},
             { path: "*", element: <div>no page found</div> },
             ],
           },
