@@ -18606,3 +18606,10 @@ button.Data_export_btn {
     border-radius: 100px;
     background: #2474ad;
 }
+.pointer-event-none
+{
+    pointer-events: none;
+    background-color: #5d87ff;
+    padding: 5px 10px;
+    color: white;
+}
