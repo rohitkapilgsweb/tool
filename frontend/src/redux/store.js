@@ -5,6 +5,7 @@ import TelegramTokenReducer from './reducer/getTelegramTokenSlice'
 import GetFacebookSliceReducer from './reducer/getDataSlice'
 import addFacebookSliceReducer from './reducer/facebookSlice'
 import GooglePlaceSearchReducer from './reducer/GooglePlaceSearch'
+import BusinessListingReducer from './reducer/BusinessListing'
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     addFacebookAccount: addFacebookSliceReducer,
     GetFacebookAccount: GetFacebookSliceReducer,
     GooglePlaceSearch: GooglePlaceSearchReducer,
+    BusinessListings : BusinessListingReducer
   },
 });
 

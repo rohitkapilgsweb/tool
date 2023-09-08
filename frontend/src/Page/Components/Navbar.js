@@ -114,16 +114,16 @@ function Navbar() {
       </ul>
       <div className="navbar-collapse justify-content-end px-0" id="navbarNav">
         <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-            <li className="nav-item ">
+            {/* <li className="nav-item ">
             <Link  className="d-flex align-items-center gap-2 dropdown-item">
                   <i className="ti ti-list-check fs-6"></i>
                   <p className="mb-0 fs-3">My Task</p>
                 </Link>
-            </li>
+            </li> */}
             <li className="nav-item ">
             <Link className="nav-link nav-icon-hover"  id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnLIAdirdy3gzcHmeioowS6Ga0uvAIgry0gN_Kg17FBj7zjDs-VuFdN8rvA_ja6LrF77o&usqp=CAU" alt="" width="35" height="35" className="rounded-circle"/>
+              <img src="#" alt="" width="35" height="35" className="rounded-circle"/>
             </Link>
           </li>
             <li className="nav-item ">

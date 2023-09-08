@@ -3,32 +3,23 @@ import { Field } from 'react-final-form'
 import { Form } from 'react-final-form'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../Components/Loader'
-import axios from 'axios'
-
 import Pagination from 'react-bootstrap/Pagination';
 import { toast } from 'react-toastify'
 import * as XLSX from 'xlsx';
 import { IoMdCloudDownload } from 'react-icons/io'
 import {FaDirections} from 'react-icons/fa'
-import {RiContactsBook2Line} from 'react-icons/ri'
 import {TbLocationFilled} from 'react-icons/tb'
 import { BsFillTelephoneFill } from 'react-icons/bs'
-import { PLACE_API_KEY } from '../../../config/config'
-import { GoogleApi } from '../../../redux/actions/LoginAction'
+import { BusinessListings, GoogleApi } from '../../../redux/actions/LoginAction'
 
 function PlaceSearch() {
-
-
-    
 
 const [getdata, setGetdata] = useState([]);
 const [show, setShow] = useState(false);
 const dispatch = useDispatch();
 
 const onSubmit = async (values) => {
-  console.log(JSON.stringify(values));
   dispatch(GoogleApi({ msg_body: JSON.stringify(values?.search) }));
-
   setShow(true)
 };
 
@@ -36,19 +27,20 @@ const GooglePlaceData = useSelector((state) => state?.GooglePlaceSearch?.GoogleA
 const statuss = useSelector((state) => state?.GooglePlaceSearch?.GoogleApi?.status);
 const isLoading = useSelector((state) => state?.GooglePlaceSearch?.isLoading);
 const tokenNext = useSelector((state) => state?.GooglePlaceSearch?.GoogleApi?.next_page);
-console.log(isLoading)
+const businessListing = useSelector((state) => state?.BusinessListings?.isLoading);
 const fetchUserData = async (Place_Id) => {
-  const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,formatted_address,url,photo,business_status&place_id=${Place_Id}&key=${PLACE_API_KEY}`;
-  try {
-    const phoneData = await fetch(url,{
 
-    });
-    const userData = await phoneData?.json();
-    return userData?.result;
+  try {
+    const res = await dispatch(BusinessListings({ place_id: Place_Id }));
+     return res?.payload 
   } catch (error) {
-    console.error("Error fetching user data:", error);
-    return null;
+    console.error(error);
+    alert('500 Server Error. Please Try After Few Hours')
+    // Handle the error, possibly by setting an error state
   }
+ 
+
+
 };
 
 
@@ -101,7 +93,7 @@ dispatch(GoogleApi({next_page: Old_Token}))
   
   
   return (
-    <div className=''>{isLoading && <Loader />}
+    <div className=''>{isLoading || businessListing ? <Loader /> :""}
 
 
     <div className="container">
@@ -149,7 +141,7 @@ dispatch(GoogleApi({next_page: Old_Token}))
                           <div className='place-img'>
                           </div>
                           <div className='place-body'>
-                         <lable className="btn  mb-3 fs-1 py-1 pointer-event-none px-2 ">{item?.business_status}</lable>
+                         <p className="btn  mb-3 fs-1 py-1 pointer-event-none px-2 ">{item?.business_status}</p>
                           <h5>{item?.name}</h5>
                           <p className='m-auto'><span><TbLocationFilled color='#F7634C' size={20}/></span>&nbsp; {item?.formatted_address}</p>
                          {item?.formatted_phone_number && ( <p className='m-auto mt-2'><span><BsFillTelephoneFill color='#32D3E4' size={20}/></span>&nbsp; {item?.formatted_phone_number}</p>)}

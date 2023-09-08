@@ -37,5 +37,9 @@ export const GoogleApi = createAsyncThunk("GooglePlace", async (payload) => {
   const response = await axiosInstance.post(`api/place-api-search`, payload);
   return response.data;
 });
+export const BusinessListings = createAsyncThunk("BusinessListings", async (payload) => {
+  const response = await axiosInstance.post(`api/google-business`, payload);
+  return response.data;
+});
 
 

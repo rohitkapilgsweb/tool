@@ -13,6 +13,7 @@ import CreatePost from "../Page/automationComponents/CreatePost";
 import Google from "../Page/automationComponents/Google";
 import SinglePost from "../Page/automationComponents/SinglePost";
 import CommingSoon from "../Page/CommingSoon";
+import LudoGame from "../Page/Demo";
 
 const role = getUserId() ? getUserId()?.role : null;
 // const role = LocalFbRole() ? LocalFbRole() : null;
@@ -68,6 +69,8 @@ const protects = {
           { path: "/whatsapp", element: <Whatsapp/> },
           { path: "/facebook", element: <Facebook/> },
           { path: "/create_post", element: <CreatePost/> },
+        
+
           { path: "*", element: <div>no page found</div> },
           ],
         },
@@ -83,6 +86,7 @@ const protects = {
           {path: "/login", element: <Login /> },
           {path: "/resetpassword", element: <ResetPassword /> },
           {path: "/register", element: <Createone /> },
+          { path: "/demo", element: <LudoGame/> },
           {path: "*", element: "No PAGE FOUNG" },
         ],
       },
