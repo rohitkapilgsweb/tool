@@ -6,6 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { getUserId } from "../../utils/auth";
+import logoImg from '../../assets/img/logo.png'
 function Sidebar() {
   const role = getUserId() ? getUserId()?.role : null;
   const Location  = useLocation().pathname  ;
@@ -16,7 +17,7 @@ function Sidebar() {
         <div className="brand-logo d-flex align-items-center justify-content-between">
           <Link to="/" className="text-nowrap logo-img">
             <img
-              src="https://gswebtech.in/gswebtech.in/assets/img/site-logo.png"
+              src={logoImg}
               width="180"
               alt=""
             />
@@ -30,7 +31,7 @@ function Sidebar() {
         </div>
         <nav className="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            {!role === "tempuser" ? (
+            {role === "user" ? (
               <>
                 <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>

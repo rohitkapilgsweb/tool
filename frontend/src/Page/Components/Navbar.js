@@ -5,7 +5,7 @@ import { BsFacebook, BsFillFileEarmarkPostFill, BsTelegram } from 'react-icons/b
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 import { getUserId } from '../../utils/auth';
-
+import IconImg from '../../assets/img/optimizsync.jpg'
 
 function Navbar() {
 
@@ -198,16 +198,11 @@ function Navbar() {
       </ul>
       <div className="navbar-collapse justify-content-end px-0" id="navbarNav">
         <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
-            {/* <li className="nav-item ">
-            <Link  className="d-flex align-items-center gap-2 dropdown-item">
-                  <i className="ti ti-list-check fs-6"></i>
-                  <p className="mb-0 fs-3">My Task</p>
-                </Link>
-            </li> */}
+
             <li className="nav-item ">
             <Link className="nav-link nav-icon-hover"  id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <img src="#" alt="" width="35" height="35" className="rounded-circle"/>
+              <img src={IconImg} alt="" width="35" height="35" className="rounded-circle border"/>
             </Link>
           </li>
             <li className="nav-item ">
