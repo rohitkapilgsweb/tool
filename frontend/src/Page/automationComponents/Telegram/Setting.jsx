@@ -8,6 +8,7 @@ import {
 } from "../../../redux/actions/LoginAction";
 import { getUserId } from "../../../utils/auth";
 import Loader from "../../Components/Loader";
+import { toast } from "react-toastify";
 function Setting(props) {
   const dispatch = useDispatch();
   const [userId, setUserId] = useState(false);
@@ -22,10 +23,16 @@ function Setting(props) {
       dispatch(getTelegramToken(usergetObject)).then((res) => {
         setTelegramToken(res?.payload?.telegramToken);
         setUserId(true);
+        if(res?.payload?.telegramToken){
+          setEditBtn(true)
+        }
       });
     }
+  
   }, []);
 
+ 
+  const notify = (msg) => toast(msg);
   const onSubmit = async (values) => {
 
     // console.log(JSON.stringify(values));
@@ -35,6 +42,10 @@ function Setting(props) {
     };
     dispatch(saveTelegramToken(saveData)).then((res) => {
       setEditBtn(res.payload.status);
+      if(res.payload.status === true){
+        let mst = 'Toked Has Been Adedd'
+        notify(mst)
+      }
       dispatch(getTelegramToken(usergetObject)).then((res) => {
         setTelegramToken(res?.payload?.telegramToken);
         setUserId(true);
@@ -47,17 +58,24 @@ function Setting(props) {
     } else if (query === "edit") {
       setEditBtn(false);
     }else if(query === "update"){
+      // setEditBtn(true);
       const updateData = {
         updateToken : updateToken?.telegram_BotToken,
         user_id: getUserId().id
       }
       dispatch(saveTelegramToken(updateData))
+      .then((res)=>{
+        setEditBtn(true);
+        let mst = 'Toked Has Been Updated'
+        notify(mst)
+      })
 console.log(updateToken,"add Update Logic")
     }
+  
   };
 
   const isLoading = useSelector((state) => state?.saveTelegramToken?.isLoading);
-  const statusToken = useSelector((state) => state?.TelegramToken?.status);
+  // const statusToken = useSelector((state) => state?.TelegramToken?.status);
   return (
     <div>
       {isLoading && <Loader />}

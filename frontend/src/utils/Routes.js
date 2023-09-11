@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { LocalFbRole, getToken, getUserId } from "./auth";
+import {  getToken, getUserId } from "./auth";
 import LoginLayout from "./LoginLayout";
 import Login from "../Page/Login";
 import Dashboard from "../Page/Dashboard";
@@ -16,9 +16,7 @@ import CommingSoon from "../Page/CommingSoon";
 import LudoGame from "../Page/Demo";
 
 const role = getUserId() ? getUserId()?.role : null;
-// const role = LocalFbRole() ? LocalFbRole() : null;
 const isLoggedIn = getToken();
-// console.log(role)
 const protects = {
   tempuser: [
     {

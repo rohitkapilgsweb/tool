@@ -30,17 +30,19 @@ function SendMessege() {
   };
 
   const onSubmit = async (values) => {
-    console.log(values)
+    // console.log(values)
     
     // const files = values.file
     const chat_id = values.chat_id.includes('@') ? values.chat_id :  "@" + values.chat_id;
     if(TokenTelegram && text){
-      const ApiURL = `https://api.telegram.org/bot${TokenTelegram}/sendMessage?chat_id=${chat_id}&text=${text}&parse_mode=MARKDOWN`
-      axios.get(ApiURL).then((response) => {
-        console.log(response.data)
-        notify()
-  
-      });
+        const ApiURL = `https://api.telegram.org/bot${TokenTelegram}/sendMessage?chat_id=${chat_id}&text=${text}&parse_mode=MARKDOWN`
+     await axios.get(ApiURL).then((response) => {
+          // console.log(response.data)
+          // console.log(response)
+          notify()
+    
+        });
+    
 
     }
   //   else if(TokenTelegram && files ){
@@ -51,9 +53,9 @@ function SendMessege() {
        
   //   } )
   // }
-  else{
-      alert('Add Your Telegram Token Go To Settings')
-    }
+  // else{
+  //     alert('Add Your Telegram Token Go To Settings')
+  //   }
   };
   return (
     <div>
