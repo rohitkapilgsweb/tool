@@ -13,7 +13,7 @@ function Welcome() {
     setShowA(true);
   }, []);
   return (
-    <div className="container px-5  mt-3">
+    <div className="container px-lg-5 mt-3">
       <div className="row justify-content-start">
         <div className="col-md-12">
           <h4 className="active-h4"> <ImFeed color="rgb(255 102 102)"/> Active Service</h4>

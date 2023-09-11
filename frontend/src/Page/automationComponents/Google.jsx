@@ -12,7 +12,7 @@ function Google() {
 
    <div color="container pt-4">
     <div className="row justify-content-center align-items-center m-0  ">
-     <div className="col  px-5">
+     <div className="col  px-lg-5">
  <div className="menu-box" >
  <Tabs
    defaultActiveKey="GoogleSearch"
