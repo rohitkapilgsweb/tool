@@ -9,7 +9,7 @@ function Telegram() {
   return (
     <>
       <div color="container pt-4">
-       <div className="row justify-content-center align-items-center ">
+       <div className="row justify-content-center align-items-center m-0 ">
         <div className="col  px-5">
     <div className="menu-box" >
     <Tabs

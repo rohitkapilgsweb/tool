@@ -18614,3 +18614,16 @@ button.Data_export_btn {
     padding: 5px 10px;
     color: white;
 }
+.toast-end-notification
+{
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
+}
+.product-card
+{
+    width: 100%;
+}
+.product-card.lock{
+    background-color: #f7f7f7;
+}

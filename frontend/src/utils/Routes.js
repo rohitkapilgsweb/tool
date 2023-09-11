@@ -14,6 +14,7 @@ import Google from "../Page/automationComponents/Google";
 import SinglePost from "../Page/automationComponents/SinglePost";
 import CommingSoon from "../Page/CommingSoon";
 import LudoGame from "../Page/Demo";
+import Welcome from "../Page/Welcome";
 
 const role = getUserId() ? getUserId()?.role : null;
 const isLoggedIn = getToken();
@@ -23,9 +24,9 @@ const protects = {
         path: "/",
         element: isLoggedIn ? <DashboardLayout/> : <Navigate to="/" />,
         children: [
-        { path: "/", element: <Dashboard/> },
-        { path: "/home", element: <Dashboard/> },
-        { path: "/dashboard", element: <Dashboard/> },
+        { path: "/", element: <Welcome/> },
+        { path: "/home", element: <Welcome/> },
+        { path: "/dashboard", element: <Welcome/> },
         { path: "/telegram", element: <Telegram/> },
         { path: "/whatsapp", element: <CommingSoon/> },
         { path: "/facebook", element: <CommingSoon/> },
