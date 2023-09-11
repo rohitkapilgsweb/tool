@@ -66,8 +66,14 @@ function Setting(props) {
       dispatch(saveTelegramToken(updateData))
       .then((res)=>{
         setEditBtn(true);
-        let mst = 'Toked Has Been Updated'
-        notify(mst)
+        if(editBtn ===true){
+          let mst = 'Toked Has Been Updated'
+          notify(mst)
+        }
+        
+       setTimeout(()=>{
+        window.location.reload()
+       },2000)
       })
 console.log(updateToken,"add Update Logic")
     }
