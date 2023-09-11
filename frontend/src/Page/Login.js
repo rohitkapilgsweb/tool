@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Field, Form } from 'react-final-form';
 import { userLoginAction } from '../redux/actions/LoginAction';
@@ -13,6 +13,7 @@ import { toast } from 'react-toastify';
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const isLoading = useSelector((state)=> state?.UserLogin?.isLoading)
   const notify = (msg) => toast(msg);
@@ -26,6 +27,7 @@ function Login() {
     if(success === true){
       if(res.meta.requestStatus === "fulfilled"){
         localStorage.setItem("token", res.payload.userToken)
+        navigate('/')
         window.location.reload()
       }
     }else{

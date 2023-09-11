@@ -15,7 +15,7 @@ function Createone() {
    dispatch(LoginActions(JSON.stringify(values)))
    .then((res)=>{
     if(res?.payload?.success){
-      navigate("/login")
+      navigate("/")
      }
    })
   
