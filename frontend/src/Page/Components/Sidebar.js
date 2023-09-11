@@ -3,12 +3,13 @@ import { BsFillFileEarmarkPostFill, BsTelegram } from "react-icons/bs";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { getUserId } from "../../utils/auth";
 function Sidebar() {
   const role = getUserId() ? getUserId()?.role : null;
-
+  const Location  = useLocation().pathname  ;
+  console.log(Location)
   return (
     <aside className="left-sidebar">
       <div>
@@ -37,7 +38,7 @@ function Sidebar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
-                    className="sidebar-link"
+                    className={`sidebar-link `}
                     to="/dashboard"
                     aria-expanded="false"
                   >
@@ -124,7 +125,7 @@ function Sidebar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
-                    className="sidebar-link"
+                    className={`sidebar-link ${Location === "/dashboard" ? "active-menu" :""}`}
                     to="/dashboard"
                     aria-expanded="false"
                   >
@@ -140,7 +141,7 @@ function Sidebar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
-                    className="sidebar-link"
+                    className={`sidebar-link ${Location === "/google" ? "active-menu" :""}`}
                     to="/google"
                     aria-expanded="false"
                   >
@@ -152,7 +153,7 @@ function Sidebar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
-                    className="sidebar-link"
+                    className={`sidebar-link ${Location === "/telegram" ? "active-menu" :""}`}
                     to="/telegram"
                     aria-expanded="false"
                   >

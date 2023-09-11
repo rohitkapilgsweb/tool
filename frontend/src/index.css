@@ -18627,3 +18627,7 @@ button.Data_export_btn {
 .product-card.lock{
     background-color: #f7f7f7;
 }
+.sidebar-nav ul .sidebar-item .sidebar-link.active-menu {
+    background-color: rgba(93, 135, 255, 0.1);
+    color: #5d87ff;
+}

@@ -39,6 +39,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/dashboard"
                     aria-expanded="false"
@@ -55,6 +56,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/create_post"
                     aria-expanded="false"
@@ -71,6 +73,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/google"
                     aria-expanded="false"
@@ -83,6 +86,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/telegram"
                     aria-expanded="false"
@@ -95,6 +99,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/whatsapp"
                     aria-expanded="false"
@@ -107,6 +112,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                        onClick={handleClose}
                     className="sidebar-link"
                     to="/facebook"
                     aria-expanded="false"
@@ -120,51 +126,54 @@ function Navbar() {
               </>
             ) : (
               <>
+              <li className="nav-small-cap">
+                 <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                 <span className="hide-menu">Home</span>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                 onClick={handleClose}
+                   className={`sidebar-link ${Location === "/dashboard" ? "active-menu" :""}`}
+                   to="/dashboard"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     <i className="ti ti-layout-dashboard"></i>
+                   </span>
+                   <span className="hide-menu">Welcome</span>
+                 </Link>
+               </li>
                <li className="nav-small-cap">
-                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
-                  <span className="hide-menu">Home</span>
-                </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/dashboard"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <i className="ti ti-layout-dashboard"></i>
-                    </span>
-                    <span className="hide-menu">Welcome</span>
-                  </Link>
-                </li>
-                <li className="nav-small-cap">
-                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
-                  <span className="hide-menu">Automations</span>
-                </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/google"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <FcGoogle size={23} />
-                    </span>
-                    <span className="hide-menu">Google</span>
-                  </Link>
-                </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/telegram"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <BsTelegram color="#0088cc" size={23} />
-                    </span>
-                    <span className="hide-menu">Telegram</span>
-                  </Link>
-                </li>
-              </>
+                 <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                 <span className="hide-menu">Automations</span>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                  onClick={handleClose}
+                   className={`sidebar-link ${Location === "/google" ? "active-menu" :""}`}
+                   to="/google"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     <FcGoogle size={23} />
+                   </span>
+                   <span className="hide-menu">Google</span>
+                 </Link>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                  onClick={handleClose}
+                   className={`sidebar-link ${Location === "/telegram" ? "active-menu" :""}`}
+                   to="/telegram"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     <BsTelegram color="#0088cc" size={23} />
+                   </span>
+                   <span className="hide-menu">Telegram</span>
+                 </Link>
+               </li>
+             </>
             )}
           
         </ul>
