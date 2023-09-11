@@ -28,7 +28,7 @@ const protects = {
         { path: "/", element: <Dashboard/> },
         { path: "/home", element: <Dashboard/> },
         { path: "/dashboard", element: <Dashboard/> },
-        { path: "/telegram", element: <CommingSoon/> },
+        { path: "/telegram", element: <Telegram/> },
         { path: "/whatsapp", element: <CommingSoon/> },
         { path: "/facebook", element: <CommingSoon/> },
         { path: "/create_post", element: <CommingSoon/> },

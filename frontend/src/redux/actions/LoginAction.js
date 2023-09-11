@@ -23,7 +23,10 @@ export const getTelegramToken = createAsyncThunk("TelegramToken", async (payload
   const response = await axiosInstance.post(`api/gettelegramToken`, payload);
   return response.data;
 });
-
+export const saveTelegramToken = createAsyncThunk("TelegramToken", async (payload) => {
+  const response = await axiosInstance.post(`api/telegramToken`, payload);
+  return response.data;
+});
 
 export const add_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
   const response = await axiosInstance.post(`api/add_facebook_account`, payload);

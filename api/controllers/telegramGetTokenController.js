@@ -8,8 +8,9 @@ const telegramGetTokenController = expressAsyncHandler(async (req, res) => {
 
   
     try{
-      const TelegramTokenSave =  await telegramTokens.findOne({userObjectId:user_id});
+      const TelegramTokenSave =  await telegramTokens.findOne({userObjectId:req.body.user_id});
         res.send(TelegramTokenSave)
+        // console.log(TelegramTokenSave)
     }catch{
         res.send("faild")
     }

@@ -16,6 +16,7 @@ function PlaceSearch() {
 
 const [getdata, setGetdata] = useState([]);
 const [show, setShow] = useState(false);
+const [isListLoader, setIsListLoader] = useState(false);
 const dispatch = useDispatch();
 
 const onSubmit = async (values) => {
@@ -27,7 +28,7 @@ const GooglePlaceData = useSelector((state) => state?.GooglePlaceSearch?.GoogleA
 const statuss = useSelector((state) => state?.GooglePlaceSearch?.GoogleApi?.status);
 const isLoading = useSelector((state) => state?.GooglePlaceSearch?.isLoading);
 const tokenNext = useSelector((state) => state?.GooglePlaceSearch?.GoogleApi?.next_page);
-const businessListing = useSelector((state) => state?.BusinessListings?.isLoading);
+// const businessListing = useSelector((state) => state?.BusinessListings?.isLoading);
 const fetchUserData = async (Place_Id) => {
 
   try {
@@ -53,6 +54,7 @@ const handleDataFetching = async () => {
   
   // Set the final data
   setGetdata(filteredUserData);
+  setIsListLoader(filteredUserData ? true : false)
 };
 
 useEffect(() => {
@@ -93,7 +95,7 @@ dispatch(GoogleApi({next_page: Old_Token}))
   
   
   return (
-    <div className=''>{isLoading || businessListing ? <Loader /> :""}
+    <div className=''>{isLoading  ? <Loader /> :""}
 
 
     <div className="container">

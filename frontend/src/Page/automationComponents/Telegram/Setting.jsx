@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Field, Form } from "react-final-form";
 import Col from "react-bootstrap/esm/Col";
-import { getTelegramToken } from "../../../redux/actions/LoginAction";
+import {
+  getTelegramToken,
+  saveTelegramToken,
+} from "../../../redux/actions/LoginAction";
 import { getUserId } from "../../../utils/auth";
+import Loader from "../../Components/Loader";
 function Setting(props) {
   const dispatch = useDispatch();
   const [userId, setUserId] = useState(false);
   const [telegramToken, setTelegramToken] = useState(false);
+  const [editBtn, setEditBtn] = useState(false);
+  const [updateToken, setUpdateToken] = useState();
   const usergetObject = {
     user_id: getUserId().id,
   };
@@ -21,65 +27,99 @@ function Setting(props) {
   }, []);
 
   const onSubmit = async (values) => {
-    console.log(JSON.stringify(values));
+
+    // console.log(JSON.stringify(values));
+    const saveData = {
+      telegram_BotToken: values.telegram_BotToken,
+      user_id: getUserId().id,
+    };
+    dispatch(saveTelegramToken(saveData)).then((res) => {
+      setEditBtn(res.payload.status);
+      dispatch(getTelegramToken(usergetObject)).then((res) => {
+        setTelegramToken(res?.payload?.telegramToken);
+        setUserId(true);
+      });
+    });
+  };
+  const stateChange = (query) => {
+    if (query === "cancel") {
+      setEditBtn(true);
+    } else if (query === "edit") {
+      setEditBtn(false);
+    }else if(query === "update"){
+      const updateData = {
+        updateToken : updateToken?.telegram_BotToken,
+        user_id: getUserId().id
+      }
+      dispatch(saveTelegramToken(updateData))
+console.log(updateToken,"add Update Logic")
+    }
   };
 
+  const isLoading = useSelector((state) => state?.saveTelegramToken?.isLoading);
+  const statusToken = useSelector((state) => state?.TelegramToken?.status);
   return (
     <div>
+      {isLoading && <Loader />}
       <Form
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
+            {setUpdateToken(values)}
             <label>Your Bot Token</label>
-
             <>
               <Field
                 className="form-control"
-                name="key"
+                name="telegram_BotToken"
                 component="input"
                 type="text"
                 // value={telegramToken}
                 placeholder={userId ? telegramToken : "Enter Bot Token"}
-                disabled={userId ? true : false}
+                disabled={editBtn}
               />
             </>
-            {!userId ? (
-              <Col sm={{ span: 12 }}>
-                <button
-                  className="mt-3 bg-black btn text-white"
-                  type="submit"
-                  disabled={submitting || pristine}
-                >
-                  Save
-                </button>
-                {console.log(userId)}
-                {!userId && <button
-                  // onClick={setUserId(true)}
-                    className="mt-3 btn btn-danger text-white"
-                    type="submit"                 >
-                    Cancel
-                  </button>}
-              </Col>
-          
+            {!editBtn ? (
+              <>
+                <Col sm={4}>
+                  <div className="d-flex align-items-center gap-3">
+                   {!telegramToken && <button
+                      className="mt-3 bg-black btn text-white"
+                      type="submit"
+                      disabled={submitting || pristine}>
+                      Save
+                    </button>} 
+                    {telegramToken && (<>
+                      <p
+                      className="mt-3 mb-0 bg-black btn text-white"
+                      type="submit"
+                      onClick={() =>stateChange('update')}
+                      >
+                      Update
+                    </p> <p
+                      className="mt-3 mb-0 bg-black btn text-white"
+                      onClick={() => stateChange("cancel")}
+
+                    >
+                      Cancel
+                    </p></>)}
+                    
+                  </div>
+                </Col>
+              </>
             ) : (
               <>
                 <Col sm={{ span: 12 }}>
-                  <button
-                  // onClick={setUserId(false)}
+                  <p
                     className="mt-3 bg-black btn text-white"
-                    type="submit"                 >
-                    Edit
-                  </button>
-                  <button
-                    className="mt-3 bg-black btn text-white"
-                    type="submit"
-                    disabled={submitting || pristine}
+                    onClick={() => stateChange("edit")}
+
                   >
-                    Update
-                  </button>
+                    EDIT
+                  </p>
                 </Col>
               </>
             )}
+          
           </form>
         )}
       />
