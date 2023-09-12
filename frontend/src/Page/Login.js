@@ -84,7 +84,7 @@ function Login() {
                           name="password"
                           component="input"
                           type="password"
-                          placeholder="Create Password"
+                          placeholder="Password"
                         />
                       </Col>
                    
