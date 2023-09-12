@@ -11,9 +11,12 @@ import {AiOutlineFolder} from 'react-icons/ai';
 import {AiOutlineGif} from 'react-icons/ai';
 import {BsClock} from 'react-icons/bs';
 import {AiFillCaretDown} from 'react-icons/ai';
-
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function SinglePost() {
+
+    
   return (
     <div>   
         <Container> 
@@ -43,7 +46,31 @@ function SinglePost() {
                             </div>
                         </Col>
                         <Col sm={12}>
-                        <textarea rows="5" className="new_textarea form-control" ></textarea>      
+
+
+                        <CKEditor
+                    editor={ ClassicEditor }
+                    data=""
+                    // config={ {
+                    //     plugins: [ Image, ImageCaption, ImageStyle, ImageToolbar,ImageUpload],
+                    //     toolbar: [ 'Image', ]
+                    // } }
+                    onReady={ editor => {
+                        // You can store the "editor" and use when it is needed.
+                        console.log( 'Editor is ready to use!', editor );
+                    } }
+                    onChange={ ( event, editor ) => {
+                        const data = editor.getData();
+                        console.log( { event, editor, data } );
+                    } }
+                    onBlur={ ( event, editor ) => {
+                        console.log( 'Blur.', editor );
+                    } }
+                    onFocus={ ( event, editor ) => {
+                        console.log( 'Focus.', editor );
+                    } }
+                />
+                        {/* <textarea rows="5" className="new_textarea form-control" ></textarea>       */}
                         </Col>   
                         <Col sm={12} >
                            <div className="d-flex justify-content-between border new_border-color my-3 p-2"  >

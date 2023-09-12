@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:false
     },
+    autoPosting:{
+        type: Boolean,
+        required:false
+    },
     old_accessToken:{
         type: String,
         required:false

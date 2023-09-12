@@ -23,7 +23,7 @@ function Navbar() {
   return (
 
     
-    <header className="app-header">
+    <header className="app-header shadow-sm">
           <Offcanvas show={show} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Menu</Offcanvas.Title>

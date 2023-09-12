@@ -9,12 +9,13 @@ import Createone from "../Page/Createone";
 import Telegram from "../Page/automationComponents/Telegram";
 import Whatsapp from "../Page/automationComponents/Whatsapp";
 import Facebook from "../Page/automationComponents/Facebook";
-import CreatePost from "../Page/automationComponents/CreatePost";
+
 import Google from "../Page/automationComponents/Google";
 import SinglePost from "../Page/automationComponents/SinglePost";
 import CommingSoon from "../Page/CommingSoon";
 import LudoGame from "../Page/Demo";
 import Welcome from "../Page/Welcome";
+import Post from "../Page/automationComponents/Post";
 
 const role = getUserId() ? getUserId()?.role : null;
 const isLoggedIn = getToken();
@@ -47,7 +48,7 @@ const protects = {
             { path: "/telegram", element: <Telegram/> },
             { path: "/whatsapp", element: <Whatsapp/> },
             { path: "/facebook", element: <Facebook/> },
-            { path: "/create_post", element: <CreatePost/> },
+            { path: "/create_post", element: <Post/> },
             { path: "/google", element: <Google/> },
             {path:"/singlepost", element : <SinglePost/>},
             { path: "*", element: <div>no page found</div> },
@@ -67,7 +68,7 @@ const protects = {
           { path: "/telegram", element: <Telegram/> },
           { path: "/whatsapp", element: <Whatsapp/> },
           { path: "/facebook", element: <Facebook/> },
-          { path: "/create_post", element: <CreatePost/> },
+          { path: "/create_post", element: <Post/> },
         
 
           { path: "*", element: <div>no page found</div> },

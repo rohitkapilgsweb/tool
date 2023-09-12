@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const facebookDetails = require("../modals/facebook");
 dotenv.config();
 const addFacebookAccount = expressAsyncHandler(async (req, res) => {
-const {user_id, accessToken,page_access_token,fb_userId,fb_userImg,fb_Username,fb_pages,fb_groups}= req.body
+const {user_id, accessToken,page_access_token,autoPost,fb_userId,fb_userImg,fb_Username,fb_pages,fb_groups}= req.body
 
 const data = new facebookDetails({
     userObjectId: req.body.user_id,
@@ -12,6 +12,7 @@ const data = new facebookDetails({
     fb_userId: req.body.fb_userId,
     fb_userImg: req.body.fb_userImg,
     fb_Username:req.body.fb_Username,
+    autoPosting:req.body.autoPost,
     fb_pages: req.body.fb_pages,
     fb_groups: req.body.fb_groups
 })
