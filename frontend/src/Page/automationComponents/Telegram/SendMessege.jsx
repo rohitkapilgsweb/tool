@@ -45,17 +45,7 @@ function SendMessege() {
     
 
     }
-  //   else if(TokenTelegram && files ){
-  //     const ApiURL = `https://api.telegram.org/bot${TokenTelegram}/sendPhoto?chat_id=${chat_id}&photo=${text}`
-  //     axios.get(ApiURL).then((response) => {
-  //       console.log(response.data)
-  //       notify()
-       
-  //   } )
-  // }
-  // else{
-  //     alert('Add Your Telegram Token Go To Settings')
-  //   }
+
   };
   return (
     <div>
@@ -82,6 +72,7 @@ function SendMessege() {
               type="text"
               placeholder="Enter Message"
             />
+            
              {/* <Field
               className="form-control " 
               name="file"

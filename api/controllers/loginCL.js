@@ -9,7 +9,7 @@ const LoginCL = expressAsyncHandler(async (req, res) => {
     password,
     Profile_img,
     facebook_page_Profile_img,
-    facebook_page_token,
+    pages,
     facebook_User_id,
     facebook_User_login_token,
     mobile,
@@ -30,8 +30,8 @@ const LoginCL = expressAsyncHandler(async (req, res) => {
     facebook_User_login_token: req.body.facebook_User_login_token
       ? req.body.facebook_User_login_token
       : "null",
-    facebook_page_token: req.body.facebook_page_token
-      ? req.body.facebook_page_token
+    pages: req.body.pages
+      ? req.body.pages
       : "null",
     mobile: req.body.mobile ? req.body.mobile : 0,
     token: req.body.token ? req.body.token : "null",

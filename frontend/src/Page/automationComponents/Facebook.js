@@ -7,18 +7,18 @@ function Facebook() {
     <div color="container pt-4">
     <div className="row justify-content-center align-items-center m-0 ">
      <div className="col  px-5">
- <div className="menu-box" >
+ <div className="menu-box  mt-4" >
  <Tabs
-   defaultActiveKey="Introduction"
+   defaultActiveKey="Setting"
    id="uncontrolled-tab-example"
    className=""
  >
-   <Tab eventKey="Introduction" title="Introduction">
+   {/* <Tab eventKey="Introduction" title="Introduction">
   First
    </Tab>
    <Tab eventKey="SendMessage" title="Send Message">
    Secound
-   </Tab>
+   </Tab> */}
    <Tab  eventKey="Setting" title="Setting" >
     <FB_Settings />
    </Tab>

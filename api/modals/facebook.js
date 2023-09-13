@@ -17,8 +17,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:false
     },
-    page_access_token:{
-        type: String,
+    pages:{
+        type: Array,
         required:false
     },
     fb_userId:{

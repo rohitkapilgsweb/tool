@@ -7,6 +7,7 @@ import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { FacebookProvider, LoginButton } from "react-facebook";
 import { useDispatch, useSelector } from "react-redux";
+import FacebookLogin from 'react-facebook-login';
 import {
   add_Facebook_Data,
   get_Facebook_Data,
@@ -88,6 +89,9 @@ function FB_Settings() {
       console.log(res,"responseresponseresponse")
     })
   }
+// const responseFacebook = (response) => {
+//   console.log(response);
+// }
 
   return (
     <div>
@@ -99,6 +103,7 @@ function FB_Settings() {
             <p>Enable Autoposting to Facebook</p>
           </Col>
 
+  
           <Col sm={8}>
             <Form.Check // prettier-ignore
               type="switch"
@@ -114,6 +119,14 @@ function FB_Settings() {
           </Col>
 
           <Col sm={4}>
+            
+  {/* <FacebookLogin
+    appId="158402927285129"
+    autoLoad={true}
+    fields="name,email,picture"
+    // onClick={componentClicked}
+    callback={responseFacebook} />, */}
+
             <FacebookProvider appId="158402927285129">
               <LoginButton
                 className="btn btn-primary"
