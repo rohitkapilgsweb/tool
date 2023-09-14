@@ -53,4 +53,10 @@ export const BusinessListings = createAsyncThunk("BusinessListings", async (payl
   return response.data;
 });
 
+// Whatsapp
+export const whatsappSendMessege = createAsyncThunk("whatsappSendMessege", async (payload) => {
+  const response = await axiosInstance.post(`api/whatsapp-send-messege`, payload);
+  return response.data;
+});
+
 
