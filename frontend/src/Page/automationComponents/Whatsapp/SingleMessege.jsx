@@ -45,6 +45,17 @@ function SingleMessege() {
             />
             <button type='Sumbit' className='bg-dark text-white btn'>Send</button>
             </div>
+            <div className="col-md-6 whatapps rounded m-0 px-0" >
+              <div class="whatapps_new" >
+                <div className="whatapp_title py-2 mb-2 px-2">
+                    <h6 className="mb-0">Preview</h6>
+                </div>
+                <div className="whatapps_chat ps-3 px-2 py-2">
+                    <p class="my-2 position-relative"> <span class="icon_message"></span> <span class="message-body my-2">sdddv</span> </p>
+
+                </div>
+              </div>  
+            </div>
             </div>
            </div>
           </form>
