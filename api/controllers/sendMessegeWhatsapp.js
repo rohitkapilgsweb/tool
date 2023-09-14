@@ -27,7 +27,7 @@ const messageText = req.body.msg; // Replace with your message text
         );
     
         console.log('Message sent successfully:', response.data);
-        res.send(response.data)
+        res.send({res:response.data,status: true})
       } catch (error) {
         console.error('Error sending message:', error.response ? error.response.data : error.message);
       }
