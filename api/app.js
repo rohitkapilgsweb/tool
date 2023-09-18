@@ -20,7 +20,7 @@ const DB = DBLogin // Replace with your MongoDB connection URL
 mongoose.connect(DB, {
 }).then(() => {
     console.log("connected")
-}).catch((err) => console.log("not connect"))
+}).catch((err) => console.log(err,"not connect"))
 
 // All Routes
 app.use("/api", login);

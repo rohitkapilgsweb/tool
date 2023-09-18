@@ -18638,17 +18638,19 @@ button.Data_export_btn {
     border-radius: 7px 7px 0px 0px;
 }
 
+
 .icon_message {
     position: absolute;
-    top: 0;
-    z-index: var(--layer-1);
+    top: 0px;
+    z-index: 99;
     display: block;
     width: 8px;
     height: 13px;
-    left: -8px;
+    left: -5px;
+    background: #fff;
+    border-radius: 0px 0px 0px 43px;
     color: #fff;
 }
-
 .message-body {
     background: #fff;
     padding: 8px;

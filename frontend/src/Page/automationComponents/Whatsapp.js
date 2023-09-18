@@ -4,7 +4,10 @@ import Tabs from 'react-bootstrap/Tabs';
 import {AiFillMessage, AiOutlineMail} from 'react-icons/ai'
 import { MdOutlineWebhook } from 'react-icons/md';
 import {RiSettings3Fill} from 'react-icons/ri'
+import {CgTemplate} from 'react-icons/cg'
 import SingleMessege from './Whatsapp/SingleMessege';
+import Bulk from './Whatsapp/Bulk';
+// import MsgTempales from './Whatsapp/MsgTempales';
 function Whatsapp() {
   return (
     <div color="container pt-4">
@@ -20,11 +23,16 @@ function Whatsapp() {
    <Tab eventKey="Configration" title={<><RiSettings3Fill size={20}/> <span className='white-space'> Configration</span></>}>
 Cooming Soon
    </Tab>
-   <Tab eventKey="BulkMessege" title={<><AiFillMessage size={20}/> <span className='white-space'> Bulk Messege</span></>}>
-   Cooming Soon
-   </Tab>
    <Tab eventKey="SingleMessege" title={<><AiOutlineMail size={20}/> <span className='white-space'> Single Messege</span></>}>
    <SingleMessege/> 
+   </Tab>
+   <Tab eventKey="BulkMessege" title={<><AiFillMessage size={20}/> <span className='white-space'> Bulk Messege</span></>}>
+   <Bulk/>
+   </Tab>
+  
+   <Tab eventKey="Templates" title={<><CgTemplate size={20}/> <span className='white-space'> Messege Templates</span></>}>
+   {/* <MsgTempales/>  */}
+   CoomingSoon
    </Tab>
    <Tab  eventKey="Webhook" title={<><MdOutlineWebhook  size={20}/> <span className='white-space'> Webhook</span></>} >
    Cooming Soon

@@ -17,13 +17,13 @@ function SendMessege() {
   const textInput = document.getElementById('textInput');
   let text ;
   const boldButton = () => {
-      const startPos = textInput.selectionStart;
-      const endPos = textInput.selectionEnd;
-      const selectedText = textInput.value.substring(startPos, endPos);
+      const startPos = textInput?.selectionStart;
+      const endPos = textInput?.selectionEnd;
+      const selectedText = textInput?.value.substring(startPos, endPos);
       
-      const newText = textInput.value.substring(0, startPos) +
+      const newText = textInput?.value.substring(0, startPos) +
                       '*' + selectedText + '*' +
-                      textInput.value.substring(endPos);
+                      textInput?.value.substring(endPos);
       
       textInput.value = newText;
       text= newText
