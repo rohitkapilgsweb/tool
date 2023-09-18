@@ -52,7 +52,7 @@ const PlaceController = expressAsyncHandler(async (req, res) => {
                 })
             }
 
-            // console.log(emptryArry)
+            console.log(emptryArry)
 
             res.status(200).send({place_id: emptryArry, next_page: dataPlace.data.next_page_token});
             // Send the dataPlace as the response
