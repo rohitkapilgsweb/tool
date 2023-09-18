@@ -18,18 +18,18 @@ const PlaceController = expressAsyncHandler(async (req, res) => {
                 params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
             });
 
-            if(emptryArry === []){
+            if(emptryArry){
+                emptryArry = []
                 dataPlace.data.results.map((item)=>{
                     emptryArry.push(item.place_id)
                 })
-            }else if(emptryArry !== []){
-                emptryArry = []
+            }else{
                 dataPlace.data.results.map((item)=>{
                     emptryArry.push(item.place_id)
                 })
             }
 
-            // console.log(emptryArry)
+            console.log(emptryArry)
 
             res.status(200).send({place_id: emptryArry, next_page: dataPlace.data.next_page_token});
             // res.status(200).send({next_page: dataPlace.data.next_page_token});
@@ -41,12 +41,12 @@ const PlaceController = expressAsyncHandler(async (req, res) => {
                 params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
             });
     
-            if(emptryArry === []){
+            if(emptryArry){
+                emptryArry = []
                 dataPlace.data.results.map((item)=>{
                     emptryArry.push(item.place_id)
                 })
-            }else if(emptryArry !== []){
-                emptryArry = []
+            }else{
                 dataPlace.data.results.map((item)=>{
                     emptryArry.push(item.place_id)
                 })
