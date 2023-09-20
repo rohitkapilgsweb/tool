@@ -96,47 +96,6 @@ function DashboardPage() {
   const router = useRouter();
 
   return (
-    // <div>
-    //   <div className="admin_home_tabs_row">
-    //     <Row>
-    //       <Col lg={6} md={12} className="p-0 ">
-    //         <ul className="nav tabs_scroll ">
-    //           {DashboardTabs &&
-    //             DashboardTabs?.map((steps, stepsIndex) => (
-    //               <li className="nav-item " key={stepsIndex}>
-    //                 <a
-    //                   className={`nav-link admin_tabs_name ${
-    //                     dataValue === stepsIndex && "head-active"
-    //                   }`}
-    //                   active={true}
-    //                   onClick={() => setDataValue(stepsIndex)}
-    //                 >
-    //                   {steps}
-    //                 </a>
-    //               </li>
-    //             ))}
-    //         </ul>
-    //         {dataValue == 1 && (
-    //           <Col lg={6} md={12}>
-    //             <div className="enteries_input">
-    //               <h6 className="enteries_input_label">Show Enteries</h6>
-    //               <Form.Select aria-label="Default select example">
-    //                 <option>10</option>
-    //                 <option value="1">3</option>
-    //                 <option value="2">5</option>
-    //                 <option value="3">8</option>
-    //               </Form.Select>
-    //             </div>
-
-    //             <div>
-    //               <Button className="border_btn">Download XLSX</Button>
-    //             </div>
-    //           </Col>
-    //         )}
-    //       </Col>
-    //     </Row>
-    //   </div>
-    // </div>
     <>
       <div className="admin_home_tabs_row">
         <Row>
@@ -184,7 +143,6 @@ function DashboardPage() {
         <Row>
           <Col lg={4}></Col>
           <Col lg={8}>
-            {/* <Bar options={options} data={data} style={{ color: "#6858E7" }}  /> */}
             <Signupdashboard />
           </Col>
         </Row>
