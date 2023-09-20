@@ -1,0 +1,129 @@
+[
+  {
+    "name": "Dashboard",
+    "other": [
+      "/dashboard"
+    ],
+    "path": "/dashboard",
+    "logo": "/images/dashboard.svg",
+    "whitelogo": "/images/white-dashboard.png"
+  },
+  {
+    "name": "Home",
+    "other": [
+      "/home"
+    ],
+    "path": "/home",
+    "logo": "/images/home-icon.png",
+    "whitelogo": "/images/white-home.png"
+  },
+  {
+    "name": "College",
+    "other": [
+      "/college"
+    ],
+    "path": "/college",
+    "logo": "/images/college-icon.png",
+    "whitelogo": "/images/college-white.png"
+  },
+  {
+    "name": "Corporate",
+    "other": [
+      "/organisation"
+    ],
+    "path": "/organisation",
+    "logo": "/images/admin-management.svg",
+    "whitelogo": "/images/admin-management-white.png"
+  },
+  {
+    "name": "Streams",
+    "other": [
+      "/streams"
+    ],
+    "path": "/streams",
+    "logo": "/images/main-stream-icon.png",
+    "whitelogo": "/images/white-stream.png"
+  },
+  {
+    "name": "Courses",
+    "other": [
+      "/courses"
+    ],
+    "path": "/courses",
+    "logo": "/images/courses-icon.png",
+    "whitelogo": "/images/courses-white.png"
+  },
+  {
+    "name": "Exams",
+    "other": [
+      "/exams"
+    ],
+    "path": "/exams",
+    "logo": "/images/exams-icon.png",
+    "whitelogo": "/images/white-exams.png"
+  },
+  {
+    "name": "Master-Filter",
+    "other": [
+      "/masterfilter"
+    ],
+    "path": "/masterfilter",
+    "logo": "/images/filter.svg",
+    "whitelogo": "/images/white-filter.png"
+  },
+  {
+    "name": "Location",
+    "other": [
+      "/location"
+    ],
+    "path": "/location",
+    "logo": "/images/location.svg",
+    "whitelogo": "/images/white-location.svg"
+  },
+  {
+    "name": "Practice",
+    "other": [
+      "/corporate"
+    ],
+    "path": "/corporate",
+    "logo": "/images/corporate-icon.png",
+    "whitelogo": "/images/white-corporate.png"
+  },
+  {
+    "name": "Admin management",
+    "other": [
+      "/adminmanagement"
+    ],
+    "path": "/adminmanagement",
+    "logo": "/images/admin-management.svg",
+    "whitelogo": "/images/admin-management-white.png"
+  },
+  {
+    "name": "User Lead analytics",
+    "other": [
+      "/userleadanalytics"
+    ],
+    "path": "/userleadanalytics",
+    "logo": "/images/user-lead.png",
+    "whitelogo": "/images/user-lead-white.png"
+  },
+  {
+    "name": "Client Lead analytics",
+    "other": [
+      "/clientleadanalytics"
+    ],
+    "path": "/clientleadanalytics",
+    "logo": "/images/client-lead.svg",
+    "whitelogo": "/images/client-lead-white.png"
+  },
+  {
+    "name": "Company profile",
+    "other": [
+      "/companyprofile"
+    ],
+    "key": "companyprofile",
+    "path": "/companyprofile",
+    "logo": "/images/company-profile.svg",
+    "whitelogo": "/images/company-profile-white.png"
+  }
+]

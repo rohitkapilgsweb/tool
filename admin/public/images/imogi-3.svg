@@ -1,0 +1,18 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="21.5498" cy="22" rx="21.5498" ry="21.7646" fill="#FEDF06"/>
+<path d="M17.3428 24.6318C18.2973 25.1774 19.8236 25.5329 21.5497 25.5329C23.2754 25.5329 24.8022 25.1774 25.7567 24.6318" stroke="#3C3C3B" stroke-width="3.69702" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="8.7137" cy="24.5455" rx="5.33479" ry="4.7198" fill="url(#paint0_radial_4_2423)"/>
+<ellipse cx="34.3856" cy="24.5455" rx="5.33478" ry="4.7198" fill="url(#paint1_radial_4_2423)"/>
+<path d="M17.3431 18.22C17.3431 18.22 16.8458 14.7344 13.1362 14.7344C9.42599 14.7344 8.92871 18.22 8.92871 18.22" stroke="#3C3C3B" stroke-width="3.69702" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M34.1707 18.22C34.1707 18.22 33.6739 14.7344 29.9637 14.7344C26.2536 14.7344 25.7568 18.22 25.7568 18.22" stroke="#3C3C3B" stroke-width="3.69702" stroke-linecap="round" stroke-linejoin="round"/>
+<defs>
+<radialGradient id="paint0_radial_4_2423" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(3.3789 19.8257) scale(5.33479 4.7198)">
+<stop stop-color="#EC7B16"/>
+<stop offset="0.943216" stop-color="#FEDF06"/>
+</radialGradient>
+<radialGradient id="paint1_radial_4_2423" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(29.0508 19.8257) scale(5.33478 4.7198)">
+<stop stop-color="#EC7B16"/>
+<stop offset="0.943216" stop-color="#FEDF06"/>
+</radialGradient>
+</defs>
+</svg>
