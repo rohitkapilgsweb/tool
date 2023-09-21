@@ -118,7 +118,7 @@ function Sidebar() {
                   </Link>
                 </li>
               </>
-            ) : (
+            ) : role === "user" ?(
               <>
                <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -165,7 +165,50 @@ function Sidebar() {
                   </Link>
                 </li>
               </>
-            )}
+            ): role === "superadmin" &&
+            (   <>
+              <li className="nav-small-cap">
+                 <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                 <span className="hide-menu">Home</span>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/dashboard" ? "active-menu" :""}`}
+                   to="/dashboard"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     <i className="ti ti-layout-dashboard"></i>
+                   </span>
+                   <span className="hide-menu">Dashboard</span>
+                 </Link>
+               </li>
+             
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/users" ? "active-menu" :""}`}
+                   to="/users"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     {/* <FcGoogle size={23} /> */}
+                   </span>
+                   <span className="hide-menu">Users</span>
+                 </Link>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/announcement" ? "active-menu" :""}`}
+                   to="/announcement"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                   </span>
+                   <span className="hide-menu">Announcement</span>
+                 </Link>
+               </li>
+             </>)}
 
             {/* <li className="nav-small-cap">
             <i className="ti ti-dots nav-small-cap-icon fs-4"></i>

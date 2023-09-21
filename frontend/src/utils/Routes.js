@@ -16,6 +16,9 @@ import CommingSoon from "../Page/CommingSoon";
 import LudoGame from "../Page/Demo";
 import Welcome from "../Page/Welcome";
 import Post from "../Page/automationComponents/Post";
+import AdminDashboard from "../admin/AdminDashboard";
+import Users from "../admin/Users";
+import Announcement from "../admin/Announcement";
 
 const role = getUserId() ? getUserId()?.role : null;
 const isLoggedIn = getToken();
@@ -55,6 +58,24 @@ const protects = {
             ],
           },
     ],
+    superadmin: [
+      {
+          path: "/",
+          element: isLoggedIn ? <DashboardLayout/> : <Navigate to="/" />,
+          children: [
+          { path: "/", element: <AdminDashboard/> },
+          { path: "/home", element: <AdminDashboard/> },
+          { path: "/dashboard", element: <AdminDashboard/> },
+          { path: "/users", element: <Users/> },
+          { path: "/announcement", element: <Announcement/> },
+          // { path: "/facebook", element: <Facebook/> },
+          // { path: "/create_post", element: <Post/> },
+          // { path: "/google", element: <Google/> },
+          // {path:"/singlepost", element : <SinglePost/>},
+          { path: "*", element: <div>no page found</div> },
+          ],
+        },
+  ],
 
     fbUser: [
         {
