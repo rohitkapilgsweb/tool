@@ -22,7 +22,7 @@ function PlaceSearch() {
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
-    dispatch(GoogleApi({ msg_body: JSON.stringify(values?.search) }));
+    dispatch(GoogleApi({ msg_body: values?.search }));
     setShow(true);
   };
 
