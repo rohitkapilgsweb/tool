@@ -31,7 +31,7 @@ function Sidebar() {
         </div>
         <nav className="sidebar-nav scroll-sidebar" data-simplebar="">
           <ul id="sidebarnav">
-            {role === "user" ? (
+            {role === "user" && (
               <>
                 <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -118,7 +118,9 @@ function Sidebar() {
                   </Link>
                 </li>
               </>
-            ) : role === "user" ?(
+            )}
+           
+           {role === "tempuser" && (
               <>
                <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -165,7 +167,8 @@ function Sidebar() {
                   </Link>
                 </li>
               </>
-            ): role === "superadmin" &&
+            )}
+            { role === "superadmin" &&
             (   <>
               <li className="nav-small-cap">
                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
@@ -206,6 +209,30 @@ function Sidebar() {
                      {/* <BsTelegram color="#0088cc" size={23} /> */}
                    </span>
                    <span className="hide-menu">Announcement</span>
+                 </Link>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/manageplanes" ? "active-menu" :""}`}
+                   to="/manageplanes"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                   </span>
+                   <span className="hide-menu">Manage Plans</span>
+                 </Link>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/manageticket" ? "active-menu" :""}`}
+                   to="/manageticket"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                   </span>
+                   <span className="hide-menu">Help Ticket</span>
                  </Link>
                </li>
              </>)}
