@@ -21,26 +21,20 @@ const LoginCL = expressAsyncHandler(async (req, res) => {
     email: req.body.email ? req.body.email : "null",
     password: req.body.password ? req.body.password : "null",
     Profile_img: req.body.Profile_img ? req.body.Profile_img : "null",
-    facebook_page_Profile_img: req.body.facebook_page_Profile_img
-      ? req.body.facebook_page_Profile_img
-      : "null",
-    facebook_User_id: req.body.facebook_User_id
-      ? req.body.facebook_User_id
-      : "null",
-    facebook_User_login_token: req.body.facebook_User_login_token
-      ? req.body.facebook_User_login_token
-      : "null",
-    pages: req.body.pages
-      ? req.body.pages
-      : "null",
     mobile: req.body.mobile ? req.body.mobile : 0,
     token: req.body.token ? req.body.token : "null",
     role: "tempuser",
   });
-
+  const dataUser = await User.findOne({email: req.body.email});
+  console.log(dataUser?.email)
   try {
-    const dataToSave = await data.save();
-    res.status(200).send({ dataToSave, success: true });
+    if(dataUser?.email !== req.body.email ){
+      const dataToSave = await data.save();
+      res.status(200).send({ dataToSave, success: true });
+    }else{
+      res.status(200).send({ success: "User Already Exist",dataUser});
+    }
+  
   } catch {
     res.status(400).send({ success: false });
   }

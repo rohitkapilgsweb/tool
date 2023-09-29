@@ -17,22 +17,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required:false
     },
-    facebook_page_Profile_img: {
-        type: String,
-        required:false
-    },
-    facebook_User_id: {
-        type: String,
-        required:false
-    },
-    facebook_User_login_token: {
-        type: String,
-        required:false
-    },
-    facebook_page_token: {
-        type: String,
-        required:false
-    },
     mobile: {
         type: Number,
         required:false

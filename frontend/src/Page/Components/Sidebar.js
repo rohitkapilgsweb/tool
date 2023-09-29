@@ -3,6 +3,11 @@ import { BsFillFileEarmarkPostFill, BsTelegram } from "react-icons/bs";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { BiSolidUser } from "react-icons/bi";
+import { AiFillNotification } from "react-icons/ai";
+import { MdLocalOffer,MdOutlineContactSupport } from "react-icons/md";
+
+
 import { Link, useLocation } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { getUserId } from "../../utils/auth";
@@ -194,7 +199,7 @@ function Sidebar() {
                    aria-expanded="false"
                  >
                    <span>
-                     {/* <FcGoogle size={23} /> */}
+                     <BiSolidUser  size={23} />
                    </span>
                    <span className="hide-menu">Users</span>
                  </Link>
@@ -206,7 +211,7 @@ function Sidebar() {
                    aria-expanded="false"
                  >
                    <span>
-                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                     <AiFillNotification  size={23} />
                    </span>
                    <span className="hide-menu">Announcement</span>
                  </Link>
@@ -218,7 +223,7 @@ function Sidebar() {
                    aria-expanded="false"
                  >
                    <span>
-                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                     <MdLocalOffer  size={23} />
                    </span>
                    <span className="hide-menu">Manage Plans</span>
                  </Link>
@@ -230,7 +235,7 @@ function Sidebar() {
                    aria-expanded="false"
                  >
                    <span>
-                     {/* <BsTelegram color="#0088cc" size={23} /> */}
+                     <MdOutlineContactSupport size={23} />
                    </span>
                    <span className="hide-menu">Help Ticket</span>
                  </Link>
