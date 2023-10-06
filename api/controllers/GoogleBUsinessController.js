@@ -5,11 +5,11 @@ dotenv.config();
 
 const GoogleBUsinessController = expressAsyncHandler(async (req, res) => {
     const {place_id} = req.body
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,formatted_address,url,photo,business_status&place_id=${place_id}&key=${process.env.PLACE_API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,email,formatted_address,url,photo,business_status&place_id=${place_id}&key=${process.env.PLACE_API_KEY}`;
   try {
     const dataPlace = await axios({
         method: "POST",
-        url: `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,formatted_address,url,photo,business_status&place_id=${place_id}`,
+        url: `https://maps.googleapis.com/maps/api/place/details/json?fields=name,formatted_phone_number,email,formatted_address,url,photo,business_status&place_id=${place_id}`,
         headers: { "Accept": "application/json" },
         params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
     });

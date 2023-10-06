@@ -1,7 +1,11 @@
 const expressAsyncHandler = require("express-async-handler");
 const dotenv = require("dotenv");
 const User = require("../modals/registerSchema");
+const md5 = require('md5');
 dotenv.config();
+
+ 
+console.log();
 const LoginCL = expressAsyncHandler(async (req, res) => {
   const {
     username,
@@ -19,7 +23,7 @@ const LoginCL = expressAsyncHandler(async (req, res) => {
   const data = new User({
     username: req.body.username ? req.body.username : "null",
     email: req.body.email ? req.body.email : "null",
-    password: req.body.password ? req.body.password : "null",
+    password: req.body.password ? md5(req.body.password) : "null",
     Profile_img: req.body.Profile_img ? req.body.Profile_img : "null",
     mobile: req.body.mobile ? req.body.mobile : 0,
     token: req.body.token ? req.body.token : "null",

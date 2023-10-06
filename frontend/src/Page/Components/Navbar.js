@@ -200,10 +200,11 @@ function Navbar() {
         <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
 
             <li className="nav-item ">
-            <Link className="nav-link nav-icon-hover"  id="drop2" data-bs-toggle="dropdown"
+              <Link  to="/user-profile"><img src={IconImg} alt="" width="35" height="35" className="rounded-circle border"/></Link>
+            {/* <Link className="nav-link nav-icon-hover" to="/user-profile"  id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
               <img src={IconImg} alt="" width="35" height="35" className="rounded-circle border"/>
-            </Link>
+            </Link> */}
           </li>
             <li className="nav-item ">
             <Link onClick={Logut}  className="btn btn-outline-primary mx-3 mt-2 d-block">Logout</Link>

@@ -19,6 +19,8 @@ import Post from "../Page/automationComponents/Post";
 import AdminDashboard from "../admin/AdminDashboard";
 import Users from "../admin/Users";
 import Announcement from "../admin/Announcement";
+import UserSettings from "../Page/UserSettings";
+
 
 const role = getUserId() ? getUserId()?.role : null;
 const isLoggedIn = getToken();
@@ -36,6 +38,7 @@ const protects = {
         { path: "/facebook", element: <CommingSoon/> },
         { path: "/create_post", element: <CommingSoon/> },
         { path: "/google", element: <Google/> },
+        { path: "/user-profile", element: <UserSettings/> },
         { path: "*", element: <div>no page found</div> },
         ],
       },
