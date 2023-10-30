@@ -17,7 +17,6 @@ const PlaceController = expressAsyncHandler(async (req, res) => {
                 headers: { "Accept": "application/json" },
                 params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
             });
-
             if(emptryArry){
                 emptryArry = []
                 dataPlace.data.results.map((item)=>{

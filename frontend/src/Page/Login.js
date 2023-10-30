@@ -10,7 +10,7 @@ import { LoginActions, userLoginAction } from "../redux/actions/LoginAction";
 import Loader from "./Components/Loader";
 import { toast } from "react-toastify";
 import GoogleLogo from '../assets/img/pngwing.com.png'
-import { useGoogleOneTapLogin, GoogleLogin, useGoogleLogin } from "@react-oauth/google";
+import { useGoogleOneTapLogin, GoogleLogin, useGoogleLogin, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 function Login(props) {
@@ -52,6 +52,7 @@ function Login(props) {
       setGoogleLoginToken(JSON.stringify(tokenResponse?.access_token))
   
       localStorage.setItem('GoogleLogin' ,JSON.stringify(tokenResponse.access_token))
+      localStorage.setItem('GoogleLogin111' ,JSON.stringify(tokenResponse))
       setLogedIn(tokenResponse?.access_token ? true : false)
      console.log(tokenResponse)
      try{
@@ -89,6 +90,7 @@ function Login(props) {
     if (res.meta.requestStatus === "fulfilled") {
       localStorage.setItem("token", res.payload.userToken);
       navigate("/");
+      localStorage.setItem('google',JSON.stringify(res))
       window.location.reload();
     }
   } else {
@@ -110,6 +112,8 @@ function Login(props) {
     },
     
   });
+
+
 
 
   return (

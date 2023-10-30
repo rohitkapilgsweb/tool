@@ -26,6 +26,7 @@
     "react-facebook": "^9.0.12",
     "react-facebook-login": "^4.1.1",
     "react-final-form": "^6.5.9",
+    "react-google-authorize": "^1.0.4",
     "react-google-charts": "^4.0.1",
     "react-google-login-component": "^0.9.3",
     "react-icons": "^4.10.1",

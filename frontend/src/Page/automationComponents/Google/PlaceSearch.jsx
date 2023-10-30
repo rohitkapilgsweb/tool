@@ -10,10 +10,12 @@ import { IoMdCloudDownload } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
 import { TbLocationFilled } from "react-icons/tb";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import GoogleLogo from '../../../assets/img/pngwing.com.png'
 import {
   BusinessListings,
   GoogleApi,
 } from "../../../redux/actions/LoginAction";
+import { hasGrantedAllScopesGoogle, useGoogleLogin } from "@react-oauth/google";
 
 function PlaceSearch() {
   const [getdata, setGetdata] = useState([]);
@@ -91,9 +93,23 @@ function PlaceSearch() {
     XLSX.writeFile(workbook, "DataSheet_GoogleMap_place.xlsx");
   };
 
+
+//   const login =  useGoogleLogin  ({
+//     onSuccess: async tokenResponse  => {
+//       const hasAccess = hasGrantedAllScopesGoogle(
+//         tokenResponse,
+//         'https://www.googleapis.com/auth/business.manage',
+//       );
+// console.log(hasAccess)
+//     },
+//   })
   return (
     <div className="">
       {isLoading ? <Loader /> : ""}
+
+      {/* <button   className="login-with-google-btn w-100 py-2 fs-4" onClick={() =>  login()}>
+<img src={GoogleLogo} alt="Login With google" className="img-fluid" width={30}/> Sign in with Google 
+</button> */}
 
       <div className="container">
         <div className="row">
