@@ -63,4 +63,13 @@ export const users = createAsyncThunk("users", async (payload) => {
   const response = await axiosInstance.post(`api/user`, payload);
   return response.data;
 });
+export const WhatsappRequest = createAsyncThunk("WhatsappRequest", async (payload) => {
+  const response = await axiosInstance.post(`api/whatsapp-requests`, payload);
+  return response.data;
+});
+
+export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (payload) => {
+  const response = await axiosInstance.post(`api/get-whatsapp-request`, payload);
+  return response.data;
+});
 

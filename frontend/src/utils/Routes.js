@@ -20,6 +20,7 @@ import AdminDashboard from "../admin/AdminDashboard";
 import Users from "../admin/Users";
 import Announcement from "../admin/Announcement";
 import UserSettings from "../Page/UserSettings";
+import WhatsappRequest from "../admin/WhatsappRequest";
 
 
 const role = getUserId() ? getUserId()?.role : null;
@@ -34,7 +35,7 @@ const protects = {
         { path: "/home", element: <Welcome/> },
         { path: "/dashboard", element: <Welcome/> },
         { path: "/telegram", element: <Telegram/> },
-        { path: "/whatsapp", element: <CommingSoon/> },
+        { path: "/whatsapp", element: <Whatsapp/> },
         { path: "/facebook", element: <CommingSoon/> },
         { path: "/create_post", element: <CommingSoon/> },
         { path: "/google", element: <Google/> },
@@ -71,6 +72,7 @@ const protects = {
           { path: "/dashboard", element: <AdminDashboard/> },
           { path: "/users", element: <Users/> },
           { path: "/announcement", element: <Announcement/> },
+          { path: "/whatsapp-request", element: <WhatsappRequest/> },
           // { path: "/facebook", element: <Facebook/> },
           // { path: "/create_post", element: <Post/> },
           // { path: "/google", element: <Google/> },

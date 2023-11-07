@@ -11,7 +11,7 @@ const userData  = await facebookDetails.findOne({_id: req.body.id})
 try{
     const dataPlace = await axios({
         method: "GET",
-        url: `https://graph.facebook.com/v12.0/${userData.fb_userId}/accounts?${req.body.field && `fields=${req.body.field}`}&access_token=${process.env.FACEBOOK_ACCESS_TOKEN}`,
+        url: `https://graph.facebook.com/v12.0/${userData.fb_userId}/accounts?${req.body.field ? `fields=${req.body.field}` : ''}&access_token=${process.env.FACEBOOK_ACCESS_TOKEN}`,
         headers: { "Accept": "application/json" },
         // params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
     });

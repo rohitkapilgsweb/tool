@@ -27,12 +27,12 @@ function MsgTempales() {
      <button type='Sumbit' className='bg-dark text-white btn'>Save</button>
      </div>
      <div className="col-md-6 whatapps rounded m-0 px-0" >
-       <div class="whatapps_new border rounded" >
+       <div className="whatapps_new border rounded" >
          <div className="whatapp_title py-2 mb-2 px-2">
              <h6 className="mb-0">Preview</h6>
          </div>
          <div className="whatapps_chat ps-3 px-2 py-2">
-           {values?.msgTemplate && <p class="my-2 position-relative"> <span class="icon_message"></span> <p class="message-body ">{values?.msgTemplate}</p> </p>}
+           {values?.msgTemplate && <p className="my-2 position-relative"> <span className="icon_message"></span> <p className="message-body ">{values?.msgTemplate}</p> </p>}
          </div>
        </div>  
      </div>

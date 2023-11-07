@@ -3,19 +3,17 @@ import {useSelector,useDispatch} from 'react-redux'
 import { Chart } from "react-google-charts";
 import { users } from '../redux/actions/LoginAction';
 import moment from "moment";
+import Loader from '../Page/Components/Loader';
 function AdminDashboard() {
 const dispatch = useDispatch()
 
 
 const UserData = useSelector((state)=> state?.users?.Allusers)
+const IsLoadings = useSelector((state)=> state?.users?.isLoading)
 useEffect(()=>{
- 
     dispatch(users()) 
-
- 
 },[!UserData])
 
-console.log(UserData)
 const data = [
   [
     "Date",
@@ -53,6 +51,7 @@ console.log(data);
   
   return (
     <div className="container">
+      {IsLoadings && <Loader/>}
      <div className="row justify-content-center align-items-center g-2">
       <div className="col-12">
     <div className='userFlow shadow-sm border mt-3 rounded-5 p-5 '>
@@ -65,8 +64,8 @@ console.log(data);
     />
     </div>
     <div className='mt-4 mb-5'>
-      <div class="table-responsive meintable border rounded-2">
-        <table class="table position-relative w-100">
+      <div className="table-responsive meintable border rounded-2">
+        <table className="table position-relative w-100">
           <thead className='bg-light sticky-top top-0'>
             <tr >
               <th scope="col">Sr no.</th>
@@ -81,7 +80,7 @@ console.log(data);
             {console.log(UserData)}
             {UserData.map((item,key)=>{
 return(
-  <tr class="" key={key}>
+  <tr className="" key={key}>
     <td>{key+1}</td>
   <td scope="row">{item.username}</td>
   <td>{item.email}</td>

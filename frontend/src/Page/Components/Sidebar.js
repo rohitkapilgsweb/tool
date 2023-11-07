@@ -171,6 +171,18 @@ function Sidebar() {
                     <span className="hide-menu">Telegram</span>
                   </Link>
                 </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/whatsapp"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <IoLogoWhatsapp color="#075e54" size={23} />
+                    </span>
+                    <span className="hide-menu">Whatsapp</span>
+                  </Link>
+                </li>
               </>
             )}
             { role === "superadmin" &&
@@ -238,6 +250,18 @@ function Sidebar() {
                      <MdOutlineContactSupport size={23} />
                    </span>
                    <span className="hide-menu">Help Ticket</span>
+                 </Link>
+               </li>
+               <li className="sidebar-item">
+                 <Link
+                   className={`sidebar-link ${Location === "/whatsapp-request" ? "active-menu" :""}`}
+                   to="/whatsapp-request"
+                   aria-expanded="false"
+                 >
+                   <span>
+                     <IoLogoWhatsapp color="#075e54" size={23} />
+                   </span>
+                   <span className="hide-menu">Whatsapp Requests</span>
                  </Link>
                </li>
              </>)}

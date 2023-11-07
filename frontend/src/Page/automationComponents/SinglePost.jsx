@@ -86,7 +86,7 @@ function SinglePost() {
   };
   const onSubmit = async (values) => {
     // console.log(values,pageDetails)
-    dispatch(FacbookPostPublish({page:pageDetails.key,page_id:pageDetails.value,msg:values.messege}))
+    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege}))
   }
   return (
     <div>
@@ -147,15 +147,15 @@ function SinglePost() {
                   </div>
                   <div className="new_select">
                     {facebook === "pages" && (
- <Select
- className="basic-single"
- classNamePrefix="select"
- defaultValue={"Select Page"}
- isSearchable={isSearchable}
- name="color"
- options={MapPages}
- onChange={selectPageChange}
-/>
+                      <Select
+                      className="basic-single"
+                      classNamePrefix="select"
+                      defaultValue={"Select Page"}
+                      isSearchable={isSearchable}
+                      name="color"
+                      options={MapPages}
+                      onChange={selectPageChange}
+                      />
                     )}
                    
                   </div>

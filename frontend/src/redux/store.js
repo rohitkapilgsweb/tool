@@ -9,6 +9,7 @@ import BusinessListingReducer from './reducer/BusinessListing';
 import TelegramTokensReducer from './reducer/saveTelegramToken';
 import getPagesReducer from './reducer/GetFacebookPage';
 import userReducer from './reducer/user';
+import WhatsappReqReducer from './reducer/WhatsappReq';
 
 const store = configureStore({
   reducer: {
@@ -21,7 +22,8 @@ const store = configureStore({
     BusinessListings : BusinessListingReducer,
     saveTelegramToken : TelegramTokensReducer,
     getPages: getPagesReducer,
-    users:userReducer
+    users:userReducer,
+    whatsappReqStore: WhatsappReqReducer,
   },
 });
 
