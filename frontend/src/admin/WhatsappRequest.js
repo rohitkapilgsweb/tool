@@ -6,7 +6,7 @@ import { getUserId } from "../utils/auth";
 
 function WhatsappRequest() {
   const [status, setStatus] = useState(false);
-
+console.log(getUserId()?.id)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Getwhatsapprequest({ userObjectId: getUserId()?.id })).then(
@@ -15,7 +15,7 @@ function WhatsappRequest() {
         setStatus(res?.payload);
       }
     );
-  }, [getUserId()]);
+  }, []);
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center g-2">
@@ -27,14 +27,24 @@ function WhatsappRequest() {
                     <tr>
                       <th scope="col">Sr no.</th>
                       <th scope="col">Name</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Role</th>
-                      <th scope="col">Created Date</th>
-                      <th scope="col">Updated Date</th>
+                      <th scope="col">Mobile</th>
+                      <th scope="col">Business Type</th>
                     </tr>
                   </thead>
                   <tbody className={status?.status === false ? "w-100 d-flex h-100 justify-content-center align-items-center": ""}>
-                   
+                 
+                   {status?.data?.map((item, index)=>{
+                    return (
+                      <>
+                       <tr>
+                      <td key={index}>{index + 1}</td>
+                      <td key={index}>{item?.fullName}</td>
+                      <td key={index}>{item?.number}</td>
+                      <td key={index}>{item?.businessType}</td>
+                      </tr>
+                      </>
+                    )
+                   })}
                       {status?.status === false && ( 
                       <>
                       {status?.message}

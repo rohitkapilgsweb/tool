@@ -38,8 +38,6 @@ for (const date in counts) {
   data.push([date, counts[date]]);
 }
 
-console.log(data);
-
 
 
  const options = {

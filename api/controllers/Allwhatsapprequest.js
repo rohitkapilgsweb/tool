@@ -9,13 +9,11 @@ const Allwhatsapprequest = expressAsyncHandler(async (req, res) => {
     const {userObjectId} = req.body
 try{
         const FindUser = await User.findOne({_id: req.body.userObjectId});
-
         if(FindUser){
             const FindRecord = await WhatsappRequests.find();
-            console.log(FindRecord._id)
-            if(FindRecord?._id){
+            if(FindUser?.role === 'superadmin'){
                 res.status(200).send({status:true, data:FindRecord});
-            }else if(FindRecord?._id === undefined){
+            }else if(FindUser?.role === undefined){
                 res.status(200).send({status:false, message: 'Data Not Found'});
             }
            

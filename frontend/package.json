@@ -40,6 +40,7 @@
     "read-more-react": "^1.0.10",
     "redux": "^4.2.1",
     "scheduler": "^0.23.0",
+    "string-encode-decode": "^1.0.7",
     "web-vitals": "^2.1.4",
     "xlsx": "^0.18.5"
   },

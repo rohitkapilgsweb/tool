@@ -16,11 +16,15 @@ const data = new facebookDetails({
     fb_pages: req.body.fb_pages,
     fb_groups: req.body.fb_groups
 })
-const facebookData = await facebookDetails.findOne({fb_Username : req.body.fb_Username})
+const facebookData = await facebookDetails.findOne({fb_Username : req.body.fb_Username});
 try{
     if(!facebookData){
         const datasend = await data.save();
         res.status(200).send({status: "Account is Added"})
+    }else if(req.body.accessToken && facebookData.accessToken === ''){
+
+        const datasends = await facebookDetails.findByIdAndUpdate({ _id: facebookData?._id }, { accessToken: req.body.accessToken});
+        res.status(200).send({status: "This Account Already Added",data:datasends})
     }else if(req.body.fb_Username === facebookData.fb_Username){
         res.status(200).send({status: "This Account Already Added"})
     }
