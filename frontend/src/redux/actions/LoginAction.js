@@ -9,6 +9,14 @@ export const axiosInstance = axios.create({
   },
 });
 
+export const axiosInstances = axios.create({
+  baseURL: CurrentApi,
+  headers: {
+    "Content-Type": "multipart/form-data",
+    type: "formData",
+  },
+});
+
 
 export const LoginActions = createAsyncThunk("Postjob", async (payload) => {
   const response = await axiosInstance.post(`api/register`, payload);
@@ -73,3 +81,7 @@ export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (p
   return response.data;
 });
 
+export const MediaUploads = createAsyncThunk("mediaUplad", async (payload) => {
+  const response = await axiosInstances.post(`/api/upload`, payload);
+  return response.data;
+});

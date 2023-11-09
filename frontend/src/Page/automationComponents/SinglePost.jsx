@@ -17,12 +17,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import {
     FacbookPostPublish,
+  MediaUploads,
   get_Facebook_Data,
   get_Facebook_Pages,
 } from "../../redux/actions/LoginAction";
 import { getUserId } from "../../utils/auth";
 import Loader from "../Components/Loader";
 import { Field, Form } from "react-final-form";
+import { CurrentApi } from "../../config/config";
 
 function SinglePost() {
   const [socialColor, setSocialColor] = useState();
@@ -32,7 +34,8 @@ function SinglePost() {
   // Select States
 
   const [isSearchable, setIsSearchable] = useState(true);
-
+  const [mediaArryFile, SetMediaArryFile] = useState([])
+  const [fileNamePost, SetFileNamePost] = useState([])
 
   const dispatch = useDispatch();
   const SelectSocial = (clicked) => {
@@ -84,10 +87,54 @@ function SinglePost() {
     console.log(values, "valuesvaluesvalues");
     setPageDetails(values)
   };
+
+
+  
+let mediaArry = []
+
+const handleChange = (event, typename, values) => {
+  let filedata = {
+    types: typename,
+  };
+
+  if (values[`${typename}id`]) {
+    filedata["id"] = values[`${typename}id`];
+  }
+
+  const file = event.target.files[0];
+  const formData = new FormData();
+  formData.append('fileUploadField', file);
+  dispatch(MediaUploads(formData)).then((res) => {
+
+
+
+    let mediaList = {
+      mediaID: res?.payload?._id,
+      filename: res?.payload?.name,
+    }
+    SetFileNamePost(res?.payload?.fileUploadField)
+    mediaArry.push(mediaList)
+
+    let a = [...mediaArryFile]
+    a.push(mediaList)
+    SetMediaArryFile(a)
+    console.log(a, "mediaArry")
+
+  }
+
+  )
+
+};
+
+console.log(mediaArry,"ghjklkhghjk")
+
   const onSubmit = async (values) => {
     // console.log(values,pageDetails)
-    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege}))
+    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/images/${fileNamePost}`}))
   }
+
+
+
   return (
     <div>
       {userAccountIdLoading && <Loader />}
@@ -176,13 +223,16 @@ function SinglePost() {
               type="text"
               placeholder="Enter Message"
             />
-             <Field
+             <input
             id="textInput"
               className="form-control mb-3"
               name="file"
-              component="input"
               type="file"
               placeholder="Enter Message"
+              onChange={(e) => {
+              onChange(e);
+              handleChange(e, "PostAttachment", values);
+                }}
             />
               
           </Col>
