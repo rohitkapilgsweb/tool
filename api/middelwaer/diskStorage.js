@@ -8,7 +8,7 @@ const upload = multer({
     destination: "singleuploads/",
     filename: (req, file, cb) => {
       console.log(file,"hello")  
-      const name = file.originalname;
+      const name = file.originalname.replace(" ","+");
       (mydata = file), cb(null, `${new Date().getTime()}-${name}`);
     },
   }),
