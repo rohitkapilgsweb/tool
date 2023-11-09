@@ -131,6 +131,8 @@ console.log(mediaArry,"ghjklkhghjk")
   const onSubmit = async (values) => {
     // console.log(values,pageDetails)
     dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/api/singleuploads/${fileNamePost}`}))
+  
+  
   }
 
 
@@ -266,7 +268,7 @@ console.log(mediaArry,"ghjklkhghjk")
                 </div>
               </div> */}
               <div className="text-end d-flex gap-3 justify-content-end">
-                <button className="bg-black btn text-white">
+                <button className="bg-black btn text-white" disabled={fileNamePost ? false : true}>
                   Publish 
                 </button>
                 <button disabled  className="bg-black btn text-white">

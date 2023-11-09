@@ -3,19 +3,19 @@ const mongoose = require('mongoose')
 const FileUpload = new mongoose.Schema({
     name: {
         type: String,
-        required:true
+        required:false
     },
     PostId:{
         type: String,
-        required:true
+        required:false
     },
     fileUploadField: {
         type: String,
-        required: true  
+        required: false  
     },
     ClientId: {
         type: String,
-        require: true
+        require: false
     }
 
 })

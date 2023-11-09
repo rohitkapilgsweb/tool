@@ -8,15 +8,21 @@ const FileUploadController = expressAsyncHandler(async (req, res) => {
     console.log(req)
 try{
    console.log(req.file.originalname)
+   if(!PostId){
     let employee = new MediaUpload({
-    name: req.file.originalname ? req.file.originalname : null,
-    ClientId: req.body.ClientId ? req.body.ClientId : null,
-    PostId: req.body.PostId ? req.body.PostId : "null",
-    fileUploadField: req.file.filename ? req.file.filename : null
-    });
-    const dataToSave = await employee.save();
+        name: req.file.originalname ? req.file.originalname : null,
+        ClientId: req.body.ClientId ? req.body.ClientId : null,
+        PostId: req.body.PostId ? req.body.PostId : null,
+        fileUploadField: req.file.filename ? req.file.filename : null
+        });
+        const dataToSave = await employee.save();
+    
+        res.send(dataToSave);
+        }else if(PostId){
+            const datasends = await MediaUpload.findByIdAndUpdate({ ClientId: req.body.ClientId }, { PostId: req.body.PostId});
+            res.status(200).send(datasends)
+        }
 
-    res.send(dataToSave);
 }catch (error){
 console.log(error)
 res.send(error);
