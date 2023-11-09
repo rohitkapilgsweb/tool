@@ -35,7 +35,7 @@ app.use('/api', googlePlace);
 app.use('/api', Whatsapp);
 app.use('/api',users);
 app.use('/api',FileUploadRoute);
-app.use('/images',express.static('singleuploads'));
+app.use('/api/singleuploads',express.static('singleuploads'));
 
 
 
