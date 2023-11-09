@@ -130,7 +130,7 @@ console.log(mediaArry,"ghjklkhghjk")
 
   const onSubmit = async (values) => {
     // console.log(values,pageDetails)
-    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/images/${fileNamePost}`}))
+    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/api/singleuploads/${fileNamePost}`}))
   }
 
 
