@@ -129,13 +129,13 @@ const handleChange = (event, typename, values) => {
 
   const onSubmit = async (values) => {
  
-    console.log(mediaArry[0]?.filename === undefined)
-    if(mediaArry[0]?.filename === undefined){
-
+    console.log(mediaArryFile)
+    if(!mediaArryFile[0]?.filename){
         dispatch(FacbookPostPublish({ClientId: getUserId().id, page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege})).then((res)=>{
             console.log(res,"resresresre_resresresres")
         })
-    }else if(mediaArry[0]?.filename !== undefined){
+    }
+     if(mediaArryFile[0]?.filename){
       // dispatch(MediaUploads(formData))
       dispatch(FacbookPostPublish({ClientId: getUserId().id, page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/api/singleuploads/${fileNamePost}`})).then((res)=>{
         console.log(res,"resresresre_resresresres")
