@@ -35,7 +35,7 @@ function SinglePost() {
 
   const [isSearchable, setIsSearchable] = useState(true);
   const [mediaArryFile, SetMediaArryFile] = useState([])
-  const [fileNamePost, SetFileNamePost] = useState([])
+  const [fileNamePost, SetFileNamePost] = useState(true)
 
   const dispatch = useDispatch();
   const SelectSocial = (clicked) => {
@@ -126,13 +126,25 @@ const handleChange = (event, typename, values) => {
 
 };
 
-console.log(mediaArry,"ghjklkhghjk")
 
   const onSubmit = async (values) => {
-    // console.log(values,pageDetails)
-    dispatch(FacbookPostPublish({page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/api/singleuploads/${fileNamePost}`}))
+ 
+    console.log(mediaArry[0]?.filename === undefined)
+    if(mediaArry[0]?.filename === undefined){
+
+        dispatch(FacbookPostPublish({ClientId: getUserId().id, page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege})).then((res)=>{
+            console.log(res,"resresresre_resresresres")
+        })
+    }else if(mediaArry[0]?.filename !== undefined){
+      // dispatch(MediaUploads(formData))
+      dispatch(FacbookPostPublish({ClientId: getUserId().id, page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: `${CurrentApi}/api/singleuploads/${fileNamePost}`})).then((res)=>{
+        console.log(res,"resresresre_resresresres")
+        // dispatch(MediaUploads(formData))
+      })
   
-  
+    }
+        
+       
   }
 
 

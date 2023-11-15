@@ -9,8 +9,9 @@ const {page,page_id,msg,media} = req.body
 
 
 try{
+    console.log(media)
 
-    if(media !== ""){
+    if(media !== undefined){
         const dataPlace = await axios({
             method: "POST",
             url: `https://graph.facebook.com/${req.body.page_id}/photos?url=${req.body.media}&message=${req.body.msg}&access_token=${req.body.page}`,

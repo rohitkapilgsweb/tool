@@ -9,6 +9,10 @@ const FileUpload = new mongoose.Schema({
         type: String,
         required:false
     },
+    message:{
+        type: String,
+        required:false
+    },
     fileUploadField: {
         type: String,
         required: false  
