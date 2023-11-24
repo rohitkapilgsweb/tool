@@ -27,6 +27,31 @@ export const userLoginAction = createAsyncThunk("Postjob", async (payload) => {
   return response.data;
 });
 
+export const users = createAsyncThunk("users", async (payload) => {
+  const response = await axiosInstance.get(`api/profile`, payload);
+  return response.data;
+});
+
+export const UserMebership = createAsyncThunk("UserMebership", async (payload) => {
+  const response = await axiosInstance.post(`api/update-user-profile/${payload?.id}`, payload?.update);
+  return response.data;
+});
+
+export const getPlans = createAsyncThunk("getPlans", async (payload) => {
+  const response = await axiosInstance.get(`api/plan`,payload);
+  return response.data;
+});
+export const updatePlans = createAsyncThunk("updatePlans", async (payload) => {
+  const response = await axiosInstance.post(`api/update-plan/${payload.id}`,payload?.update);
+  return response.data;
+});
+export const CreatePlan = createAsyncThunk("updatePlans", async (payload) => {
+  const response = await axiosInstances.post(`api/create-plan`,payload);
+  return response.data;
+});
+
+
+
 export const getTelegramToken = createAsyncThunk("TelegramToken", async (payload) => {
   const response = await axiosInstance.post(`api/gettelegramToken`, payload);
   return response.data;
@@ -67,10 +92,7 @@ export const whatsappSendMessege = createAsyncThunk("whatsappSendMessege", async
   return response.data;
 });
 
-export const users = createAsyncThunk("users", async (payload) => {
-  const response = await axiosInstance.post(`api/user`, payload);
-  return response.data;
-});
+
 export const WhatsappRequest = createAsyncThunk("WhatsappRequest", async (payload) => {
   const response = await axiosInstance.post(`api/whatsapp-requests`, payload);
   return response.data;

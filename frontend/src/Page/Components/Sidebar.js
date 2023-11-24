@@ -13,7 +13,7 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { getUserId } from "../../utils/auth";
 import logoImg from '../../assets/img/logo.png'
 function Sidebar() {
-  const role = getUserId() ? getUserId()?.role : null;
+  const role = getUserId() ? getUserId()?.user?.role : null;
   const Location  = useLocation().pathname  ;
   console.log(Location)
   return (

@@ -12,10 +12,11 @@ function Createone() {
  const navigate = useNavigate()
 
   const onSubmit = async values => {
+   
    dispatch(LoginActions(JSON.stringify(values)))
    .then((res)=>{
-    if(res?.payload?.success){
-      navigate("/")
+    if(res?.payload?.msg ==="Registration Success"){
+      window.reload.href  = "/"
      }
    })
   
@@ -32,7 +33,17 @@ function Createone() {
                 onSubmit={onSubmit}
                 render={({ handleSubmit, form, submitting, pristine, values }) => (
                   <form onSubmit={handleSubmit}>
+                     <Col sm={12} className="mb-4">
+                      <Field
+                          className="form-control"
+                          name="name"
+                          component="input"
+                          type="text"
+                          placeholder="Name"
+                        />
+                        </Col>
                       <Col sm={12} className="mb-4">
+                    
                         <Field
                           className="form-control"
                           name="email"

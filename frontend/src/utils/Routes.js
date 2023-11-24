@@ -21,9 +21,10 @@ import Users from "../admin/Users";
 import Announcement from "../admin/Announcement";
 import UserSettings from "../Page/UserSettings";
 import WhatsappRequest from "../admin/WhatsappRequest";
+import ManagePlance from "../admin/ManagePlance";
 
 
-const role = getUserId() ? getUserId()?.role : null;
+const role = getUserId() ? getUserId()?.user?.role : null;
 const isLoggedIn = getToken();
 const protects = {
   tempuser: [
@@ -72,6 +73,7 @@ const protects = {
           { path: "/dashboard", element: <AdminDashboard/> },
           { path: "/users", element: <Users/> },
           { path: "/announcement", element: <Announcement/> },
+          {path:'/manageplanes', element:<ManagePlance/>},
           { path: "/whatsapp-request", element: <WhatsappRequest/> },
           // { path: "/facebook", element: <Facebook/> },
           // { path: "/create_post", element: <Post/> },
@@ -82,26 +84,6 @@ const protects = {
         },
   ],
 
-    fbUser: [
-        {
-          path: "/",
-          element: isLoggedIn ? <DashboardLayout/> : <Navigate to="/" />,
-          // element: "ghjklhgjk" ,
-          children: [
-          { path: "/", element: <Dashboard/> },
-          { path: "/dashboard", element: <Dashboard/> },
-          { path: "/home", element: <Dashboard/> },
-          { path: "/telegram", element: <Telegram/> },
-          { path: "/whatsapp", element: <Whatsapp/> },
-          { path: "/facebook", element: <Facebook/> },
-          { path: "/create_post", element: <Post/> },
-        
-
-          { path: "*", element: <div>no page found</div> },
-          ],
-        },
-      ],
-  
     default: [
       {
         path: "/",

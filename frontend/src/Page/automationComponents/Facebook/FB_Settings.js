@@ -130,7 +130,7 @@ function FB_Settings() {
             <FacebookProvider appId="158402927285129">
               <LoginButton
                 className="btn btn-primary"
-                scope="public_profile,email,pages_manage_posts,publish_to_groups,pages_show_list,pages_read_engagement,pages_read_user_content"
+                scope="public_profile,email,pages_manage_posts,publish_to_groups,pages_show_list,pages_read_engagement,pages_read_user_content,business_management,instagram_basic,pages_show_list"
                 onError={handleError}
                 onSuccess={handleSuccess}
               >

@@ -17,7 +17,7 @@ try{
         headers: { "Accept": "application/json" },
         // params: { key: process.env.PLACE_API_KEY }, // Assuming PLACE_API_KEY is defined in your .env file
     });
-    console.log(dataPlace.data)
+    console.log(dataPlace)
     const dataArry = dataPlace.data.data
     const dataObjectArry = []
    
@@ -29,7 +29,7 @@ try{
                 page_name:dataArry[i].name
             }
             dataObjectArry.push(dataObject)
-            console.log(dataObjectArry)
+            // console.log(dataObjectArry)
             
    
     }

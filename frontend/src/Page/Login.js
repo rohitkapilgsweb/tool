@@ -27,7 +27,7 @@ function Login(props) {
       let status = res?.payload?.status;
       if (success === true) {
         if (res.meta.requestStatus === "fulfilled") {
-          localStorage.setItem("token", res.payload.userToken);
+          localStorage.setItem("token", res.payload.access_token);
           navigate("/");
           window.location.reload();
         }
@@ -88,10 +88,11 @@ function Login(props) {
   let status = res?.payload?.status;
   if (success === true) {
     if (res.meta.requestStatus === "fulfilled") {
-      localStorage.setItem("token", res.payload.userToken);
-      navigate("/");
-      localStorage.setItem('google',JSON.stringify(res))
-      window.location.reload();
+      localStorage.setItem("token", res.payload.token);
+      console.log(res)
+      // navigate("/");
+      // localStorage.setItem('google',JSON.stringify(res))
+      // window.location.reload();
     }
   } else {
     console.log(status, "ghjkhgh");

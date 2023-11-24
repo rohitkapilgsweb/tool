@@ -10,6 +10,9 @@ import TelegramTokensReducer from './reducer/saveTelegramToken';
 import getPagesReducer from './reducer/GetFacebookPage';
 import userReducer from './reducer/user';
 import WhatsappReqReducer from './reducer/WhatsappReq';
+import UpdateSliceReducer from './reducer/UpdateSlice';
+import GetPlansSliceReducer from './reducer/GetPlansSlice'
+import updatePlanssReducer from './reducer/UpdatePlansSlice'
 
 const store = configureStore({
   reducer: {
@@ -24,6 +27,9 @@ const store = configureStore({
     getPages: getPagesReducer,
     users:userReducer,
     whatsappReqStore: WhatsappReqReducer,
+    updateUser: UpdateSliceReducer,
+    getPlans:GetPlansSliceReducer,
+    updatePlans: updatePlanssReducer,
   },
 });
 
