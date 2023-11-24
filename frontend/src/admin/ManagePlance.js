@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CommonModal from './components/CommonModal';
 import AddPlan from './components/AddPlan';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPlans, updatePlans } from '../redux/actions/LoginAction';
+import { Deleteplan, getPlans, singlePlan, updatePlans } from '../redux/actions/LoginAction';
 import moment from 'moment';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
@@ -10,16 +10,25 @@ import { FiEdit2 } from 'react-icons/fi';
 import Loader from '../Page/Components/Loader';
 
 function ManagePlance() {
+  const dispatch =useDispatch()
+
     const [show, setShow] = useState(false);
-    // const [getPlan, setGetPlan] = useState(null);
+    const [dataGeting, setDataGeting] = useState(false);
     const [activeUpdate, SetActiveUpdate] =useState(0)
-    const handleClose = () => setShow(false);
+    const [dataUpdate, SetDataUpdate] =useState()
+    const handleClose = () => {
+      setShow(false)
+      setDataGeting(false)
+    };
     const handleShow = () => setShow(true);
-    const dispatch =useDispatch()
+
 
     const IsUpdating = useSelector((state)=> state?.updatePlans?.isLoading)
     const getPlan = useSelector((state)=> state?.getPlans?.data?.plan)
+    const PlanError = useSelector((state)=> state?.getPlans?.error)
     const isLoading = useSelector((state)=> state?.getPlans?.isLoading)
+    const isDeleteing = useSelector((state)=> state?.DeletePIanItem?.isLoading)
+    const isSingleLoading = useSelector((state)=> state?.singlePlan?.isLoading)
 
     useEffect(()=>{
         dispatch(getPlans())
@@ -44,9 +53,26 @@ function ManagePlance() {
       })
     }
 
+    const PlanDataUpdate = (id) =>{
+      
+      handleShow()
+      dispatch(singlePlan(id)).then((res)=>{
+      SetDataUpdate(res?.payload?.plan)
+      setDataGeting(true)
+      })
+    }
+
+    const DletePlansItem = (id)=>[
+      dispatch(Deleteplan(id)).then((res)=>{
+        toast(res?.payload?.message)
+        dispatch(getPlans())
+
+      })
+      
+    ]
   return (
     <div className='mt-4 mb-5 px-4'>
-      {isLoading || IsUpdating && <Loader/>}
+      {isLoading || IsUpdating || isSingleLoading || isDeleteing ? <Loader/> : ''}
                 <div className="container-fluid p-md-0">
             <div className="row align-items-center g-2">
                 <div className="col-md-6 mb-3">
@@ -68,8 +94,9 @@ function ManagePlance() {
             <th scope="col"></th>
           </tr>
         </thead>
-        <tbody>
-          {getPlan?.map((item,key)=>{
+        <tbody className={PlanError ? "error-no":""}>
+        {PlanError&& <span>{PlanError}</span>}
+          {!PlanError && getPlan?.map((item,key)=>{
           return(
             <tr className="" key={key}>
               <td>{item?.id}</td>
@@ -87,7 +114,7 @@ function ManagePlance() {
           
             </td>
             <td>{moment(item?.created_at).utc().format('DD-MM-YYYY')}</td>
-            <td><button type="button" className="btn btn-primary">Edit</button></td>
+            <td><button type="button" className="btn btn-primary" onClick={()=>PlanDataUpdate(item?.id)}>Edit</button> <button type="button" className="btn btn-primary" onClick={()=>DletePlansItem(item?.id)}>Delete</button></td>
           </tr>
           )
           }).reverse()}
@@ -101,7 +128,7 @@ function ManagePlance() {
     show={show} 
     size={'lg'} 
     handleCloseBtn={handleClose} 
-    Content={<AddPlan handelChangeKey={handleClose} options={colourOptions}/>}
+    Content={<AddPlan update={dataUpdate} handelChangeKey={handleClose} updating={dataGeting} options={colourOptions}/>}
     />
   </div>
   )

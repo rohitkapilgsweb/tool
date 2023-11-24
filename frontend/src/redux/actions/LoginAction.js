@@ -41,14 +41,25 @@ export const getPlans = createAsyncThunk("getPlans", async (payload) => {
   const response = await axiosInstance.get(`api/plan`,payload);
   return response.data;
 });
+export const singlePlan = createAsyncThunk("singlePlan", async (payload) => {
+  const response = await axiosInstance.get(`api/plan-details/${payload}`);
+  return response.data;
+});
 export const updatePlans = createAsyncThunk("updatePlans", async (payload) => {
   const response = await axiosInstance.post(`api/update-plan/${payload.id}`,payload?.update);
   return response.data;
 });
-export const CreatePlan = createAsyncThunk("updatePlans", async (payload) => {
+export const CreatePlan = createAsyncThunk("CreatePlan", async (payload) => {
   const response = await axiosInstances.post(`api/create-plan`,payload);
   return response.data;
 });
+export const Deleteplan = createAsyncThunk("Deleteplan", async (payload) => {
+  const response = await axiosInstances.delete(`api/delete-plan/${payload}`);
+  return response.data;
+});
+
+
+
 
 
 

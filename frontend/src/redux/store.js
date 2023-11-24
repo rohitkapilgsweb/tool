@@ -12,7 +12,9 @@ import userReducer from './reducer/user';
 import WhatsappReqReducer from './reducer/WhatsappReq';
 import UpdateSliceReducer from './reducer/UpdateSlice';
 import GetPlansSliceReducer from './reducer/GetPlansSlice'
-import updatePlanssReducer from './reducer/UpdatePlansSlice'
+import updatePlanssReducer from './reducer/UpdatePlansSlice';
+import DeletePlanReducer from './reducer/DeletePlan';
+import singlePlansReducer from './reducer/singlePlans';
 
 const store = configureStore({
   reducer: {
@@ -30,6 +32,8 @@ const store = configureStore({
     updateUser: UpdateSliceReducer,
     getPlans:GetPlansSliceReducer,
     updatePlans: updatePlanssReducer,
+    DeletePlanItem: DeletePlanReducer,
+    singlePlan: singlePlansReducer,
   },
 });
 

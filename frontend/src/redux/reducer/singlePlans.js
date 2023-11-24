@@ -1,26 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getPlans } from "../actions/LoginAction";
+import { getPlans, singlePlan } from "../actions/LoginAction";
 
 const initialState = {
   isLoading: false,
   data: [],
   error: "",
 };
-const GetPlansSlice = createSlice({
-  name: "getPlans",
+const singlePlans = createSlice({
+  name: "singlePlan",
   initialState,
 
   extraReducers: (bulider) => {
-    bulider.addCase(getPlans?.pending, (state, action) => {
+    bulider.addCase(singlePlan?.pending, (state, action) => {
       state.isLoading = true;
       state.error = null;
     });
-    bulider.addCase(getPlans?.fulfilled, (state, action) => {
+    bulider.addCase(singlePlan?.fulfilled, (state, action) => {
       state.isLoading = false;
       state.data = action?.payload;
       state.error = "";
     });
-    bulider.addCase(getPlans?.rejected, (state, action) => {
+    bulider.addCase(singlePlan?.rejected, (state, action) => {
       state.error = "";
       state.isLoading = false;
       state.error = "Data Not Found";
@@ -29,4 +29,4 @@ const GetPlansSlice = createSlice({
 });
 
 // export const  = jobDataSlice.actions;
-export default GetPlansSlice.reducer;
+export default singlePlans.reducer;
