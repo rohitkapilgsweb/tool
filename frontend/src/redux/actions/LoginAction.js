@@ -105,12 +105,12 @@ export const whatsappSendMessege = createAsyncThunk("whatsappSendMessege", async
 
 
 export const WhatsappRequest = createAsyncThunk("WhatsappRequest", async (payload) => {
-  const response = await axiosInstance.post(`api/whatsapp-requests`, payload);
+  const response = await axiosInstance.post(`api/create-whatsapp`, payload);
   return response.data;
 });
 
 export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (payload) => {
-  const response = await axiosInstance.post(`api/get-whatsapp-request`, payload);
+  const response = await axiosInstance.get(`api/whatsapp`);
   return response.data;
 });
 
