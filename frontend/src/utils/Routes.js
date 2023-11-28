@@ -22,6 +22,7 @@ import Announcement from "../admin/Announcement";
 import UserSettings from "../Page/UserSettings";
 import WhatsappRequest from "../admin/WhatsappRequest";
 import ManagePlance from "../admin/ManagePlance";
+import HelpTicket from "../admin/HelpTicket";
 
 
 const role = getUserId() ? getUserId()?.user?.role : null;
@@ -74,6 +75,7 @@ const protects = {
           { path: "/users", element: <Users/> },
           { path: "/announcement", element: <Announcement/> },
           {path:'/manageplanes', element:<ManagePlance/>},
+          {path:'/manageticket', element:<HelpTicket/>},
           { path: "/whatsapp-request", element: <WhatsappRequest/> },
           // { path: "/facebook", element: <Facebook/> },
           // { path: "/create_post", element: <Post/> },

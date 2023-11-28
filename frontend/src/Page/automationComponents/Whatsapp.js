@@ -14,13 +14,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { WhatsappRequest } from "../../redux/actions/LoginAction";
 import Loader from "../Components/Loader";
 import BannerImg from "../../assets/img/webbanner.jpg";
+import { toast } from "react-toastify";
 // import MsgTempales from './Whatsapp/MsgTempales';
 function Whatsapp() {
   const role = getUserId() ? getUserId()?.user?.role : null;
   const [isSearchable, setIsSearchable] = useState(true);
   const [pageDetails, setPageDetails] = useState();
 
-  console.log(role);
   // useEffect(()=>{
   //   dispatch(WhatsappRequest({userObjectId: getUserId()?.id,}))
   // },[getUserId()?.id])
@@ -51,12 +51,16 @@ function Whatsapp() {
     const RequestFields = {
       name: values?.name,
       bus_type: pageDetails?.key,
-      number: values?.number,
+      phone: values?.phone,
     };
     const datadataNumber = pageDetails?.key + 1;
     console.log(datadataNumber)
 
-    dispatch(WhatsappRequest(RequestFields));
+    dispatch(WhatsappRequest(RequestFields)).then((res)=>{
+      if(res?.payload?.status){
+        toast(res.payload.status)
+      }
+    });
   };
 
   const isLoading = useSelector((state) => state?.whatsappReqStore?.isLoading);

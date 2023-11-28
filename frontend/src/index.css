@@ -18943,6 +18943,11 @@ width: 100% !important;
     cursor: not-allowed;
   }
   
+  .editor-ing iframe
+  {
+      width:100%;
+      min-width:unset !important;
+  }
   
 @media (max-width: 600px) {
     .hero-body.btn {

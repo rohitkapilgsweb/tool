@@ -108,6 +108,11 @@ export const WhatsappRequest = createAsyncThunk("WhatsappRequest", async (payloa
   const response = await axiosInstance.post(`api/create-whatsapp`, payload);
   return response.data;
 });
+export const UpdateTRequest = createAsyncThunk("UpdateTRequest", async (payload) => {
+  const response = await axiosInstance.post(`api/update-whatsapp/${payload.id}`, payload.update);
+  return response.data;
+});
+
 
 export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (payload) => {
   const response = await axiosInstance.get(`api/whatsapp`);
@@ -116,5 +121,12 @@ export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (p
 
 export const MediaUploads = createAsyncThunk("mediaUplad", async (payload) => {
   const response = await axiosInstances.post(`/api/upload`, payload);
+  return response.data;
+});
+
+// hELP
+
+export const getHelpTicket = createAsyncThunk("HelpTicket", async (payload) => {
+  const response = await axiosInstance.get(`api/help`);
   return response.data;
 });

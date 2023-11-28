@@ -1,21 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Getwhatsapprequest } from "../redux/actions/LoginAction";
+import { Getwhatsapprequest, UpdateTRequest } from "../redux/actions/LoginAction";
 import { getUserId } from "../utils/auth";
-
+import moment from "moment";
+import { FiEdit2 } from "react-icons/fi";
+import Select from 'react-select';
+import { toast } from "react-toastify";
 
 function WhatsappRequest() {
   const [status, setStatus] = useState(false);
-console.log(getUserId()?.id)
+  const [activeUpdate, SetActiveUpdate] =useState(0)
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Getwhatsapprequest({ userObjectId: getUserId()?.id })).then(
+    dispatch(Getwhatsapprequest()).then(
       (res) => {
-        console.log(res?.payload?.status, "resresrers");
         setStatus(res?.payload);
       }
     );
   }, []);
+
+  const handelChange=(e,id)=>{
+    const meberUpdate = {
+      id:e.value,id,
+      update:{
+        status:e?.value
+      }
+    }
+
+    dispatch(UpdateTRequest(meberUpdate)).then((res)=>{
+      toast(res?.payload?.message)
+      dispatch(Getwhatsapprequest()).then(
+        (res) => {
+          setStatus(res?.payload);
+        }
+      );
+      SetActiveUpdate(0)
+    })
+  }
+  const colourOptions = [
+    { value: 'request', label: 'Request'},
+    { value: 'approved ', label: 'Approved'}
+  ]
   return (
     <div className="container">
       <div className="row justify-content-center align-items-center g-2">
@@ -29,6 +54,8 @@ console.log(getUserId()?.id)
                       <th scope="col">Name</th>
                       <th scope="col">Mobile</th>
                       <th scope="col">Business Type</th>
+                      <th scope="col">Created At</th>
+                      <th scope="col">Status</th>
                     </tr>
                   </thead>
                   <tbody className={status?.status === false ? "w-100 d-flex h-100 justify-content-center align-items-center": ""}>
@@ -37,10 +64,18 @@ console.log(getUserId()?.id)
                     return (
                       <>
                        <tr>
-                      <td key={index}>{index + 1}</td>
-                      <td key={index}>{item?.fullName}</td>
-                      <td key={index}>{item?.number}</td>
-                      <td key={index}>{item?.businessType}</td>
+                      <td key={index}>{item?.id}</td>
+                      <td key={index}>{item?.name}</td>
+                      <td key={index}>{item?.phone}</td>
+                      <td key={index}>{item?.bus_type}</td>
+                      <td key={index}>{moment(item?.created_at).utc().format('DD-MM-YYYY')}</td>
+                      <td key={index}> {activeUpdate !== item?.id ? (<span className={item?.status === 'approved'? "status-active" : "status-inactive"}>{item?.status} {activeUpdate !== item?.id && <button type="button" className="btn rounded px-0" onClick={()=>SetActiveUpdate(item?.id)}><FiEdit2  /></button>}</span>) : 
+             <Select
+             onChange={(e)=>handelChange(e,item?.id)}
+              options={colourOptions}
+            /> 
+             }
+           </td>
                       </tr>
                       </>
                     )
