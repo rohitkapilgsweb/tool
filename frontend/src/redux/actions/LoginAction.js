@@ -2,10 +2,12 @@ import { CurrentApi } from "../../config/config";
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
+const token=localStorage.getItem('token')
 export const axiosInstance = axios.create({
   baseURL: CurrentApi,
   headers: {
     "Content-Type": "application/json",
+    "Authorization":`Bearer ${token}`
   },
 });
 
@@ -63,25 +65,33 @@ export const Deleteplan = createAsyncThunk("Deleteplan", async (payload) => {
 
 
 
-export const getTelegramToken = createAsyncThunk("TelegramToken", async (payload) => {
-  const response = await axiosInstance.post(`api/gettelegramToken`, payload);
+export const getTelegramToken = createAsyncThunk("getTelegramToken", async (payload) => {
+  const response = await axiosInstance.get(`api/telegram-details/${payload}`, );
   return response.data;
 });
-export const saveTelegramToken = createAsyncThunk("TelegramToken", async (payload) => {
-  const response = await axiosInstance.post(`api/telegramToken`, payload);
+export const saveTelegramToken = createAsyncThunk("saveTelegramToken", async (payload) => {
+  const response = await axiosInstance.post(`api/create-telegram`, payload);
+  return response.data;
+});
+export const updateTelegramToken = createAsyncThunk("updateTelegramToken", async (payload) => {
+  const response = await axiosInstance.post(`api/update-telegram/${payload.id}`,payload.telegram_token);
   return response.data;
 });
 
 export const add_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
-  const response = await axiosInstance.post(`api/add_facebook_account`, payload);
+  const response = await axiosInstance.post(`api/create-facebook`, payload);
   return response.data;
 });
 export const get_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
-  const response = await axiosInstance.post(`api/facebookaccount`, payload);
+  const response = await axiosInstance.get(`api/facebook`);
+  return response.data;
+});
+export const UnlinkedAccount = createAsyncThunk("FacebookData", async (payload) => {
+  const response = await axiosInstance.delete(`api/delete-facebook/${payload}`);
   return response.data;
 });
 export const get_Facebook_Pages = createAsyncThunk("FacebookData", async (payload) => {
-  const response = await axiosInstance.post(`api/get_pages`, payload);
+  const response = await axiosInstance.get(`api/facebook/pages/${payload}`);
   return response.data;
 });
 export const FacbookPostPublish = createAsyncThunk("FacebookData", async (payload) => {
@@ -89,11 +99,11 @@ export const FacbookPostPublish = createAsyncThunk("FacebookData", async (payloa
   return response.data;
 });
 export const GoogleApi = createAsyncThunk("GooglePlace", async (payload) => {
-  const response = await axiosInstance.post(`api/place-api-search`, payload);
+  const response = await axiosInstance.get(`api/get-place-id/${payload.msg_body}`);
   return response.data;
 });
 export const BusinessListings = createAsyncThunk("BusinessListings", async (payload) => {
-  const response = await axiosInstance.post(`api/google-business`, payload);
+  const response = await axiosInstance.get(`api/place-details/${payload}`);
   return response.data;
 });
 

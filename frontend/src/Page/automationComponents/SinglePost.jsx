@@ -78,7 +78,6 @@ function SinglePost() {
       dispatch(
         get_Facebook_Pages({
           id: userAccountId?._id,
-          field: "name,access_token",
         })
       );
     }

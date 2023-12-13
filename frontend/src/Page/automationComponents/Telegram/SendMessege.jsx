@@ -30,7 +30,7 @@ function SendMessege() {
   };
 
   const onSubmit = async (values) => {
-    // console.log(values)
+    console.log(values)
     
     // const files = values.file
     const chat_id = values.chat_id.includes('@') ? values.chat_id :  "@" + values.chat_id;

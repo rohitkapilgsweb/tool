@@ -5,6 +5,7 @@ import Col from "react-bootstrap/esm/Col";
 import {
   getTelegramToken,
   saveTelegramToken,
+  updateTelegramToken,
 } from "../../../redux/actions/LoginAction";
 import { getUserId } from "../../../utils/auth";
 import Loader from "../../Components/Loader";
@@ -15,15 +16,13 @@ function Setting(props) {
   const [telegramToken, setTelegramToken] = useState(false);
   const [editBtn, setEditBtn] = useState(false);
   const [updateToken, setUpdateToken] = useState();
-  const usergetObject = {
-    user_id: getUserId().id,
-  };
+
   useEffect(() => {
     if (getUserId()) {
-      dispatch(getTelegramToken(usergetObject)).then((res) => {
-        setTelegramToken(res?.payload?.telegramToken);
+      dispatch(getTelegramToken(getUserId()?.user?.id)).then((res) => {
+        setTelegramToken(res?.payload?.data.telegram_token);
         setUserId(true);
-        if(res?.payload?.telegramToken){
+        if(res?.payload?.data.telegram_token){
           setEditBtn(true)
         }
       });
@@ -34,20 +33,18 @@ function Setting(props) {
  
   const notify = (msg) => toast(msg);
   const onSubmit = async (values) => {
-
+    {setUpdateToken(values)}
     // console.log(JSON.stringify(values));
     const saveData = {
-      telegram_BotToken: values.telegram_BotToken,
-      user_id: getUserId().id,
+      telegram_token: values.telegram_BotToken,
     };
     dispatch(saveTelegramToken(saveData)).then((res) => {
       setEditBtn(res.payload.status);
-      if(res.payload.status === true){
-        let mst = 'Toked Has Been Adedd'
-        notify(mst)
+      if(res.payload.status){
+        notify(res.payload.status)
       }
-      dispatch(getTelegramToken(usergetObject)).then((res) => {
-        setTelegramToken(res?.payload?.telegramToken);
+      dispatch(getTelegramToken(getUserId()?.user?.id)).then((res) => {
+        setTelegramToken(res?.payload?.data.telegram_token);
         setUserId(true);
       });
     });
@@ -60,27 +57,30 @@ function Setting(props) {
     }else if(query === "update"){
       // setEditBtn(true);
       const updateData = {
-        updateToken : updateToken?.telegram_BotToken,
-        user_id: getUserId().id
+        telegram_token :{telegram_token: updateToken?.telegram_BotToken},
+        id: getUserId()?.user?.id
       }
-      dispatch(saveTelegramToken(updateData))
+      dispatch(updateTelegramToken(updateData))
       .then((res)=>{
-        setEditBtn(true);
+      
         if(editBtn ===true){
-          let mst = 'Toked Has Been Updated'
-          notify(mst)
+          notify(res.payload.status)
+          dispatch(getTelegramToken(getUserId()?.user?.id)).then((res) => {
+            setTelegramToken(res?.payload?.data.telegram_token);
+            setUserId(true);
+            if(res?.payload?.data.telegram_token){
+              setEditBtn(true)
+            }
+          });
         }
-        
-       setTimeout(()=>{
-        window.location.reload()
-       },2000)
+
       })
-console.log(updateToken,"add Update Logic")
+// console.log(updateToken,"add Update Logic")
     }
   
   };
 
-  const isLoading = useSelector((state) => state?.saveTelegramToken?.isLoading);
+  const isLoading = useSelector((state) => state?.getTelegramToken?.isLoading);
   // const statusToken = useSelector((state) => state?.TelegramToken?.status);
   return (
     <div>
@@ -89,7 +89,6 @@ console.log(updateToken,"add Update Logic")
         onSubmit={onSubmit}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
           <form onSubmit={handleSubmit}>
-            {setUpdateToken(values)}
             <label>Your Bot Token</label>
             <>
               <Field

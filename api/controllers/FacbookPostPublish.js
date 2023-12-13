@@ -19,7 +19,7 @@ try{
         });
         // console.log(dataPlace.data)
         res.status(200).send(dataPlace.data);
-    }else{
+    }else{  
         const dataPlace = await axios({
             method: "POST",
             url: `https://graph.facebook.com/${req.body.page_id}/feed?message=${req.body.msg}&access_token=${req.body.page}`,

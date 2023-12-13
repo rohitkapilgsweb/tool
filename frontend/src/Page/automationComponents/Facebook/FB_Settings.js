@@ -10,12 +10,14 @@ import { FacebookProvider, LoginButton } from "react-facebook";
 import { useDispatch, useSelector } from "react-redux";
 import FacebookLogin from 'react-facebook-login';
 import {
+  UnlinkedAccount,
   add_Facebook_Data,
   get_Facebook_Data,
 } from "../../../redux/actions/LoginAction";
 import { getUserId } from "../../../utils/auth";
 import { toast } from "react-toastify";
 import { FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRECT } from "../../../config/config";
+import Loader from "../../Components/Loader";
 
 function FB_Settings() {
   const [facebookToken, setFacebookToken] = useState();
@@ -25,17 +27,14 @@ function FB_Settings() {
   var meindata = {
     userdata: [],
   };
-
+  const isLoading = useSelector((state)=>state?.GetFacebookAccount?.isLoading)
 
   useEffect(()=>{
     GetAccountsData()
-    
   },[])
 
 
   function handleSuccess(response) {
-    // console.log(response);
-    // console.log(response.authResponse.accessToken);
     setFacebookToken(response.authResponse.accessToken);
     getUserData(response.authResponse.accessToken, response);
   }
@@ -56,25 +55,16 @@ function FB_Settings() {
       const responserefreshToken = await fetch(Api_url)
       const userDatas = await responserefreshToken.json();
       const EncodeToken = encode(userDatas.access_token);
-
       const DataObjects = {
-        user_id: getUserId() ? getUserId()?.id : null,
-        page_access_token:EncodeToken,
-        accessToken: EncodeToken,
-        fb_userId: userData.id,
-        fb_userImg: userData.picture.data.url,
-        fb_Username: userData.name,
-        fb_pages: null,
-        fb_groups: null,
+        facebook_token: EncodeToken,
+        facebook_id: userData.id,
+        facebook_image: userData.picture.data.url,
       };
-// console.log(DataObjects,EncodeToken,userDatas.access_token,"DataObjectsDataObjectsDataObjectsDataObjects")
+console.log(DataObjects)
       meindata.userdata.push({ accessToken: EncodeToken });
-      //   facepageData(userData.id, accessToken);
       localStorage.setItem("accessToken", EncodeToken);
-
       dispatch(add_Facebook_Data(DataObjects)).then((res) => {
-        // console.log(res);
-        notify(res.payload.status)
+        console.log(res);
         GetAccountsData()
    
       });
@@ -84,25 +74,25 @@ function FB_Settings() {
   }
 
   const GetAccountsData = () =>{
-    const data = {
-      userId: getUserId()?.id,
-      session:getFacebookAccounts ? getFacebookAccounts[0]?.accessToken : ""
-    }
     
-    dispatch(get_Facebook_Data(data))
+    dispatch(get_Facebook_Data())
     .then((res)=>{
-      setGetFacebookAccounts(res?.payload)
-      // console.log(res,"responseresponseresponse")
+      console.log(res)
+      setGetFacebookAccounts(res?.payload?.data)
 
     })
   }
-// const responseFacebook = (response) => {
-//   console.log(response);
-// }
+  const DeleteBotton = (id) =>{
+    dispatch(UnlinkedAccount(id)).then((res)=>{
+      console.log(res)
+      GetAccountsData()
+    })
+  }
+
 
   return (
     <div>
-      
+      {isLoading && <Loader/>}
       <Container>
         <Row>
           <h4 className="my-4 text-black">Facebook General Settings</h4>
@@ -146,27 +136,27 @@ function FB_Settings() {
                 </tr>
               </thead>
               <tbody>
-                {/* {console.log(getFacebookAccounts,"getFacebookAccountsgetFacebookAccounts")} */}
                 {getFacebookAccounts?.map((item,index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={item?.user_id}>
                       <td>
+                        <div className="d-flex justify-content-between align-items-center">
+                          <h6 className="mb-0">{item.facebook_name}</h6>
+                          <h6 className="mb-0">{item.facebook_id}</h6>
                         <img
                           width={24}
-                          src={item.fb_userImg}
+                          src={item.facebook_image}
                           className="img-fluid rounded-top"
                           alt=""
-                        />{" "}
-                        {item.fb_Username}
+                        />
+                        <button style={{background:"#ff0000" }} className="btn btn-danger" onClick={()=>DeleteBotton(item.id)}>Delete</button>
+                        </div>
                       </td>
                     </tr>
                   );
                 })}
               </tbody>
             </Table>
-          </Col>
-          <Col sm={12} className="">
-            <Button variant="primary">Save</Button>
           </Col>
         </Row>
       </Container>

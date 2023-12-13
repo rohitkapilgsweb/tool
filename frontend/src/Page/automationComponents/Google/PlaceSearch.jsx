@@ -24,12 +24,12 @@ function PlaceSearch() {
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
-    dispatch(GoogleApi({ msg_body: values?.search }));
+    dispatch(GoogleApi({ msg_body: values?.search + "india" }));
     setShow(true);
   };
 
   const GooglePlaceData = useSelector(
-    (state) => state?.GooglePlaceSearch?.GoogleApi?.place_id
+    (state) => state?.GooglePlaceSearch?.GoogleApi?.place_ids
   );
   const statuss = useSelector(
     (state) => state?.GooglePlaceSearch?.GoogleApi?.status
@@ -41,7 +41,7 @@ function PlaceSearch() {
   // const businessListing = useSelector((state) => state?.BusinessListings?.isLoading);
   const fetchUserData = async (Place_Id) => {
     try {
-      const res = await dispatch(BusinessListings({ place_id: Place_Id }));
+      const res = await dispatch(BusinessListings(Place_Id ));
       return res?.payload;
     } catch (error) {
       console.error(error);
@@ -103,6 +103,7 @@ function PlaceSearch() {
 // console.log(hasAccess)
 //     },
 //   })
+console.log(getdata)
   return (
     <div className="">
       {isLoading ? <Loader /> : ""}
