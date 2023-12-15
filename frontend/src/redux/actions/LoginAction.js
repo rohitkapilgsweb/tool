@@ -16,6 +16,7 @@ export const axiosInstances = axios.create({
   headers: {
     "Content-Type": "multipart/form-data",
     type: "formData",
+    "Authorization":`Bearer ${token}`
   },
 });
 
@@ -74,28 +75,28 @@ export const saveTelegramToken = createAsyncThunk("saveTelegramToken", async (pa
   return response.data;
 });
 export const updateTelegramToken = createAsyncThunk("updateTelegramToken", async (payload) => {
-  const response = await axiosInstance.post(`api/update-telegram/${payload.id}`,payload.telegram_token);
+  const response = await axiosInstance.post(`api/update-telegram/${payload?.id}`,payload?.telegram_tokens);
   return response.data;
 });
 
-export const add_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
+export const add_Facebook_Data = createAsyncThunk("add_Facebook_Data", async (payload) => {
   const response = await axiosInstance.post(`api/create-facebook`, payload);
   return response.data;
 });
-export const get_Facebook_Data = createAsyncThunk("FacebookData", async (payload) => {
+export const get_Facebook_Data = createAsyncThunk("get_Facebook_Data", async (payload) => {
   const response = await axiosInstance.get(`api/facebook`);
   return response.data;
 });
-export const UnlinkedAccount = createAsyncThunk("FacebookData", async (payload) => {
+export const UnlinkedAccount = createAsyncThunk("UnlinkedAccount", async (payload) => {
   const response = await axiosInstance.delete(`api/delete-facebook/${payload}`);
   return response.data;
 });
-export const get_Facebook_Pages = createAsyncThunk("FacebookData", async (payload) => {
+export const get_Facebook_Pages = createAsyncThunk("get_Facebook_Pages", async (payload) => {
   const response = await axiosInstance.get(`api/facebook/pages/${payload}`);
   return response.data;
 });
-export const FacbookPostPublish = createAsyncThunk("FacebookData", async (payload) => {
-  const response = await axiosInstance.post(`api/FacbookPostPublish`, payload);
+export const FacbookPostPublish = createAsyncThunk("FacbookPostPublish", async (payload) => {
+  const response = await axiosInstance.post(`api/publish-post`, payload);
   return response.data;
 });
 export const GoogleApi = createAsyncThunk("GooglePlace", async (payload) => {
@@ -130,7 +131,11 @@ export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (p
 });
 
 export const MediaUploads = createAsyncThunk("mediaUplad", async (payload) => {
-  const response = await axiosInstances.post(`/api/upload`, payload);
+  const response = await axiosInstances.post(`/api/create-media`, payload);
+  return response.data;
+});
+export const GetMedia = createAsyncThunk("GetMedia", async (payload) => {
+  const response = await axiosInstance.get(`/api/media`);
   return response.data;
 });
 

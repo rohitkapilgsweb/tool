@@ -23,6 +23,7 @@ import UserSettings from "../Page/UserSettings";
 import WhatsappRequest from "../admin/WhatsappRequest";
 import ManagePlance from "../admin/ManagePlance";
 import HelpTicket from "../admin/HelpTicket";
+import Media from "../Page/Media";
 
 
 const role = getUserId() ? getUserId()?.user?.role : null;
@@ -60,6 +61,7 @@ const protects = {
             { path: "/create_post", element: <Post/> },
             { path: "/google", element: <Google/> },
             {path:"/singlepost", element : <SinglePost/>},
+            {path:"/media", element : <Media/>},
             { path: "*", element: <div>no page found</div> },
             ],
           },

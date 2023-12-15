@@ -17,6 +17,11 @@ function Setting(props) {
   const [editBtn, setEditBtn] = useState(false);
   const [updateToken, setUpdateToken] = useState();
 
+  
+  const isLoading = useSelector((state) => state?.getTelegramToken?.isLoading);
+  const getTelegramTokens = useSelector((state) => state?.getTelegramToken?.TelegramTokens?.data  );
+
+  
   useEffect(() => {
     if (getUserId()) {
       dispatch(getTelegramToken(getUserId()?.user?.id)).then((res) => {
@@ -33,7 +38,7 @@ function Setting(props) {
  
   const notify = (msg) => toast(msg);
   const onSubmit = async (values) => {
-    {setUpdateToken(values)}
+    setUpdateToken(values)
     // console.log(JSON.stringify(values));
     const saveData = {
       telegram_token: values.telegram_BotToken,
@@ -49,7 +54,7 @@ function Setting(props) {
       });
     });
   };
-  const stateChange = (query) => {
+  const stateChange = (query,values) => {
     if (query === "cancel") {
       setEditBtn(true);
     } else if (query === "edit") {
@@ -57,13 +62,12 @@ function Setting(props) {
     }else if(query === "update"){
       // setEditBtn(true);
       const updateData = {
-        telegram_token :{telegram_token: updateToken?.telegram_BotToken},
-        id: getUserId()?.user?.id
+        telegram_tokens :{telegram_token: values},
+        id: getTelegramTokens?.id
       }
-      dispatch(updateTelegramToken(updateData))
-      .then((res)=>{
-      
-        if(editBtn ===true){
+      dispatch(updateTelegramToken(updateData)).then((res)=>{
+      toast(res.payload.status)
+        if(res.payload.status === "Telegram update successfully"){
           notify(res.payload.status)
           dispatch(getTelegramToken(getUserId()?.user?.id)).then((res) => {
             setTelegramToken(res?.payload?.data.telegram_token);
@@ -80,8 +84,6 @@ function Setting(props) {
   
   };
 
-  const isLoading = useSelector((state) => state?.getTelegramToken?.isLoading);
-  // const statusToken = useSelector((state) => state?.TelegramToken?.status);
   return (
     <div>
       {isLoading && <Loader />}
@@ -115,7 +117,7 @@ function Setting(props) {
                       <p
                       className="mt-3 mb-0 bg-black btn text-white"
                       type="submit"
-                      onClick={() =>stateChange('update')}
+                      onClick={() =>stateChange('update',values?.telegram_BotToken)}
                       >
                       Update
                     </p> <p

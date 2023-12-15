@@ -18948,6 +18948,45 @@ width: 100% !important;
       width:100%;
       min-width:unset !important;
   }
+  .img-wrraper{
+    /* cursor: pointer; */
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: -3px 11px 20px 3px #f7f7f7;
+    border: 3px solid #dbdbdb;
+    position: relative;
+    background-color: #dbdbdb29;
+  }
+  .img-wrraper button{
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+
+  }
+  .img-wrraper:hover button:hover{
+    background-color: #fff;
+    color: #2474ad;
+    border: 1.5px solid #2474ad;
+  }
+  .img-wrraper img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+  .img-wrraper:hover   button{
+    visibility: visible;
+    opacity: 1;
+    top: 80%;
+    transition: all 0.3s ease;
+    border: 1.5px solid transparent;
+  }
   
 @media (max-width: 600px) {
     .hero-body.btn {

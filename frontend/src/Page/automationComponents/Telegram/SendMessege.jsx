@@ -1,15 +1,23 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect } from "react";
 import { Field, Form } from "react-final-form";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { getUserId } from "../../../utils/auth";
+import { getTelegramToken } from "../../../redux/actions/LoginAction";
 
 function SendMessege() {
 
-  const TokenTelegram = useSelector((state)=> state?.getTelegramToken?.TelegramTokens?.telegramToken);
+  const TokenTelegram = useSelector((state) => state?.getTelegramToken?.TelegramTokens?.data  );
+  const dispatch =useDispatch();
   const notify = () => toast("Message Has Been Sent");
 
-
+  useEffect(() => {
+    if (getUserId()) {
+      dispatch(getTelegramToken(getUserId()?.user?.id))
+    }
+  }, [])
+  
 
 
 
@@ -19,33 +27,24 @@ function SendMessege() {
   const boldButton = () => {
       const startPos = textInput?.selectionStart;
       const endPos = textInput?.selectionEnd;
-      const selectedText = textInput?.value.substring(startPos, endPos);
+      const selectedText = textInput?.value?.substring(startPos, endPos);
       
-      const newText = textInput?.value.substring(0, startPos) +
+      const newText = textInput?.value?.substring(0, startPos) +
                       '*' + selectedText + '*' +
-                      textInput?.value.substring(endPos);
+                      textInput?.value?.substring(endPos);
       
       textInput.value = newText;
-      text= newText
+      text = newText
   };
 
   const onSubmit = async (values) => {
-    console.log(values)
-    
-    // const files = values.file
     const chat_id = values.chat_id.includes('@') ? values.chat_id :  "@" + values.chat_id;
-    if(TokenTelegram && text){
-        const ApiURL = `https://api.telegram.org/bot${TokenTelegram}/sendMessage?chat_id=${chat_id}&text=${text}&parse_mode=MARKDOWN`
+    if(TokenTelegram && values?.text){
+        const ApiURL = `https://api.telegram.org/bot${TokenTelegram?.telegram_token}/sendMessage?chat_id=${chat_id}&text=${values?.text}&parse_mode=MARKDOWN`
      await axios.get(ApiURL).then((response) => {
-          // console.log(response.data)
-          // console.log(response)
           notify()
-    
         });
-    
-
     }
-
   };
   return (
     <div>
