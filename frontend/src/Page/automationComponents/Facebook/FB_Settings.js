@@ -4,17 +4,14 @@ import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { FacebookProvider, LoginButton } from "react-facebook";
 import { useDispatch, useSelector } from "react-redux";
-import FacebookLogin from 'react-facebook-login';
 import {
   UnlinkedAccount,
   add_Facebook_Data,
   get_Facebook_Data,
 } from "../../../redux/actions/LoginAction";
-import { getUserId } from "../../../utils/auth";
 import { toast } from "react-toastify";
 import { FACEBOOK_CLIENT_ID, FACEBOOK_CLIENT_SECRECT } from "../../../config/config";
 import Loader from "../../Components/Loader";
@@ -54,17 +51,17 @@ function FB_Settings() {
       const userData = await response.json();
       const responserefreshToken = await fetch(Api_url)
       const userDatas = await responserefreshToken.json();
-      const EncodeToken = encode(userDatas.access_token);
+      // const EncodeToken = encode(userDatas.access_token);
+      const EncodeToken = userDatas.access_token;
       const DataObjects = {
         facebook_token: EncodeToken,
         facebook_id: userData.id,
         facebook_image: userData.picture.data.url,
+        facebook_name: userData.name
       };
-console.log(DataObjects)
       meindata.userdata.push({ accessToken: EncodeToken });
       localStorage.setItem("accessToken", EncodeToken);
       dispatch(add_Facebook_Data(DataObjects)).then((res) => {
-        console.log(res);
         GetAccountsData()
    
       });
@@ -77,14 +74,12 @@ console.log(DataObjects)
     
     dispatch(get_Facebook_Data())
     .then((res)=>{
-      console.log(res)
       setGetFacebookAccounts(res?.payload?.data)
 
     })
   }
   const DeleteBotton = (id) =>{
     dispatch(UnlinkedAccount(id)).then((res)=>{
-      console.log(res)
       GetAccountsData()
     })
   }
@@ -120,7 +115,7 @@ console.log(DataObjects)
             <FacebookProvider appId="158402927285129">
               <LoginButton
                 className="btn btn-primary"
-                scope="public_profile,email,pages_manage_posts,publish_to_groups,pages_show_list,pages_read_engagement,pages_read_user_content,business_management,instagram_basic,pages_show_list"
+                scope="public_profile,email,pages_manage_posts,publish_to_groups,pages_show_list,pages_read_engagement,read_insights,pages_read_user_content,business_management,instagram_basic,pages_show_list"
                 onError={handleError}
                 onSuccess={handleSuccess}
               >
@@ -141,8 +136,8 @@ console.log(DataObjects)
                     <tr key={item?.user_id}>
                       <td>
                         <div className="d-flex justify-content-between align-items-center">
-                          <h6 className="mb-0">{item.facebook_name}</h6>
-                          <h6 className="mb-0">{item.facebook_id}</h6>
+               <div>           <h6 className="mb-1">{item.facebook_name}</h6>
+                          <p className="mb-0">{item.facebook_id}</p></div>
                         <img
                           width={24}
                           src={item.facebook_image}

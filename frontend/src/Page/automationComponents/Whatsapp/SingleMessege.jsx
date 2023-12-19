@@ -9,11 +9,8 @@ function SingleMessege() {
     const dispatch = useDispatch()
     const notify = () => toast("Message Has Been Sent");
     const onSubmit = async (values) => {
-        console.log(values)
-        // setError(values.number.isInteger())
         const isNumber = Number(values.number)
         dispatch(whatsappSendMessege(values)).then((res)=>{
-            console.log(res?.payload?.status)
            if(res?.payload?.status === true) {
             notify()
             }else{

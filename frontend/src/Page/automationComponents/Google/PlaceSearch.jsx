@@ -24,7 +24,7 @@ function PlaceSearch() {
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
-    dispatch(GoogleApi({ msg_body: values?.search + "india" }));
+    dispatch(GoogleApi({ msg_body: values?.search}));
     setShow(true);
   };
 
@@ -100,10 +100,8 @@ function PlaceSearch() {
 //         tokenResponse,
 //         'https://www.googleapis.com/auth/business.manage',
 //       );
-// console.log(hasAccess)
 //     },
 //   })
-console.log(getdata)
   return (
     <div className="">
       {isLoading ? <Loader /> : ""}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/esm/Col";
 // import FormSelect from "react-bootstrap/esm/FormSelect";
@@ -18,6 +18,8 @@ import Select from "react-select";
 import {
     FacbookPostPublish,
   MediaUploads,
+  getAllPost,
+  getSigleMedia,
   get_Facebook_Data,
   get_Facebook_Pages,
 } from "../../redux/actions/LoginAction";
@@ -25,25 +27,45 @@ import { getUserId } from "../../utils/auth";
 import Loader from "../Components/Loader";
 import { Field, Form } from "react-final-form";
 import { CurrentApi } from "../../config/config";
+import CommonModal from "../../admin/components/CommonModal";
+import Media from "../Media";
+import ClockLoader from "react-spinners/ClockLoader";
 
-function SinglePost() {
+function SinglePost(props) {
   const [socialColor, setSocialColor] = useState();
   const [facebook, setFacebook] = useState();
   const [onShow, setOnShow] = useState(false);
   const [pageDetails, setPageDetails] = useState();
+  const [show, setShow] = useState(false);
+  const [showINputs, setShowINputs] = useState(false);
+  const [file__uri, setFile__uri] = useState();
+  const [uploadTime, setUploadTime] = useState(false);
   // Select States
 
   const [isSearchable, setIsSearchable] = useState(true);
   const [mediaArryFile, SetMediaArryFile] = useState([])
-  const [fileData, SetFileData] = useState([])
+  const [fileData, SetFileData] = useState()
   const [fileNamePost, SetFileNamePost] = useState(true)
 
   const dispatch = useDispatch();
+
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const setStore = (id) => {
+    dispatch(getSigleMedia(id)).then((res)=>{
+      SetFileData(res?.payload?.data?.file_url)
+      handleClose()
+    })
+  }
+
+const meinImage = fileData
+
+
   const SelectSocial = (clicked) => {
     if (clicked === "facebook") {
       setSocialColor(clicked);
       dispatch(get_Facebook_Data(getUserId()?.user)).then((res) => {
-        console.log(res.payload.data[0]); 
         setOnShow(true);
       });
     } else if (clicked === "instagram") {
@@ -77,7 +99,6 @@ function SinglePost() {
       }
   }
  
-  // console.log(userAccountId[0],"userAccountIduserAccountId")
   const onChange = (change) => {
     setFacebook(change)
     if (change === "pages") {
@@ -89,62 +110,41 @@ function SinglePost() {
     }
   };
   const selectPageChange = (values) => {
-    console.log(values, "valuesvaluesvalues");
+    setShowINputs(true)
     setPageDetails(values)
   };
 
-
-  
-let mediaArry = []
-
-const handleChange = (event, typename, values) => {
-  let filedata = {
-    types: typename,
-  };
-
-  if (values[`${typename}id`]) {
-    filedata["id"] = values[`${typename}id`];
-  }
-
-  const file = event.target.files[0];
-  const formData = new FormData();
-  formData.append('file', file);
-  dispatch(MediaUploads(formData)).then((res) => {
-  SetFileData(res?.payload?.data)
-
-    let mediaList = {
-      mediaID: res?.payload?.data?.id,
-      filename: res?.payload?.data?.file,
-    }
-    SetFileNamePost(res?.payload?.data?.file)
-    mediaArry.push(mediaList)
-
-    let a = [...mediaArryFile]
-    a.push(mediaList)
-    SetMediaArryFile(a)
-
-  }
-
-  )
-
-};
-
-
   const onSubmit = async (values) => {
- 
-    console.log(mediaArryFile)
-    if(!mediaArryFile[0]?.filename){
-        dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.mesage})).then((res)=>{
-            console.log(res,"TEXT")
+    values.media = meinImage;
+    setUploadTime(true)
+    if(values?.messege && !values?.link && !values?.media){
+        dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.messege})).then((res)=>{
+          setUploadTime(false)
+          dispatch(getAllPost())
+            props.close()
+            
         })
     }
-     if(mediaArryFile[0]?.filename){
-      // dispatch(MediaUploads(formData))
-      dispatch(FacbookPostPublish({ClientId: getUserId().id, page: pageDetails?.key, page_id: pageDetails?.value, msg: values?.messege, media: fileData?.file_url})).then((res)=>{
-        console.log(res,"MEDIA")
-        // dispatch(MediaUploads(formData))
+    if(values?.link && !values?.media && !values?.messege){
+      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, link:values?.link})).then((res)=>{
+        setUploadTime(false)
+        dispatch(getAllPost())
+        props.close()
       })
-  
+    }
+     if(values?.media && !values?.link && !values?.messege){
+      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, media: values?.media})).then((res)=>{
+        setUploadTime(false)
+        dispatch(getAllPost())
+        props.close()
+      })
+    }
+    if(values?.media && !values?.link && values?.messege){
+      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, msg: values?.messege, media: values?.media})).then((res)=>{
+        setUploadTime(false)
+        dispatch(getAllPost())
+        props.close()
+    })
     }
         
        
@@ -153,7 +153,8 @@ const handleChange = (event, typename, values) => {
 
 
   return (
-    <div>
+    <div className="position-relative">
+      {uploadTime && <div className="w-100 loader-clock"><ClockLoader color="#2f65f1" /></div>}
       {userAccountIdLoading ?  <Loader /> : AllFacebookPageLoading ? <Loader /> :""}
       <Container>
         <h2>
@@ -230,8 +231,9 @@ const handleChange = (event, typename, values) => {
             onSubmit={onSubmit}
             render={({ handleSubmit, form, submitting, pristine, values }) => (
               <form onSubmit={handleSubmit}>
-
-          <Col sm={12}>
+      {showINputs && <>
+        <Col sm={12}>
+        <div className="btn hero-body mb-3 mt-3" onClick={handleShow}>Select Media</div>
         <Field
             id="textInput"
               className="form-control mb-3"
@@ -240,36 +242,52 @@ const handleChange = (event, typename, values) => {
               type="text"
               placeholder="Enter Message"
             />
-             <input
-            id="textInput"
-              className="form-control mb-3"
-              name="file"
-              type="file"
+
+            <Field
+              className="form-control mb-3 select-input-media"
+              name="media"
+              component="input"
+              type="text"
               placeholder="Enter Message"
-              onChange={(e) => {
-              onChange(e);
-              handleChange(e, "PostAttachment", values);
-                }}
             />
-              
+            <Field
+              className="form-control mb-3"
+              name="link"
+              component="input"
+              type="text"
+              placeholder="Enter Link"
+            />
+            
+
           </Col>
-          <Col sm={12}>
+         </>
+         }
+           <Col sm={12}>
              
-              <div className="text-end d-flex gap-3 justify-content-end">
-                <button className="bg-black btn text-white" disabled={fileNamePost ? false : true}>
-                  Publish 
-                </button>
-                <button disabled  className="bg-black btn text-white">
-                  Schedule
-                </button>
-              </div>
-            </Col>
+             <div className="text-end d-flex gap-3 justify-content-end">
+               <button className="bg-black btn text-white" disabled={fileNamePost ? false : true}>
+                 Publish 
+               </button>
+               <button disabled  className="bg-black btn text-white">
+                 Schedule
+               </button>
+             </div>
+           </Col>
           </form>
             )}
             />
           </Row>
         </div>
       </Container>
+      <CommonModal
+      show={show}
+      Title={"Select Images"}
+      size={"xl"}
+      handleCloseBtn={handleClose}
+      Content={<Media select={true} media_uri={setStore} close={handleClose}  />}
+      />
+
+
     </div>
   );
 }

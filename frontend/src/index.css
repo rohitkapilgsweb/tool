@@ -18958,7 +18958,7 @@ width: 100% !important;
     position: relative;
     background-color: #dbdbdb29;
   }
-  .img-wrraper button{
+  .img-wrraper .hero-body{
     visibility: hidden;
     opacity: 0;
     position: absolute;
@@ -18969,7 +18969,7 @@ width: 100% !important;
     transition: all 0.3s ease;
 
   }
-  .img-wrraper:hover button:hover{
+  .img-wrraper:hover .hero-body:hover{
     background-color: #fff;
     color: #2474ad;
     border: 1.5px solid #2474ad;
@@ -18980,14 +18980,94 @@ width: 100% !important;
     object-fit: contain;
     object-position: center;
   }
-  .img-wrraper:hover   button{
+  .img-wrraper:hover   .hero-body{
     visibility: visible;
     opacity: 1;
     top: 80%;
     transition: all 0.3s ease;
     border: 1.5px solid transparent;
   }
-  
+
+  .delete
+  {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-100px);
+    transition: all 0.2s ease;
+    width: fit-content;
+    background-color: #ff0000;
+    margin-left: auto;
+    margin-right: 5px;
+    margin-top: 5px;
+    border-radius: 100px;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .img-wrraper:hover .delete
+  {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+  }
+  .loader-clock
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    background-color: #ffffffc2;
+    border-radius: 10px;
+  }
+  .select-input-media{
+    visibility: hidden;
+    width: 0 !important;
+    height: 0 !important;
+    position: absolute;
+  }
+  .home__postinfo{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  }
+  .bg-chart
+  {
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  }
+   .lable-span{
+    margin-left: auto;
+    display: block;
+    background-color: #2245aa;
+    color: #fff; 
+    padding: 10px 12px;
+    width: fit-content;
+    border-radius: 100px;
+   }
+   .lable-span.pending
+   {
+    background-color: #fcb11b91;
+    color: #111f33;
+   }
+   .lable-span.schedule
+   {
+    background-color: #f7cb73;
+   }
 @media (max-width: 600px) {
     .hero-body.btn {
         border-radius: 100%;

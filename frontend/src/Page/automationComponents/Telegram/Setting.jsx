@@ -39,7 +39,6 @@ function Setting(props) {
   const notify = (msg) => toast(msg);
   const onSubmit = async (values) => {
     setUpdateToken(values)
-    // console.log(JSON.stringify(values));
     const saveData = {
       telegram_token: values.telegram_BotToken,
     };
@@ -79,7 +78,6 @@ function Setting(props) {
         }
 
       })
-// console.log(updateToken,"add Update Logic")
     }
   
   };

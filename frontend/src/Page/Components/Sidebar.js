@@ -15,7 +15,6 @@ import logoImg from '../../assets/img/logo.png'
 function Sidebar() {
   const role = getUserId() ? getUserId()?.user?.role : null;
   const Location  = useLocation().pathname  ;
-  console.log(Location)
   return (
     <aside className="left-sidebar">
       <div>
@@ -141,6 +140,30 @@ function Sidebar() {
                       <i className="ti ti-layout-dashboard"></i>
                     </span>
                     <span className="hide-menu">Welcome</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/facebook"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <BsFacebook color="#1877F2" size={23} />
+                    </span>
+                    <span className="hide-menu">Facebook</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/create_post"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <BsFillFileEarmarkPostFill size={23} />
+                    </span>
+                    <span className="hide-menu">Create Post</span>
                   </Link>
                 </li>
                 <li className="nav-small-cap">

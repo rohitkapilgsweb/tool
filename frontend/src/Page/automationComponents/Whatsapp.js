@@ -54,7 +54,6 @@ function Whatsapp() {
       phone: values?.phone,
     };
     const datadataNumber = pageDetails?.key + 1;
-    console.log(datadataNumber)
 
     dispatch(WhatsappRequest(RequestFields)).then((res)=>{
       if(res?.payload?.status){

@@ -18,9 +18,7 @@ const UserData = useSelector((state)=> state?.users?.Allusers?.data)
 
 
 useEffect(()=>{
-    dispatch(users()).then((res)=>{
-      console.log(UserData)
-    })
+    dispatch(users())
 
 },[!UserData])
 const data = [
@@ -31,7 +29,6 @@ const data = [
   ["",0]
 ];
 
-console.log(UserData)
 const counts = {};
 
 

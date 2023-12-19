@@ -36,3 +36,9 @@ export const getUserId = () => {
     }
     return decoded;
   };
+
+
+  // export const getimageUri = (id) => {
+  //  const image = id
+  //   return image;
+  // };

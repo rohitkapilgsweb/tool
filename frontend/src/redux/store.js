@@ -15,6 +15,7 @@ import GetPlansSliceReducer from './reducer/GetPlansSlice'
 import updatePlanssReducer from './reducer/UpdatePlansSlice';
 import DeletePlanReducer from './reducer/DeletePlan';
 import singlePlansReducer from './reducer/singlePlans';
+import getAllPostsReducer from './reducer/GetFacebookPost'
 
 const store = configureStore({
   reducer: {
@@ -34,6 +35,7 @@ const store = configureStore({
     updatePlans: updatePlanssReducer,
     DeletePlanItem: DeletePlanReducer,
     singlePlan: singlePlansReducer,
+    getPosts: getAllPostsReducer,
   },
 });
 

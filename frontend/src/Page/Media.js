@@ -1,18 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { IoMdCloudUpload } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
-import { GetMedia, MediaUploads, get_Facebook_Pages } from "../redux/actions/LoginAction";
+import { GetMedia, MediaUploads, deleteMedia, getSigleMedia, get_Facebook_Pages } from "../redux/actions/LoginAction";
 import CommonModal from "../admin/components/CommonModal";
+import { RxCross2 } from "react-icons/rx";
+import { toast } from "react-toastify";
+import ClockLoader from "react-spinners/ClockLoader";
+import { getimageUri } from "../utils/auth";
 
-function Media() {
+function Media(props) {
   const [media, setMedia] = useState();
   const dispatch = useDispatch();
   const [facebook, setFacebook] = useState();
   const [show, setShow] = useState(false);
+  const [showImag, setShowImag] = useState(false);
+  const [showOne, setShowOne] = useState(false);
+  const [uploadTime, setUploadTime] = useState(false);
   const [mediaArryFile, SetMediaArryFile] = useState([])
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {setShow(true); setShowImag(false)};
 
   
   const userAccountId = useSelector(
@@ -61,13 +68,22 @@ const onChange = (change) => {
     }
   };
 
+  const deleteMedias=(id)=>{
+    dispatch(deleteMedia(id)).then((res)=>{
+      toast(res.payload.status)
+      dispatch(GetMedia()).then((res) => {
+        setMedia(res?.payload?.data);
+      });
+    })
+  }
+
 
     
 let mediaArry = []
+let File__uris;
 
 const handleChange = (event) => {
-    console.log(event)
-
+  setUploadTime(true)
   const file = event.target.files[0];
   const formData = new FormData();
   formData.append('file', file);
@@ -78,27 +94,39 @@ const handleChange = (event) => {
       filename: res?.payload?.data?.file,
     }
     handleClose()
+    setUploadTime(false)
     dispatch(GetMedia()).then((res) => {
         setMedia(res?.payload?.data);
-
       });
-    // SetFileNamePost(res?.payload?.data?.file)
     mediaArry.push(mediaList)
 
     let a = [...mediaArryFile]
     a.push(mediaList)
     SetMediaArryFile(a)
-
+  }
+  )
+};
+const sigleDetails = (id) =>{
+  if(!props?.select){
+    dispatch(getSigleMedia(id)).then((res)=>{
+      setShowImag(true)
+      setShow(true)
+      setShowOne(res?.payload?.data)
+    })
+  }
+  if(props?.select){
+    props?.media_uri(id)
   }
 
-  )
+}
 
-};
+
+
 
   return (
     <div className="container py-5">
       <div className="row justify-content-start align-items-center g-2">
-        <div className="col-4">
+        <div className="col-4" key={"1"}>
           <button type="button" onClick={handleShow} className="btn btn-primary">
             <IoMdCloudUpload size={30} className="mr-3" />
             Upload
@@ -106,23 +134,24 @@ const handleChange = (event) => {
         </div>
       </div>
       <div className="row justify-content-start align-items-center g-2 py-3">
-        {media?.map((item,index) => {
+        {media?.slice().reverse().map((item,index) => {
           return (
             <>
               <div key={index} className="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div className="img-wrraper w-100">
+                <div className="img-wrraper w-100" data-id={item?.id}>
+                  <div className="delete" onClick={()=>deleteMedias(item?.id)}> <RxCross2 /></div>
                   <img
                     src={item?.file_url}
                     className="img-fluid rounded-top"
                     alt=""
                   />
-                  <button
-                    type="button"
+                  <div
+                    onClick={(e)=>sigleDetails(item?.id)}
                     style={{ height:"46px" }}
                     className="btn hero-body px-4"
                   >
                     Select
-                  </button>
+                  </div>
                   
                 </div>
               </div>
@@ -132,11 +161,20 @@ const handleChange = (event) => {
       </div>
       <CommonModal
       show={show}
-      Title={"Upload New Media"}
+      Title={!showImag ? "Upload New Media" : "Image Preview"}
       size={"md"}
       handleCloseBtn={handleClose}
-      Content={
-      <input
+      Content={showImag ? <ShowIMags image={showOne?.file_url} /> : Upload(handleChange,onChange,uploadTime) }
+      />
+    </div>
+  );
+}
+
+export default Media;
+
+const Upload = (handleChange,onChange,uploadTime) =>{
+  return (<>
+    <input
       id="textInput"
       className="form-control mb-3"
       name="file"
@@ -147,10 +185,19 @@ const handleChange = (event) => {
       handleChange(e);
         }}
     />
-    }
-      />
-    </div>
-  );
+    {uploadTime && <div className="w-100 loader-clock"><ClockLoader color="#2f65f1" /></div>}
+    </>
+  )
 }
 
-export default Media;
+export const ShowIMags = (props) =>{
+  return (
+    <div className="image-wrrapers">
+    <img
+      src={props?.image}
+      className="img-fluid rounded-top w-100"
+      alt=""
+    />
+    </div>
+  )
+}

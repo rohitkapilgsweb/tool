@@ -19,6 +19,21 @@ export const axiosInstances = axios.create({
     "Authorization":`Bearer ${token}`
   },
 });
+export const axiosFacebookInstances = axios.create({
+  baseURL: 'https://graph.facebook.com/v18.0/',
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
+});
+
+// 
+
+export const getPageDetails = createAsyncThunk("Postjob", async (payload) => {
+  const response = await axiosInstance.get(`${payload?.page_id}/insights?metric=${payload?.metric}&access_token=${payload?.access_token}`);
+  return response.data;
+});
+
+// 
 
 
 export const LoginActions = createAsyncThunk("Postjob", async (payload) => {
@@ -130,12 +145,33 @@ export const Getwhatsapprequest = createAsyncThunk("WhatsappRequestss", async (p
   return response.data;
 });
 
+
+// Media
+
 export const MediaUploads = createAsyncThunk("mediaUplad", async (payload) => {
   const response = await axiosInstances.post(`/api/create-media`, payload);
   return response.data;
 });
-export const GetMedia = createAsyncThunk("GetMedia", async (payload) => {
+export const GetMedia = createAsyncThunk("GetMedia", async () => {
   const response = await axiosInstance.get(`/api/media`);
+  return response.data;
+});
+export const deleteMedia = createAsyncThunk("deleteMedia", async (payload) => {
+  const response = await axiosInstance.delete(`/api/delete-media/${payload}`);
+  return response.data;
+});
+export const getSigleMedia = createAsyncThunk("getSigleMedia", async (payload) => {
+  const response = await axiosInstance.get(`/api/media-detail/${payload}`);
+  return response.data;
+});
+
+export const getAllPost = createAsyncThunk("getAllPost", async (payload) => {
+  const response = await axiosInstance.get(`/api/facebook-posts`);
+  return response.data;
+});
+
+export const detelePost = createAsyncThunk("detelePost", async (payload) => {
+  const response = await axiosInstance.delete(`/api/facebook-posts/${payload}`);
   return response.data;
 });
 
