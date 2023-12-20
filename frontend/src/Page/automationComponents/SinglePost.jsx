@@ -40,6 +40,7 @@ function SinglePost(props) {
   const [showINputs, setShowINputs] = useState(false);
   const [file__uri, setFile__uri] = useState();
   const [uploadTime, setUploadTime] = useState(false);
+  const [post_platform, setPost_platform] = useState('');
   // Select States
 
   const [isSearchable, setIsSearchable] = useState(true);
@@ -64,6 +65,7 @@ const meinImage = fileData
 
   const SelectSocial = (clicked) => {
     if (clicked === "facebook") {
+      setPost_platform(clicked)
       setSocialColor(clicked);
       dispatch(get_Facebook_Data(getUserId()?.user)).then((res) => {
         setOnShow(true);
@@ -103,8 +105,12 @@ const meinImage = fileData
     setFacebook(change)
     if (change === "pages") {
       if(userAccountId){
+        const payloadData = {
+          accessToken:{accessToken: userAccountId[1]?.facebook_token},
+          id: userAccountId[1]?.facebook_id
+      }
         dispatch(
-          get_Facebook_Pages(userAccountId[0]?.facebook_id)
+          get_Facebook_Pages(payloadData)
         );
       }
     }
@@ -114,11 +120,12 @@ const meinImage = fileData
     setPageDetails(values)
   };
 
+ console.log(pageDetails)
   const onSubmit = async (values) => {
     values.media = meinImage;
     setUploadTime(true)
     if(values?.messege && !values?.link && !values?.media){
-        dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.messege})).then((res)=>{
+        dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label ,page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.messege})).then((res)=>{
           setUploadTime(false)
           dispatch(getAllPost())
             props.close()
@@ -126,14 +133,14 @@ const meinImage = fileData
         })
     }
     if(values?.link && !values?.media && !values?.messege){
-      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, link:values?.link})).then((res)=>{
+      dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, link:values?.link})).then((res)=>{
         setUploadTime(false)
         dispatch(getAllPost())
         props.close()
       })
     }
      if(values?.media && !values?.link && !values?.messege){
-      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, media: values?.media})).then((res)=>{
+      dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, media: values?.media})).then((res)=>{
         setUploadTime(false)
         dispatch(getAllPost())
         props.close()

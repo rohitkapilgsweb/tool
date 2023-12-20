@@ -107,7 +107,7 @@ export const UnlinkedAccount = createAsyncThunk("UnlinkedAccount", async (payloa
   return response.data;
 });
 export const get_Facebook_Pages = createAsyncThunk("get_Facebook_Pages", async (payload) => {
-  const response = await axiosInstance.get(`api/facebook/pages/${payload}`);
+  const response = await axiosInstance.post(`api/facebook/pages/${payload?.id}`, payload?.accessToken);
   return response.data;
 });
 export const FacbookPostPublish = createAsyncThunk("FacbookPostPublish", async (payload) => {
@@ -171,7 +171,7 @@ export const getAllPost = createAsyncThunk("getAllPost", async (payload) => {
 });
 
 export const detelePost = createAsyncThunk("detelePost", async (payload) => {
-  const response = await axiosInstance.delete(`/api/facebook-posts/${payload}`);
+  const response = await axiosInstance.delete(`/api/facebook-posts/${payload?.post_id}/${payload?.token}`);
   return response.data;
 });
 

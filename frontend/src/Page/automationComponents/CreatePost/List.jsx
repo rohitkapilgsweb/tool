@@ -14,7 +14,12 @@ function List() {
 
   const isLoading = useSelector((state) => state?.getPosts?.isLoading);
   const dataPost = useSelector((state) => state?.getPosts?.data);
-
+  const AllFacebookPage = useSelector(
+    (state) => state?.getPages?.getFacebookPages.data
+  );
+  const AllFacebookPageLoading = useSelector(
+    (state) => state?.getPages?.isLoading
+  );
   useEffect(() => {
     dispatch(getAllPost());
   }, [!dataPost]);
@@ -34,8 +39,18 @@ function List() {
 
     return `${day}/${month} ${abbreviatedDayOfWeek} ${hours}:${minutes}`;
   };
-  const DeletePost = (id) => {
-    dispatch(detelePost(id)).then((res) => {
+  const DeletePost = (id,page_name) => {
+    AllFacebookPage?.map((item)=>{
+      if(item?.name === page_name){
+        console.log(item?.name)
+      }
+    })
+    const deletePayload = {
+      post_id: id,
+      // token: page_name_token
+    }
+   
+    dispatch(detelePost(deletePayload)).then((res) => {
       dispatch(getAllPost());
     });
   };
@@ -74,7 +89,7 @@ function List() {
                             <Dropdown.Menu>
                               <Dropdown.Item
                                 href="#/Delete"
-                                onClick={() => DeletePost(item?.post_id)}
+                                onClick={() => DeletePost(item?.post_id,item?.page_name)}
                               >
                                 Delete
                               </Dropdown.Item>

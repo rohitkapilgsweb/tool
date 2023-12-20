@@ -5,7 +5,7 @@ import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { BiSolidUser } from "react-icons/bi";
 import { AiFillNotification } from "react-icons/ai";
-import { MdLocalOffer,MdOutlineContactSupport } from "react-icons/md";
+import { MdLocalOffer,MdOutlineContactSupport, MdOutlinePermMedia } from "react-icons/md";
 
 
 import { Link, useLocation } from "react-router-dom";
@@ -69,6 +69,18 @@ function Sidebar() {
                     <span className="hide-menu">Create Post</span>
                   </Link>
                 </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/media"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <MdOutlinePermMedia size={23} />
+                    </span>
+                    <span className="hide-menu">Media</span>
+                  </Link>
+                </li>
                 <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
                   <span className="hide-menu">Automations</span>
@@ -97,18 +109,11 @@ function Sidebar() {
                     <span className="hide-menu">Telegram</span>
                   </Link>
                 </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/whatsapp"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <IoLogoWhatsapp color="#075e54" size={23} />
-                    </span>
-                    <span className="hide-menu">Whatsapp</span>
-                  </Link>
+                <li className="nav-small-cap">
+                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span className="hide-menu">Setup Apps</span>
                 </li>
+
                 <li className="sidebar-item">
                   <Link
                     className="sidebar-link"
@@ -119,6 +124,18 @@ function Sidebar() {
                       <BsFacebook color="#1877F2" size={23} />
                     </span>
                     <span className="hide-menu">Facebook</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/whatsapp"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <IoLogoWhatsapp color="#075e54" size={23} />
+                    </span>
+                    <span className="hide-menu">Whatsapp</span>
                   </Link>
                 </li>
               </>
@@ -142,18 +159,7 @@ function Sidebar() {
                     <span className="hide-menu">Welcome</span>
                   </Link>
                 </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/facebook"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <BsFacebook color="#1877F2" size={23} />
-                    </span>
-                    <span className="hide-menu">Facebook</span>
-                  </Link>
-                </li>
+              
                 <li className="sidebar-item">
                   <Link
                     className="sidebar-link"
@@ -164,6 +170,18 @@ function Sidebar() {
                       <BsFillFileEarmarkPostFill size={23} />
                     </span>
                     <span className="hide-menu">Create Post</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/media"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <MdOutlinePermMedia size={23} />
+                    </span>
+                    <span className="hide-menu">Media</span>
                   </Link>
                 </li>
                 <li className="nav-small-cap">
@@ -192,6 +210,23 @@ function Sidebar() {
                       <BsTelegram color="#0088cc" size={23} />
                     </span>
                     <span className="hide-menu">Telegram</span>
+                  </Link>
+                </li>
+                <li className="nav-small-cap">
+                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span className="hide-menu">Setup Apps</span>
+                </li>
+
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/facebook"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <BsFacebook color="#1877F2" size={23} />
+                    </span>
+                    <span className="hide-menu">Facebook</span>
                   </Link>
                 </li>
                 <li className="sidebar-item">

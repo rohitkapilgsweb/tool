@@ -13,35 +13,14 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "./Components/Loader";
 import { Chart } from "react-google-charts";
 import jsonData from "./sempleData/data.json";
+import moment from "moment";
 
-export const data = [
-  [
-    "Day",
-    "Guardians of the Galaxy",
-    "The Avengers",
-    "Transformers: Age of Extinction",
-  ],
-  [1, 37.8, 80.8, 41.8],
-  [2, 30.9, 69.5, 32.4],
-  [3, 25.4, 57, 25.7],
-  [4, 11.7, 18.8, 10.5],
-  [5, 11.9, 17.6, 10.4],
-  [6, 8.8, 13.6, 7.7],
-  [7, 7.6, 12.3, 9.6],
-  [8, 12.3, 29.2, 10.6],
-  [9, 16.9, 42.9, 14.8],
-  [10, 12.8, 30.9, 11.6],
-  [11, 5.3, 7.9, 4.7],
-  [12, 6.6, 8.4, 5.2],
-  [13, 4.8, 6.3, 3.6],
-  [14, 4.2, 6.2, 3.4],
-];
 
 export const options = {
   title: "Company Performance",
   hAxis: { title: "Year", titleTextStyle: { color: "#333" } },
   vAxis: { minValue: 0 },
-  chartArea: { width: "50%", height: "70%" },
+  chartArea: { width: "50%", height: "50%" },
 };
 
 function Dashboard() {
@@ -137,10 +116,17 @@ function Dashboard() {
       key: item?.access_token,
     });
   });
+
   const handelChange = (e) => {
-    // console.log(e?.value)
-    dispatch(get_Facebook_Pages(e?.value));
+    // console.log(e)
+    const payloadData = {
+        accessToken:{accessToken: e?.key},
+        id:e?.value
+    }
+    dispatch(get_Facebook_Pages(payloadData));
   };
+
+
   const getDetails = (e) => {
     const PayloadData = {
       page_id: e?.id,
@@ -190,10 +176,31 @@ function Dashboard() {
       hours: hours,
       minutes: minutes,
       seconds: seconds,
+      formattedDate:formattedDate,
+      formattedTime:formattedTime
     };
     return AllValues;
   };
-  console.log(DateTimeExclude("2023-12-18T08:00:00+0000"), "DateTimeExclude");
+
+
+  const data = [
+    [
+      "Day",
+      "Reach Start",
+      "Reach End",
+      // "last_28day",
+    ],  
+    ["0",0,0]
+  ];
+
+
+
+for (let i = 0; i < jsonData?.data?.length; i++) {
+  data.push([DateTimeExclude(jsonData?.data[i]?.values[0].end_time)?.formattedDate + ", " + DateTimeExclude(jsonData?.data[i]?.values[1].end_time)?.formattedDate, jsonData?.data[i]?.values[0]?.value, jsonData?.data[i]?.values[1]?.value])
+}
+
+
+
 
   return (
     <div className="container-fluid pt-4">
@@ -281,17 +288,18 @@ function Dashboard() {
       <div className="row">
         <div className="col-md-12">
           <div className="mt-3 mb-4 bg-chart">
-            <h4>{jsonData?.data[0].title}</h4>
-            <p>{jsonData?.data[0].description}</p>
+            <h4 className="">Total Reach</h4>
+            <p>The number of people who had any content from your Page or about your Page enter their screen. This includes posts, check-ins, ads, social information from people who interact with your Page and more. (Unique Users)</p>
             <Chart
-              chartType="Line"
+              chartType="Bar"
               width="100%"
-              height="400px"
+              height="300px"
               data={data}
-              // options={options}
+              options={options}
             />
           </div>
         </div>
+
       </div>
     </div>
   );

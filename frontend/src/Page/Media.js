@@ -61,8 +61,12 @@ const onChange = (change) => {
     setFacebook(change)
     if (change === "pages") {
       if(userAccountId){
+        const payloadData = {
+          accessToken:{accessToken: userAccountId[1]?.facebook_token},
+          id: userAccountId[1]?.facebook_id
+      }
         dispatch(
-          get_Facebook_Pages(userAccountId[0]?.facebook_id)
+          get_Facebook_Pages(payloadData)
         );
       }
     }

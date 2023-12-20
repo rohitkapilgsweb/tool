@@ -18,23 +18,6 @@
             "id": "121025754430407/insights/page_impressions_unique/day"
         },
         {
-            "name": "page_engaged_users",
-            "period": "day",
-            "values": [
-                {
-                    "value": 0,
-                    "end_time": "2023-12-17T08:00:00+0000"
-                },
-                {
-                    "value": 0,
-                    "end_time": "2023-12-18T08:00:00+0000"
-                }
-            ],
-            "title": "Daily Page Engaged Users",
-            "description": "Daily: The number of people who engaged with your Page. Engagement includes any click or story created. (Unique Users)",
-            "id": "121025754430407/insights/page_engaged_users/day"
-        },
-        {
             "name": "page_impressions_unique",
             "period": "week",
             "values": [
@@ -52,23 +35,6 @@
             "id": "121025754430407/insights/page_impressions_unique/week"
         },
         {
-            "name": "page_engaged_users",
-            "period": "week",
-            "values": [
-                {
-                    "value": 2,
-                    "end_time": "2023-12-17T08:00:00+0000"
-                },
-                {
-                    "value": 2,
-                    "end_time": "2023-12-18T08:00:00+0000"
-                }
-            ],
-            "title": "Weekly Page Engaged Users",
-            "description": "Weekly: The number of people who engaged with your Page. Engagement includes any click or story created. (Unique Users)",
-            "id": "121025754430407/insights/page_engaged_users/week"
-        },
-        {
             "name": "page_impressions_unique",
             "period": "days_28",
             "values": [
@@ -84,27 +50,10 @@
             "title": "28 Days Total Reach",
             "description": "28 Days: The number of people who had any content from your Page or about your Page enter their screen. This includes posts, check-ins, ads, social information from people who interact with your Page and more. (Unique Users)",
             "id": "121025754430407/insights/page_impressions_unique/days_28"
-        },
-        {
-            "name": "page_engaged_users",
-            "period": "days_28",
-            "values": [
-                {
-                    "value": 3,
-                    "end_time": "2023-12-17T08:00:00+0000"
-                },
-                {
-                    "value": 3,
-                    "end_time": "2023-12-18T08:00:00+0000"
-                }
-            ],
-            "title": "28 Days Page Engaged Users",
-            "description": "28 Days: The number of people who engaged with your Page. Engagement includes any click or story created. (Unique Users)",
-            "id": "121025754430407/insights/page_engaged_users/days_28"
         }
     ],
     "paging": {
-        "previous": "https://graph.facebook.com/v18.0/121025754430407/insights?access_token=EAACQEQ42U4kBO7Uxadcc2mwaCBTx3GMUeEvpZBvyp03loZBVy4F13B0R7OTupj5RhG2k1lR8xygexDsyWTLHXtvsAnjA7kLcm3yBsxCLPbOASTlc8IMHciawJG4Wb8D5rbcTykmLKLy2CmNL2THgsCw8nZBrEPY5CNHpZAjNNq63asn2i4iD27tsn8Y453NR8SQtUQ2tDdZBIrW47qQFSAIMZD&metric=page_impressions_unique%2Cpage_engaged_users&since=1702540800&until=1702713600",
-        "next": "https://graph.facebook.com/v18.0/121025754430407/insights?access_token=EAACQEQ42U4kBO7Uxadcc2mwaCBTx3GMUeEvpZBvyp03loZBVy4F13B0R7OTupj5RhG2k1lR8xygexDsyWTLHXtvsAnjA7kLcm3yBsxCLPbOASTlc8IMHciawJG4Wb8D5rbcTykmLKLy2CmNL2THgsCw8nZBrEPY5CNHpZAjNNq63asn2i4iD27tsn8Y453NR8SQtUQ2tDdZBIrW47qQFSAIMZD&metric=page_impressions_unique%2Cpage_engaged_users&since=1702886400&until=1703059200"
+        "previous": "https://graph.facebook.com/v18.0/121025754430407/insights?access_token=EAACQEQ42U4kBO7P4vYOMZAcDh32lDU65P48yGcg7mNKSORsvgzMIHw294ZCb2msyDoTQeC06wvL6vcQ5p4B8Gu1aEZCNx8U01QsZCfVRXcTWuct9zZA6nMFSZCc8LxwDoDXGqxYmDZCQ5Qr6w2hXbEcj0LrdP8ZAbIYilldJmJ4PvvKFAWWkaJbOom9y5jwzNX3YOemaMoI5rmMZBKX7fMarDSrcd&metric=page_impressions_unique&since=1702540800&until=1702713600",
+        "next": "https://graph.facebook.com/v18.0/121025754430407/insights?access_token=EAACQEQ42U4kBO7P4vYOMZAcDh32lDU65P48yGcg7mNKSORsvgzMIHw294ZCb2msyDoTQeC06wvL6vcQ5p4B8Gu1aEZCNx8U01QsZCfVRXcTWuct9zZA6nMFSZCc8LxwDoDXGqxYmDZCQ5Qr6w2hXbEcj0LrdP8ZAbIYilldJmJ4PvvKFAWWkaJbOom9y5jwzNX3YOemaMoI5rmMZBKX7fMarDSrcd&metric=page_impressions_unique&since=1702886400&until=1703059200"
     }
 }
