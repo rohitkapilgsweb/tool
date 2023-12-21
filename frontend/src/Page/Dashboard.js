@@ -32,68 +32,10 @@ function Dashboard() {
     });
 
     checkTrialStatus();
-    const data = localStorage.getItem("trialData");
-    if (!data) {
-      createTrialLink(3);
-      function createTrialLink(durationDays) {
-        const expirationDate = new Date();
-        expirationDate.setDate(expirationDate.getDate() + durationDays);
-
-        const trialData = {
-          expirationDate: expirationDate.toISOString(),
-        };
-
-        // Store trial data in localStorage (for demonstration purposes)
-        localStorage.setItem("trialData", JSON.stringify(trialData));
-      }
-    }
+    
   }, []);
+  // createTrialLink(3);
 
-  function checkTrialStatus() {
-    const trialDataString = localStorage.getItem("trialData");
-
-    if (trialDataString) {
-      const trialData = JSON.parse(trialDataString);
-      const expirationDate = new Date(trialData.expirationDate);
-      const currentDate = new Date();
-
-      if (expirationDate > currentDate) {
-        // Calculate remaining days
-        const remainingDays = Math.ceil(
-          (expirationDate - currentDate) / (1000 * 60 * 60 * 24)
-        );
-
-        return {
-          isActive: true,
-          remainingDays: remainingDays,
-        };
-      }
-    }
-
-    return {
-      isActive: false,
-      remainingDays: 0,
-    };
-  }
-
-  // Example: Check trial status and get remaining days
-  // const trialStatus = checkTrialStatus();
-
-  const renderTime = ({ remainingTime }) => {
-    if (remainingTime === 0) {
-      return <div className="timer">Trial is Expired...</div>;
-    }
-
-    return (
-      <div className="timer text-center">
-        <div className="text text-center">Remaining</div>
-        <div className="value text-center fs-4">
-          {checkTrialStatus().remainingDays}
-        </div>
-        <div className="text text-center">day</div>
-      </div>
-    );
-  };
 
   const getPages = useSelector(
     (state) => state?.getPages?.getFacebookPages?.data
@@ -200,16 +142,75 @@ for (let i = 0; i < jsonData?.data?.length; i++) {
 }
 
 
+const renderTime = ({ remainingTime }) => {
+  if (remainingTime === 0) {
+    return <div className="timer">Trial is Expired...</div>;
+  }
+
+  return (
+    <div className="timer text-center">
+      <div className="text text-center">Remaining</div>
+      <div className="value text-center fs-4">
+        {checkTrialStatus().remainingDays}
+      </div>
+      <div className="text text-center">day</div>
+    </div>
+  );
+};
+
+
+function createTrialLink(durationDays) {
+  const expirationDate = new Date();
+  expirationDate.setDate(expirationDate.getDate() + durationDays);
+
+  const trialData = {
+    expirationDate: expirationDate.toISOString(),
+  };
+  if(localStorage.getItem('trialData')){
+    localStorage.removeItem('trialData')
+    localStorage.setItem("trialData", JSON.stringify(trialData));
+  }
+  localStorage.setItem("trialData", JSON.stringify(trialData));
+}
+
+// createTrialLink(3);
+function checkTrialStatus() {
+  const trialDataString = localStorage.getItem("trialData");
+
+  if (trialDataString) {
+    const trialData = JSON.parse(trialDataString);
+    const expirationDate = new Date(trialData.expirationDate);
+    const currentDate = new Date();
+
+    if (expirationDate > currentDate) {
+      // Calculate remaining days
+      const remainingDays = Math.ceil(
+        (expirationDate - currentDate) / (1000 * 60 * 60 * 24)
+      );
+
+      return {
+        isActive: true,
+        remainingDays: remainingDays,
+      };
+    }
+  }
+
+  return {
+    isActive: false,
+    remainingDays: 0,
+  };
+}
 
 
   return (
     <div className="container-fluid pt-4">
       {isLoading && <Loader />}
-      <div className="row">
-        {/* <div className="col-lg-4 col-md-6  d-flex align-items-strech">
-            <div>
+      <div className="row align-items-center justify-content-center">
+        <div className="col-lg-12 col-md-12  d-flex ">
+            <div className="w-100">
   
-            <CountdownCircleTimer
+            {/* <CountdownCircleTimer
+            size={100}
           isPlaying
           duration={checkTrialStatus().remainingDays * 86400}
           // duration={2000}
@@ -218,14 +219,15 @@ for (let i = 0; i < jsonData?.data?.length; i++) {
           onComplete={() => ({ shouldRepeat: false, delay: 1 })}
         >
           {renderTime}
-        </CountdownCircleTimer>
-              {checkTrialStatus().isActive ? <h1 className="text-success">Active trial with {checkTrialStatus().remainingDays} { checkTrialStatus().remainingDays === 1 ? "day":"days"} remaining</h1> :
-               <h1 className="text-danger">Active trial is ended</h1>
+        </CountdownCircleTimer> */}
+              {checkTrialStatus().isActive ? 
+              <h1 className="text-success text-center fs-4 py-4 alert-normal">Active trial with {checkTrialStatus().remainingDays} { checkTrialStatus().remainingDays === 1 ? "day":"days"} remaining  <div className="btn btn-upgrage">Upgrage</div></h1> :
+               <h1 className="text-danger text-center  fs-4 py-4 alert-normal-danger">Active trial is ended</h1>
               }
               
             </div>
-        </div> */}
-        <div className="col-lg-4 col-md-6  d-flex align-items-strech">
+        </div>
+        <div className="col-lg-4 col-md-6  d-flex align-items-strech mb-3">
           <div className="home__postinfo">
             <div className="d-flex align-items-center">
               <BsFileEarmarkPostFill size={30} color="#2245aa" />
@@ -236,7 +238,7 @@ for (let i = 0; i < jsonData?.data?.length; i++) {
             <h3 className="mt-2 fs-6">Publish Posts</h3>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6  d-flex align-items-strech">
+        <div className="col-lg-4 col-md-6  d-flex align-items-strech mb-3">
           <div className="home__postinfo">
             <div className="d-flex align-items-center">
               <MdScheduleSend size={30} color="#2245aa" />
@@ -247,7 +249,7 @@ for (let i = 0; i < jsonData?.data?.length; i++) {
             <h3 className="mt-2 fs-6">Schedule Posts</h3>
           </div>
         </div>
-        <div className="col-lg-4 col-md-6  d-flex align-items-strech">
+        <div className="col-lg-4 col-md-6  d-flex align-items-strech mb-3">
           <div className="home__postinfo">
             <div className="d-flex align-items-center">
               <MdPendingActions size={30} color="#2245aa" />

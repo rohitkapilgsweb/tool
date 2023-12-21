@@ -1,25 +1,32 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "theme_color": "2f65f1",
+  "background_color": "#ffffff",
+  "display": "minimal-ui",
+  "scope": "/",
+  "start_url": "/",
+  "name": "OptimizSync",
+  "short_name": "OptimizSync",
+  "description": "OptimizSync: Elevate Your Online Presence with SEO and SMM Power. Unleash the potential of your business with OptimizSync, the ultimate tool to enhance online visibility. Discover keywords, optimize content, master social media, and track SEO/SMM performance. Ideal for businesses of all sizes seeking a stronger online footprint",
   "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+      {
+          "src": "/icon-192x192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+      },
+      {
+          "src": "/icon-256x256.png",
+          "sizes": "256x256",
+          "type": "image/png"
+      },
+      {
+          "src": "/icon-384x384.png",
+          "sizes": "384x384",
+          "type": "image/png"
+      },
+      {
+          "src": "/icon-512x512.png",
+          "sizes": "512x512",
+          "type": "image/png"
+      }
+  ]
 }

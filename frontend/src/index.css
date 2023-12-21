@@ -19050,8 +19050,76 @@ width: 100% !important;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   }
+  .btn-upgrage:active{
+    background-color: #d0a54f !important;
+    color: #000 !important;
+  }
+  .btn-upgrage:hover{
+    background-color: #f7cb73;
+    color: #000;
+  }
+  .btn-upgrage
+  {
+    background-color: #f7cb73;
+    margin-left: 16px;
+    color: #000;
+  }
   .user_plan >* {
     margin: 0;
+  }
+
+
+  .masonry { 
+    display: flex;
+    flex-flow: column wrap;
+    max-height: 800px;
+    margin-left: -8px; /* Adjustment for the gutter */
+    width: 100%;
+  }
+  
+  .masonry-brick {
+    margin: 0 8px 8px 0; /* Some gutter */
+  }
+
+  .visibilti-none{
+    visibility: hidden;
+    display: none;
+  }
+  .edit-btn
+  {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+  .alert-normal
+  {
+    width: 100%;
+    background-color: #2245aa;
+    color: #fff !important;
+    font-size: 16px !important;
+    margin-bottom: 24px ;
+  }
+ .alert-normal-danger
+  {
+    width: 100%;
+    background-color: #ff00002e;
+    color: #ff0000 !important;
+    font-size: 16px !important;
+    margin-bottom: 24px;
+  }
+  .userIMages
+  {
+    position: relative;
+    width: 100%;
+    height: 100px;
   }
   .user_plan
   {
@@ -19077,6 +19145,10 @@ width: 100% !important;
    .lable-span.schedule
    {
     background-color: #f7cb73;
+   }
+   .User-panel
+   {
+    
    }
 @media (max-width: 600px) {
     .hero-body.btn {

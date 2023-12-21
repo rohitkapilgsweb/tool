@@ -21,21 +21,9 @@ function CreateTemplates() {
       });
     };
   
-  
-    // const onLoad = () => {
-    //   // editor instance is created
-    //   // you can load your template here;
-    //   // const templateJson = {};
-    //   // emailEditorRef.current.editor.loadDesign(templateJson);
-    //   const templateJson = template;
-    //   emailEditorRef.current.editor.loadDesign(template)
-    // }
+
     const onReady = (unlayer) => {
       if (unlayer) {
-        // You can access unlayer.editor here
-        // ...
-  
-        // Example template loading:
   
       }
     };

@@ -1,25 +1,20 @@
 import React, { useEffect, useState } from "react";
-import PostImgs from "../../../assets/img/Rectangle 43.jpg";
 import { BiTimeFive } from "react-icons/bi";
 import { BsFacebook } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { detelePost, getAllPost } from "../../../redux/actions/LoginAction";
-import { Masonry } from "react-masonry";
 import Dropdown from "react-bootstrap/Dropdown";
 import Loader from "../../Components/Loader";
 import { SlOptionsVertical } from "react-icons/sl";
 
 function List() {
   const dispatch = useDispatch();
-
   const isLoading = useSelector((state) => state?.getPosts?.isLoading);
   const dataPost = useSelector((state) => state?.getPosts?.data);
   const AllFacebookPage = useSelector(
     (state) => state?.getPages?.getFacebookPages.data
   );
-  const AllFacebookPageLoading = useSelector(
-    (state) => state?.getPages?.isLoading
-  );
+
   useEffect(() => {
     dispatch(getAllPost());
   }, [!dataPost]);
@@ -42,28 +37,31 @@ function List() {
   const DeletePost = (id,page_name) => {
     AllFacebookPage?.map((item)=>{
       if(item?.name === page_name){
-        console.log(item?.name)
+
+        const deletePayload = {
+          post_id: id,
+          token: item?.access_token
+        }
+        console.log(deletePayload)
+        dispatch(detelePost(deletePayload)).then((res) => {
+          dispatch(getAllPost());
+        });
       }
     })
-    const deletePayload = {
-      post_id: id,
-      // token: page_name_token
-    }
-   
-    dispatch(detelePost(deletePayload)).then((res) => {
-      dispatch(getAllPost());
-    });
+
+    
   };
 
   return (
     <div className="list-sections">
-      {isLoading && <Loader />}
+      {isLoading ? <Loader /> :""}
       <div className="container px-lg-0">
         <div className="row">
+          {dataPost.length === 0 && <div className="col-md-12"> <p className="m-auto text-center fs-5">No Data Found</p> </div>}
           {dataPost
             ?.slice()
-            .reverse()
-            .map((item) => {
+            ?.reverse()
+            ?.map((item) => {
               return (
                 <div key={item?.id} className="col-md-4 mb-4">
                   <div
@@ -76,7 +74,7 @@ function List() {
                         </div>
                         <div className="d-flex gap-3 mb-2">
                           <button className="btn-publish d-block">
-                            Published
+                            {item?.post_status}
                           </button>
                           <Dropdown>
                             <Dropdown.Toggle
@@ -102,8 +100,8 @@ function List() {
                         <div className="card-body text">
                           {/* <h1>{item?.msg}</h1> */}
                           <p>
-                            {item?.msg.slice(0, 80)}
-                            {item?.msg?.length > 50 ? "..." : ""}
+                            {item?.link &&  item?.msg === null ? item?.link : item?.msg?.slice(0, 80)}
+                            {!item?.link && item?.msg?.length > 50 ? "..." : ""}
                           </p>
                         </div>
                         {item?.media && (

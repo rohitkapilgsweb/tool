@@ -21,28 +21,26 @@ function Post() {
     <div className="row justify-content-center align-items-center m-0 ">
      <div className="col  px-5 mt-3">
       <button onClick={handleShow} className='btn hero-body d-flex align-items-center gap-1 position-fixed'><HiOutlineDocumentAdd size={25}/> <span>Add Post</span></button>
- <div className="menu-box Post-tabs " >
+      <div className="menu-box Post-tabs " >
 
- <Tabs
-   defaultActiveKey="allPost"
-   id="uncontrolled-tab-example"
-   className="mt-3 gap-3  mb-3"
- >
-   <Tab eventKey="allPost" title={<><BsFileEarmarkPost size={20}/> <span className='white-space'> All Post</span></>}>
-   <List/>
-   </Tab>
-   <Tab eventKey="draft" title={<><RiDraftLine size={20}/> <span className='white-space'> Draft Post</span></>}>
-   Secound
-   </Tab>
-   <Tab eventKey="schedule" title={<><BiTimeFive size={20}/> <span className='white-space'> Schedule  Post</span></>}>
-   schedule 
-   </Tab>
-   <Tab  eventKey="Publish" title={<><BiSolidCloudUpload  size={20}/> <span className='white-space'> Publish</span></>} >
-   Publish
-   </Tab>
-  
- </Tabs>
- </div>
+      <Tabs
+        defaultActiveKey="allPost"
+        id="uncontrolled-tab-example"
+        className="mt-3 gap-3  mb-3"
+      >
+        <Tab eventKey="allPost" title={<><BsFileEarmarkPost size={20}/> <span className='white-space'> All Post</span></>}>
+        <List/>
+        </Tab>
+        <Tab eventKey="draft" title={<><RiDraftLine size={20}/> <span className='white-space'> Draft Post</span></>}>
+        <p className="m-auto text-center fs-5">No Data Found</p>
+        </Tab>
+        <Tab eventKey="schedule" title={<><BiTimeFive size={20}/> <span className='white-space'> Schedule  Post</span></>}>
+        <p className="m-auto text-center fs-5">No Data Found</p>
+        </Tab>
+
+        
+      </Tabs>
+      </div>
      </div>
     </div>
 

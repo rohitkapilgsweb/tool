@@ -6,7 +6,7 @@ import { IoLogoWhatsapp } from 'react-icons/io';
   import { FcGoogle } from "react-icons/fc";
 import { BiSolidUser } from "react-icons/bi";
 import { AiFillNotification } from "react-icons/ai";
-import { MdLocalOffer,MdOutlineContactSupport } from "react-icons/md";
+import { MdLocalOffer,MdOutlineContactSupport, MdOutlinePermMedia } from "react-icons/md";
 import { getUserId } from '../../utils/auth';
 import IconImg from '../../assets/img/optimizsync.jpg'
 
@@ -15,7 +15,7 @@ function Navbar() {
   const navigate = useNavigate()
 
   const [show, setShow] = useState(false);
-  const role = getUserId() ? getUserId()?.role : null;
+  const role = getUserId() ? getUserId()?.user?.role : null;
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const Logut = () =>{
@@ -42,6 +42,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                 onClick={handleClose}
                     className={`sidebar-link `}
                     to="/dashboard"
                     aria-expanded="false"
@@ -58,6 +59,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className="sidebar-link"
                     to="/create_post"
                     aria-expanded="false"
@@ -68,12 +70,26 @@ function Navbar() {
                     <span className="hide-menu">Create Post</span>
                   </Link>
                 </li>
+                <li className="sidebar-item">
+                  <Link
+                  onClick={handleClose}
+                    className="sidebar-link"
+                    to="/media"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <MdOutlinePermMedia size={23} />
+                    </span>
+                    <span className="hide-menu">Media</span>
+                  </Link>
+                </li>
                 <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
                   <span className="hide-menu">Automations</span>
                 </li>
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className="sidebar-link"
                     to="/google"
                     aria-expanded="false"
@@ -86,6 +102,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className="sidebar-link"
                     to="/telegram"
                     aria-expanded="false"
@@ -96,20 +113,14 @@ function Navbar() {
                     <span className="hide-menu">Telegram</span>
                   </Link>
                 </li>
-                <li className="sidebar-item">
-                  <Link
-                    className="sidebar-link"
-                    to="/whatsapp"
-                    aria-expanded="false"
-                  >
-                    <span>
-                      <IoLogoWhatsapp color="#075e54" size={23} />
-                    </span>
-                    <span className="hide-menu">Whatsapp</span>
-                  </Link>
+                <li className="nav-small-cap">
+                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span className="hide-menu">Setup Apps</span>
                 </li>
+
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className="sidebar-link"
                     to="/facebook"
                     aria-expanded="false"
@@ -118,6 +129,19 @@ function Navbar() {
                       <BsFacebook color="#1877F2" size={23} />
                     </span>
                     <span className="hide-menu">Facebook</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                  onClick={handleClose}
+                    className="sidebar-link"
+                    to="/whatsapp"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <IoLogoWhatsapp color="#075e54" size={23} />
+                    </span>
+                    <span className="hide-menu">Whatsapp</span>
                   </Link>
                 </li>
               </>
@@ -131,6 +155,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                   onClick={handleClose}
                     className={`sidebar-link ${Location === "/dashboard" ? "active-menu" :""}`}
                     to="/dashboard"
                     aria-expanded="false"
@@ -141,12 +166,40 @@ function Navbar() {
                     <span className="hide-menu">Welcome</span>
                   </Link>
                 </li>
+              
+                <li className="sidebar-item">
+                  <Link
+                   onClick={handleClose}
+                    className="sidebar-link"
+                    to="/create_post"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <BsFillFileEarmarkPostFill size={23} />
+                    </span>
+                    <span className="hide-menu">Create Post</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                  onClick={handleClose}
+                    className="sidebar-link"
+                    to="/media"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <MdOutlinePermMedia size={23} />
+                    </span>
+                    <span className="hide-menu">Media</span>
+                  </Link>
+                </li>
                 <li className="nav-small-cap">
                   <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
                   <span className="hide-menu">Automations</span>
                 </li>
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className={`sidebar-link ${Location === "/google" ? "active-menu" :""}`}
                     to="/google"
                     aria-expanded="false"
@@ -159,6 +212,7 @@ function Navbar() {
                 </li>
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
                     className={`sidebar-link ${Location === "/telegram" ? "active-menu" :""}`}
                     to="/telegram"
                     aria-expanded="false"
@@ -169,8 +223,27 @@ function Navbar() {
                     <span className="hide-menu">Telegram</span>
                   </Link>
                 </li>
+                <li className="nav-small-cap">
+                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span className="hide-menu">Setup Apps</span>
+                </li>
+
                 <li className="sidebar-item">
                   <Link
+                  onClick={handleClose}
+                    className="sidebar-link"
+                    to="/facebook"
+                    aria-expanded="false"
+                  >
+                    <span>
+                      <BsFacebook color="#1877F2" size={23} />
+                    </span>
+                    <span className="hide-menu">Facebook</span>
+                  </Link>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                  onClick={handleClose}
                     className="sidebar-link"
                     to="/whatsapp"
                     aria-expanded="false"
@@ -191,6 +264,7 @@ function Navbar() {
                </li>
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/dashboard" ? "active-menu" :""}`}
                    to="/dashboard"
                    aria-expanded="false"
@@ -204,18 +278,20 @@ function Navbar() {
              
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/users" ? "active-menu" :""}`}
                    to="/users"
                    aria-expanded="false"
                  >
                    <span>
-                     <BiSolidUser size={23} />
+                     <BiSolidUser  size={23} />
                    </span>
                    <span className="hide-menu">Users</span>
                  </Link>
                </li>
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/announcement" ? "active-menu" :""}`}
                    to="/announcement"
                    aria-expanded="false"
@@ -228,6 +304,7 @@ function Navbar() {
                </li>
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/manageplanes" ? "active-menu" :""}`}
                    to="/manageplanes"
                    aria-expanded="false"
@@ -240,6 +317,7 @@ function Navbar() {
                </li>
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/manageticket" ? "active-menu" :""}`}
                    to="/manageticket"
                    aria-expanded="false"
@@ -252,6 +330,7 @@ function Navbar() {
                </li>
                <li className="sidebar-item">
                  <Link
+                 onClick={handleClose}
                    className={`sidebar-link ${Location === "/whatsapp-request" ? "active-menu" :""}`}
                    to="/whatsapp-request"
                    aria-expanded="false"

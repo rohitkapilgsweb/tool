@@ -6,7 +6,8 @@ import CommonModal from "../admin/components/CommonModal";
 import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import ClockLoader from "react-spinners/ClockLoader";
-import { getimageUri } from "../utils/auth";
+import Masonry from "./Components/Masonry";
+
 
 function Media(props) {
   const [media, setMedia] = useState();
@@ -25,17 +26,9 @@ function Media(props) {
   const userAccountId = useSelector(
     (state) => state?.GetFacebookAccount?.Facebook?.data
   );
-
-  const userAccountIdLoading = useSelector(
-    (state) => state?.GetFacebookAccount?.isLoading
-  );
   const AllFacebookPage = useSelector(
     (state) => state?.getPages?.getFacebookPages.data
   );
-  const AllFacebookPageLoading = useSelector(
-    (state) => state?.getPages?.isLoading
-  );
-
   
   let optionsValues;
   let MapPages = [];
@@ -84,7 +77,6 @@ const onChange = (change) => {
 
     
 let mediaArry = []
-let File__uris;
 
 const handleChange = (event) => {
   setUploadTime(true)
@@ -125,10 +117,19 @@ const sigleDetails = (id) =>{
 }
 
 
-
-
   return (
     <div className="container py-5">
+       {/* <Masonry columns={3} padding="16px">
+         Add your items here 
+        {media?.slice().reverse().map((item,index) => {
+          return (
+              <figure class="masonryasd w-100" >
+                <img src={item?.file_url} class="figure-img img-fluid rounded w-100" alt="" />
+              </figure>
+              
+          )})}
+      </Masonry> */}
+
       <div className="row justify-content-start align-items-center g-2">
         <div className="col-4" key={"1"}>
           <button type="button" onClick={handleShow} className="btn btn-primary">
@@ -138,7 +139,7 @@ const sigleDetails = (id) =>{
         </div>
       </div>
       <div className="row justify-content-start align-items-center g-2 py-3">
-        {media?.slice().reverse().map((item,index) => {
+        {media?.slice()?.reverse()?.map((item,index) => {
           return (
             <>
               <div key={index} className="col-xl-3 col-lg-4 col-md-6 mb-4">
@@ -205,3 +206,4 @@ export const ShowIMags = (props) =>{
     </div>
   )
 }
+

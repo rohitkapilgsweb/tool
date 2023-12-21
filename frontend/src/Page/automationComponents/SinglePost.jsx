@@ -5,14 +5,6 @@ import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import { AiTwotoneHighlight } from "react-icons/ai";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
-// import { BiSmile } from "react-icons/bi";
-// import { FaImage } from "react-icons/fa";
-// import { AiOutlineFolder } from "react-icons/ai";
-// import { AiOutlineGif } from "react-icons/ai";
-// import { BsClock } from "react-icons/bs";
-// import { AiFillCaretDown } from "react-icons/ai";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import {
@@ -47,7 +39,7 @@ function SinglePost(props) {
   const [mediaArryFile, SetMediaArryFile] = useState([])
   const [fileData, SetFileData] = useState()
   const [fileNamePost, SetFileNamePost] = useState(true)
-
+  const [getFacebookAccounts, setGetFacebookAccounts] = useState();
   const dispatch = useDispatch();
 
 
@@ -59,13 +51,17 @@ function SinglePost(props) {
       handleClose()
     })
   }
+  useEffect(()=>{
+    dispatch(get_Facebook_Data()).then((res) => {
+      setGetFacebookAccounts(res?.payload?.data);
+    });
+  },[])
 
 const meinImage = fileData
-
-
-  const SelectSocial = (clicked) => {
+// console.log(post_platform)
+  const SelectSocial = (clicked,e) => {
     if (clicked === "facebook") {
-      setPost_platform(clicked)
+      setPost_platform({facebook_type: clicked,e})
       setSocialColor(clicked);
       dispatch(get_Facebook_Data(getUserId()?.user)).then((res) => {
         setOnShow(true);
@@ -120,34 +116,34 @@ const meinImage = fileData
     setPageDetails(values)
   };
 
- console.log(pageDetails)
   const onSubmit = async (values) => {
+   
     values.media = meinImage;
     setUploadTime(true)
-    if(values?.messege && !values?.link && !values?.media){
-        dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label ,page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.messege})).then((res)=>{
+     if(values?.messege && !values?.link && !values?.media){
+       dispatch(FacbookPostPublish({post_type: post_platform?.facebook_type, page_name: pageDetails?.label ,page_id: pageDetails?.value, page: pageDetails?.key, msg:values?.messege})).then((res)=>{
           setUploadTime(false)
           dispatch(getAllPost())
-            props.close()
+           props.close()
             
-        })
+      })
     }
     if(values?.link && !values?.media && !values?.messege){
-      dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, link:values?.link})).then((res)=>{
+      dispatch(FacbookPostPublish({post_type:post_platform?.facebook_type, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, link:values?.link})).then((res)=>{
         setUploadTime(false)
         dispatch(getAllPost())
         props.close()
       })
     }
      if(values?.media && !values?.link && !values?.messege){
-      dispatch(FacbookPostPublish({post_type:post_platform, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, media: values?.media})).then((res)=>{
+      dispatch(FacbookPostPublish({post_type:post_platform?.facebook_type, page_name:pageDetails?.label, page_id: pageDetails?.value, page: pageDetails?.key, media: values?.media})).then((res)=>{
         setUploadTime(false)
         dispatch(getAllPost())
         props.close()
       })
     }
     if(values?.media && !values?.link && values?.messege){
-      dispatch(FacbookPostPublish({page_id: pageDetails?.value, page: pageDetails?.key, msg: values?.messege, media: values?.media})).then((res)=>{
+      dispatch(FacbookPostPublish({post_type:post_platform?.facebook_type, page_name:pageDetails?.label,page_id: pageDetails?.value, page: pageDetails?.key, msg: values?.messege, media: values?.media})).then((res)=>{
         setUploadTime(false)
         dispatch(getAllPost())
         props.close()
@@ -158,11 +154,36 @@ const meinImage = fileData
   }
 
 
+  const colourOptions = [];
+  // const facebookPages = [];
+
+  getFacebookAccounts?.map((item) => {
+    colourOptions.push({
+      value: item?.facebook_id,
+      label: item?.facebook_name,
+      key: item?.facebook_token,
+    });
+  });
+  // getPages?.map((item) => {
+  //   facebookPages.push({
+  //     value: item?.id,
+  //     label: item?.name,
+  //     key: item?.access_token,
+  //   });
+  // });
+
+  const handelChange = (e) => {
+console.log(e)
+    SelectSocial("facebook",e)
+  };
+
+
+
 
   return (
     <div className="position-relative">
       {uploadTime && <div className="w-100 loader-clock"><ClockLoader color="#2f65f1" /></div>}
-      {userAccountIdLoading ?  <Loader /> : AllFacebookPageLoading ? <Loader /> :""}
+      {AllFacebookPageLoading ? <Loader /> :""}
       <Container>
         <h2>
           {" "}
@@ -177,9 +198,18 @@ const meinImage = fileData
                     <p>Sharing to</p>{" "}
                   </li>
                   <li className="d-inline-block px-2 ">
-                    <button
+                  <Select
+              // defaultValue={[colourOptions[2], colourOptions[3]]}
+                  name="colors"
+                  placeholder="Select Accounts..."
+                  options={colourOptions}
+                  className="basic-multi-select w-100"
+                  classNamePrefix="select"
+                  onChange={(e) => handelChange(e)}
+                />
+                    {/* <button
                       className="border-0 bg-transparent"
-                      onClick={() => SelectSocial("facebook")}
+                      // onClick={() => SelectSocial("facebook")}
                     >
                       <BsFacebook
                         color={
@@ -187,7 +217,7 @@ const meinImage = fileData
                         }
                         size={35}
                       />
-                    </button>
+                    </button> */}
                   </li>
                 </ul>
               </div>
