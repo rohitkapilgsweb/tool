@@ -35,6 +35,19 @@ export const getPageDetails = createAsyncThunk("Postjob", async (payload) => {
 
 // 
 
+export const userGetProfile = createAsyncThunk("userGetProfile", async (payload) => {
+  const response = await axiosInstance.get(`api/user-profile-details/${payload}`);
+  return response.data;
+});
+export const UpdateUserProfifle = createAsyncThunk("UpdateUserProfifle", async (payload) => {
+  const response = await axiosInstance.post(`api/update-user-profile/${payload?.id}`,payload?.data);
+  return response.data;
+});
+export const UpdateUserProfifleImg = createAsyncThunk("UpdateUserProfifle", async (payload) => {
+  const response = await axiosInstances.post(`api/update-user-profile/${payload?.id}`,payload?.data);
+  return response.data;
+});
+
 
 export const LoginActions = createAsyncThunk("Postjob", async (payload) => {
   const response = await axiosInstance.post(`api/register`, payload);

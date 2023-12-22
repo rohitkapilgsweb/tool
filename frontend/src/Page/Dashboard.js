@@ -187,7 +187,7 @@ function checkTrialStatus() {
       const remainingDays = Math.ceil(
         (expirationDate - currentDate) / (1000 * 60 * 60 * 24)
       );
-
+   
       return {
         isActive: true,
         remainingDays: remainingDays,
@@ -208,22 +208,11 @@ function checkTrialStatus() {
       <div className="row align-items-center justify-content-center">
         <div className="col-lg-12 col-md-12  d-flex ">
             <div className="w-100">
-  
-            {/* <CountdownCircleTimer
-            size={100}
-          isPlaying
-          duration={checkTrialStatus().remainingDays * 86400}
-          // duration={2000}
-          colors={["#004777", "#F7B801", "#A30000", "#A30000"]}
-          colorsTime={[10, 6, 3, 0]}
-          onComplete={() => ({ shouldRepeat: false, delay: 1 })}
-        >
-          {renderTime}
-        </CountdownCircleTimer> */}
-              {checkTrialStatus().isActive ? 
+
+              {/* {checkTrialStatus().isActive ? 
               <h1 className="text-success text-center fs-4 py-4 alert-normal">Active trial with {checkTrialStatus().remainingDays} { checkTrialStatus().remainingDays === 1 ? "day":"days"} remaining  <div className="btn btn-upgrage">Upgrage</div></h1> :
                <h1 className="text-danger text-center  fs-4 py-4 alert-normal-danger">Active trial is ended</h1>
-              }
+              } */}
               
             </div>
         </div>

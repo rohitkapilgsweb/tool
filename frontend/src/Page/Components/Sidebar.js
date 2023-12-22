@@ -126,7 +126,7 @@ function Sidebar() {
                     <span className="hide-menu">Facebook</span>
                   </Link>
                 </li>
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                   <Link
                     className="sidebar-link"
                     to="/whatsapp"
@@ -137,7 +137,7 @@ function Sidebar() {
                     </span>
                     <span className="hide-menu">Whatsapp</span>
                   </Link>
-                </li>
+                </li> */}
               </>
             )}
            
@@ -229,7 +229,7 @@ function Sidebar() {
                     <span className="hide-menu">Facebook</span>
                   </Link>
                 </li>
-                <li className="sidebar-item">
+                {/* <li className="sidebar-item">
                   <Link
                     className="sidebar-link"
                     to="/whatsapp"
@@ -240,7 +240,7 @@ function Sidebar() {
                     </span>
                     <span className="hide-menu">Whatsapp</span>
                   </Link>
-                </li>
+                </li> */}
               </>
             )}
             { role === "superadmin" &&

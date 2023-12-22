@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -6,18 +6,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Field } from "react-final-form";
 import { useDispatch } from 'react-redux';
 import { LoginActions } from '../redux/actions/LoginAction';
+import { toast } from "react-toastify";
 function Createone() {
 
   const dispatch = useDispatch()
- const navigate = useNavigate()
-
+  const navigate = useNavigate()
+  
   const onSubmit = async values => {
-   
    dispatch(LoginActions(JSON.stringify(values)))
    .then((res)=>{
     if(res?.payload?.msg ==="Registration Success"){
-      window.reload.href  = "/"
-     }
+      toast(res?.payload?.msg)
+      navigate('/')
+      window.location.reload() 
+     }else(
+      toast(res?.payload?.email[0])
+     )
    })
   
   }

@@ -96,14 +96,15 @@ const meinImage = fileData
         MapPages.push(optionsValues);
       }
   }
+  // console.log(post_platform?.e?.key)
  
   const onChange = (change) => {
     setFacebook(change)
     if (change === "pages") {
       if(userAccountId){
         const payloadData = {
-          accessToken:{accessToken: userAccountId[1]?.facebook_token},
-          id: userAccountId[1]?.facebook_id
+          accessToken:{accessToken: post_platform?.e?.key},
+          id: post_platform?.e?.value
       }
         dispatch(
           get_Facebook_Pages(payloadData)

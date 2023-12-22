@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { BsFacebook, BsFillFileEarmarkPostFill, BsTelegram } from 'react-icons/bs';
@@ -9,6 +9,8 @@ import { AiFillNotification } from "react-icons/ai";
 import { MdLocalOffer,MdOutlineContactSupport, MdOutlinePermMedia } from "react-icons/md";
 import { getUserId } from '../../utils/auth';
 import IconImg from '../../assets/img/optimizsync.jpg'
+import { userGetProfile } from '../../redux/actions/LoginAction';
+import { useDispatch } from 'react-redux';
 
 function Navbar() {
 
@@ -18,6 +20,17 @@ function Navbar() {
   const role = getUserId() ? getUserId()?.user?.role : null;
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [userDetails,setUserDetails] = useState();
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    dispatch(userGetProfile(getUserId()?.user?.id)).then((res)=>{
+      setUserDetails(res?.payload?.data)
+    })
+  },[])
+
   const Logut = () =>{
     localStorage.clear()
     navigate('/')
@@ -366,7 +379,9 @@ function Navbar() {
         <ul className="navbar-nav flex-row ms-auto align-items-center justify-content-end">
 
             <li className="nav-item ">
-              <Link  to="/user-profile"><img src={IconImg} alt="" width="35" height="35" className="rounded-circle border"/></Link>
+              <Link  to="/user-profile">
+                <img src={`https://api.optimizsync.com/social/public/images/user/${userDetails?.image}`} alt="" width="35" height="35" className="rounded-circle border"/>
+                </Link>
             {/* <Link className="nav-link nav-icon-hover" to="/user-profile"  id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
               <img src={IconImg} alt="" width="35" height="35" className="rounded-circle border"/>

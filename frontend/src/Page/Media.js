@@ -7,6 +7,7 @@ import { RxCross2 } from "react-icons/rx";
 import { toast } from "react-toastify";
 import ClockLoader from "react-spinners/ClockLoader";
 import Masonry from "./Components/Masonry";
+import Loader from "./Components/Loader";
 
 
 function Media(props) {
@@ -18,6 +19,7 @@ function Media(props) {
   const [showOne, setShowOne] = useState(false);
   const [uploadTime, setUploadTime] = useState(false);
   const [mediaArryFile, SetMediaArryFile] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleClose = () => setShow(false);
   const handleShow = () => {setShow(true); setShowImag(false)};
@@ -44,8 +46,10 @@ function Media(props) {
   }
  
 useEffect(() => {
+  setIsLoading(true)
     dispatch(GetMedia()).then((res) => {
         setMedia(res?.payload?.data);
+        setIsLoading(false)
       });
 }, [])
 
@@ -66,10 +70,12 @@ const onChange = (change) => {
   };
 
   const deleteMedias=(id)=>{
+    setIsLoading(true)
     dispatch(deleteMedia(id)).then((res)=>{
       toast(res.payload.status)
       dispatch(GetMedia()).then((res) => {
         setMedia(res?.payload?.data);
+        setIsLoading(false)
       });
     })
   }
@@ -103,33 +109,22 @@ const handleChange = (event) => {
   )
 };
 const sigleDetails = (id) =>{
-  if(!props?.select){
-    dispatch(getSigleMedia(id)).then((res)=>{
-      setShowImag(true)
-      setShow(true)
-      setShowOne(res?.payload?.data)
-    })
+    if(!props?.select){
+      dispatch(getSigleMedia(id)).then((res)=>{
+        setShowImag(true)
+        setShow(true)
+        setShowOne(res?.payload?.data)
+      })
+    }
+    if(props?.select){
+      props?.media_uri(id)
+    }
   }
-  if(props?.select){
-    props?.media_uri(id)
-  }
-
-}
 
 
   return (
     <div className="container py-5">
-       {/* <Masonry columns={3} padding="16px">
-         Add your items here 
-        {media?.slice().reverse().map((item,index) => {
-          return (
-              <figure class="masonryasd w-100" >
-                <img src={item?.file_url} class="figure-img img-fluid rounded w-100" alt="" />
-              </figure>
-              
-          )})}
-      </Masonry> */}
-
+      {isLoading && <Loader/>}
       <div className="row justify-content-start align-items-center g-2">
         <div className="col-4" key={"1"}>
           <button type="button" onClick={handleShow} className="btn btn-primary">

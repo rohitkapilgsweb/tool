@@ -82,9 +82,6 @@ function AddPlan(props) {
   // const isLoading = useSelector((state)=> state?.getPlans?.isLoading)
   const handleSubmit = (values) => {
     if(!props?.update){
-
-
-
       dispatch(CreatePlan(values)).then((res) => {
         toast(res?.payload?.status);
         props?.handelChangeKey();
@@ -101,6 +98,7 @@ function AddPlan(props) {
         id:props?.update?.id,
         update:fieldsToSubmit
       }
+      console.log(updatedData)
 
       dispatch(updatePlans(updatedData)).then((res)=>{
         toast(res?.payload?.message);
