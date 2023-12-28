@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { toast } from 'react-toastify';
 import { FiEdit2 } from 'react-icons/fi';
 import Loader from '../Page/Components/Loader';
+import { IoIosAddCircle } from "react-icons/io";
 
 function ManagePlance() {
   const dispatch =useDispatch()
@@ -76,7 +77,7 @@ function ManagePlance() {
                 <div className="container-fluid p-md-0">
             <div className="row align-items-center g-2">
                 <div className="col-md-6 mb-3">
-                    <button onClick={handleShow} type="button" className="btn text-white py-3 fs-4 " style={{ background:'var(--theme-mein)' }}>Add New Plan</button>
+                    <button onClick={handleShow} type="button" className="btn text-white py-2 fs-4 " style={{ background:'var(--theme-mein)' }}><IoIosAddCircle size={28}/> Add New Plan</button>
                 </div>
             </div>
         </div>
@@ -114,7 +115,7 @@ function ManagePlance() {
           
             </td>
             <td>{moment(item?.created_at).utc().format('DD-MM-YYYY')}</td>
-            <td><button type="button" className="btn btn-primary" onClick={()=>PlanDataUpdate(item?.id)}>Edit</button> <button type="button" className="btn btn-primary" onClick={()=>DletePlansItem(item?.id)}>Delete</button></td>
+            <td><button type="button" className="btn btn-outline-primary" onClick={()=>PlanDataUpdate(item?.id)}>Edit</button> <button type="button" className="btn btn-danger" onClick={()=>DletePlansItem(item?.id)}>Delete</button></td>
           </tr>
           )
           }).reverse()}

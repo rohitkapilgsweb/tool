@@ -22,7 +22,7 @@ import { CurrentApi } from "../../config/config";
 import CommonModal from "../../admin/components/CommonModal";
 import Media from "../Media";
 import ClockLoader from "react-spinners/ClockLoader";
-
+import { MdCancel } from "react-icons/md";
 function SinglePost(props) {
   const [socialColor, setSocialColor] = useState();
   const [facebook, setFacebook] = useState();
@@ -208,22 +208,11 @@ console.log(e)
                   classNamePrefix="select"
                   onChange={(e) => handelChange(e)}
                 />
-                    {/* <button
-                      className="border-0 bg-transparent"
-                      // onClick={() => SelectSocial("facebook")}
-                    >
-                      <BsFacebook
-                        color={
-                          socialColor === "facebook" ? "#3b5998" : "#808080"
-                        }
-                        size={35}
-                      />
-                    </button> */}
                   </li>
                 </ul>
               </div>
             </Col>
-            <Col sm={12} className="mb-4">
+            <Col sm={12} className="mb-2">
                 {onShow === true && (
                   <>
                     <div className="d-flex gap-4 flex-wrap mb-3">
@@ -271,7 +260,8 @@ console.log(e)
               <form onSubmit={handleSubmit}>
       {showINputs && <>
         <Col sm={12}>
-        <div className="btn hero-body mb-3 mt-3" onClick={handleShow}>Select Media</div>
+        {!fileData && <div className="btn hero-body mb-3 mt-3" onClick={handleShow}>Select Media</div>}
+        {fileData && <div className="img-prvew-box" onClick={()=>SetFileData('')} ><span ><MdCancel size={28} color="#ff0000"/></span> <img className="img-fluid rounded mb-3" src={fileData} alt="" /></div>}
         <Field
             id="textInput"
               className="form-control mb-3"

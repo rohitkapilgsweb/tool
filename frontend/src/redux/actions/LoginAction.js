@@ -57,6 +57,10 @@ export const userLoginAction = createAsyncThunk("Postjob", async (payload) => {
   const response = await axiosInstance.post(`api/login`, payload);
   return response.data;
 });
+export const EmailVerification = createAsyncThunk("EmailVerification", async (payload) => {
+  const response = await axiosInstances.get(`api/verify/${payload}`);
+  return response.data;
+});
 
 export const users = createAsyncThunk("users", async (payload) => {
   const response = await axiosInstance.get(`api/profile`, payload);
@@ -88,6 +92,15 @@ export const Deleteplan = createAsyncThunk("Deleteplan", async (payload) => {
   const response = await axiosInstances.delete(`api/delete-plan/${payload}`);
   return response.data;
 });
+
+export const UpdateHelp = createAsyncThunk("UpdateHelp", async (payload) => {
+  const response = await axiosInstances.post(`api/update-help/${payload?.id}`,payload?.data);
+  return response.data;
+});
+// export const SignleHelp = createAsyncThunk("SignleHelp", async (payload) => {
+//   const response = await axiosInstances.post(`api/update-help/${payload}`);
+//   return response.data;
+// });
 
 
 
@@ -192,5 +205,9 @@ export const detelePost = createAsyncThunk("detelePost", async (payload) => {
 
 export const getHelpTicket = createAsyncThunk("HelpTicket", async (payload) => {
   const response = await axiosInstance.get(`api/help`);
+  return response.data;
+});
+export const SaveHelpTicket = createAsyncThunk("SaveHelpTicket", async (payload) => {
+  const response = await axiosInstances.post(`api/create-help`, payload);
   return response.data;
 });

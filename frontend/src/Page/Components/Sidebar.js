@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { BiSolidUser } from "react-icons/bi";
 import { AiFillNotification } from "react-icons/ai";
 import { MdLocalOffer,MdOutlineContactSupport, MdOutlinePermMedia } from "react-icons/md";
-
+import { MdHelp } from "react-icons/md";
 
 import { Link, useLocation } from "react-router-dom";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -227,6 +227,22 @@ function Sidebar() {
                       <BsFacebook color="#1877F2" size={23} />
                     </span>
                     <span className="hide-menu">Facebook</span>
+                  </Link>
+                </li>
+                <li className="nav-small-cap">
+                  <i className="ti ti-dots nav-small-cap-icon fs-4"></i>
+                  <span className="hide-menu">Help & Support?</span>
+                </li>
+                <li className="sidebar-item">
+                  <Link
+                    className="sidebar-link"
+                    to="/help"
+                    aria-expanded="false"
+                  >
+                    <span>
+                    <MdHelp color="#1877F2" size={23} />
+                    </span>
+                    <span className="hide-menu">Help?</span>
                   </Link>
                 </li>
                 {/* <li className="sidebar-item">

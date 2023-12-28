@@ -24,6 +24,8 @@ import WhatsappRequest from "../admin/WhatsappRequest";
 import ManagePlance from "../admin/ManagePlance";
 import HelpTicket from "../admin/HelpTicket";
 import Media from "../Page/Media";
+import Email_isVerified from "../Page/Email_isVerified";
+import HelpRequest from "../Page/HelpRequest";
 
 
 const role = getUserId() ? getUserId()?.user?.role : null;
@@ -45,6 +47,8 @@ const protects = {
         { path: "/google", element: <Google/> },
         { path: "/user-profile", element: <UserSettings/> },
         { path:"/media", element : <Media/>},
+        {path:"/help",element:<HelpRequest/>},
+        {path:"/verify/:token", element:<Email_isVerified/>},
         { path: "*", element: <div>no page found</div> },
         ],
       },
@@ -65,6 +69,7 @@ const protects = {
             { path:"/singlepost", element : <SinglePost/>},
             { path:"/media", element : <Media/>},
             { path: "/user-profile", element: <UserSettings/> },
+            {path:"/verify/:token", element:<Email_isVerified/>},
             { path: "*", element: <div>no page found</div> },
             ],
           },
@@ -99,6 +104,7 @@ const protects = {
           {path: "/resetpassword", element: <ResetPassword /> },
           {path: "/register", element: <Createone /> },
           { path: "/demo", element: <LudoGame/> },
+          {path:"/verify/:token", element:<Email_isVerified/>},
           {path: "*", element: "No PAGE FOUNG" },
         ],
       },

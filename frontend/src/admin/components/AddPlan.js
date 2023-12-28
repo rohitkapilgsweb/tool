@@ -305,13 +305,13 @@ const handleFormChange = ({ values }) => {
                     )}
                   </Field>
                 </label>
-                <div className="mb-3" >
+                {/* <div className="mb-3" >
                     <div className="d-flex gap-3  radio-type">
                     <label>
                       <Field name="status" >
                         {({ input, meta }) => (
                           <div>
-                            <input {...input} type="radio" value="active" />
+                            <input {...input} type="radio" value="active" checked={props?.update?.status === "active" ? true : false} />
                             {meta.touched && meta.error &&  setStatusError(meta.error)}
                           </div>
                         )}
@@ -324,12 +324,13 @@ const handleFormChange = ({ values }) => {
                         component="input"
                         type="radio"
                         value="inactive"
+                        checked={props?.update?.status === "inactive" ? true : false}
                       />
                       Inactive
                     </label>
                    </div>
                   {!values?.status && <span className="text-danger">{statusError}</span> }
-                </div>
+                </div> */}
               </div>
 
 
