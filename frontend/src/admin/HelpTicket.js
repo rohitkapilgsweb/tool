@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Getwhatsapprequest, UpdateTRequest, getHelpTicket } from "../redux/actions/LoginAction";
+import { Getwhatsapprequest, UpdateHelp, UpdateTRequest, getHelpTicket } from "../redux/actions/LoginAction";
 import { getUserId } from "../utils/auth";
 import moment from "moment";
 import { FiEdit2 } from "react-icons/fi";
@@ -8,12 +8,14 @@ import Select from 'react-select';
 import { toast } from "react-toastify";
 import CommonModal from "./components/CommonModal";
 import HelpTicketInputs from "./components/HelpTicketInputs";
+import Loader from "../Page/Components/Loader";
 
 function HelpTicket() {
     const [status, setStatus] = useState(false);
     const [bodyselect, setBodyselect] = useState(0)
     const [show, setShow] = useState()
     const [activeUpdate, SetActiveUpdate] =useState()
+    const [isLoading, setIsLoading] =useState(false)
     const dispatch = useDispatch();
     useEffect(() => {
       dispatch(getHelpTicket()).then((res)=>[
@@ -28,22 +30,35 @@ function HelpTicket() {
     };
     const handleClose = () =>{
       setShow(false)
-      dispatch(getHelpTicket()).then((res)=>[
+      dispatch(getHelpTicket()).then((res)=>{
         setStatus(res?.payload)
-      ])
+      })
     };
 
     const colourOptions = [
-      { value: 'Solved', label: 'Solved'},
-      { value: 'Pending', label: 'Pending'}
+      { value: 'solved', label: 'Solved'},
+      { value: 'pending', label: 'Pending'}
     ]
 
 const handelChanges=(e,id)=>{
   // setBodyselect(e.value)
+  const data={
+    id: id,
+    data: {status: e?.value?.toLowerCase()}
+  }
+  setIsLoading(true);
+  dispatch(UpdateHelp(data)).then((res)=>{
+    dispatch(getHelpTicket()).then((res)=>{
+      setStatus(res?.payload)
+      setIsLoading(false)
+    })
+    setBodyselect(0);
+})
 }
 
   return (
     <div className="container">
+      {isLoading && <Loader/>}
     <div className="row justify-content-center align-items-center g-2">
       <div className="col-12">
           <div className="mt-4 mb-5">

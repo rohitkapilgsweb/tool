@@ -3,7 +3,7 @@ import { Field, Form, FormSpy } from "react-final-form";
 import Select from "react-select";
 import { UpdateUserProfifle, UpdateUserProfifleImg, UserMebership, getPlans, userGetProfile, users } from "../redux/actions/LoginAction";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserId } from "../utils/auth";
 import { FaUserCircle } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
@@ -18,7 +18,7 @@ function UserSettings() {
   const [userDetails,setUserDetails] = useState();
   const [isLoading,setIsLoading] = useState(false);
   const dispatch = useDispatch();
-
+  const userData = useSelector((state)=>state?.getUserDetails?.data?.data);
 
   useEffect(()=>{
     setIsLoading(true)
@@ -95,13 +95,13 @@ function UserSettings() {
             <div className="User-panel w-100 shadow-sm px-3 py-3 rounded">
               <div className="userIMages d-flex justify-content-center w-100 my-4">
                 <label htmlFor="" className="position-relative">
-                 {userDetails?.image ?  <img width={100} className="imag-userProfile"  src={`https://api.optimizsync.com/social/public/images/user/${userDetails?.image}`} alt="" />
+                 {userData?.image ?  <img width={100} className="imag-userProfile"  src={`https://api.optimizsync.com/social/public/images/user/${userData?.image}`} alt="" />
                  :  <FaUserCircle size={100} className="m-auto" /> }
                   <label className="edit-btn" htmlFor="imageUpload">
                     {" "}
                     <MdModeEdit size={18} />
                   </label>
-                  <h3 className="fs-4 text-center mt-2" style={{ textTransform:"capitalize" }}>{userDetails?.name}</h3>
+                  <h3 className="fs-4 text-center mt-2" style={{ textTransform:"capitalize" }}>{userData?.name}</h3>
                 </label>
                 <input
                   name="image"

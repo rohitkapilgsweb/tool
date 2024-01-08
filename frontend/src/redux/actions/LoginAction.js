@@ -28,7 +28,7 @@ export const axiosFacebookInstances = axios.create({
 
 // 
 
-export const getPageDetails = createAsyncThunk("Postjob", async (payload) => {
+export const getPageDetails = createAsyncThunk("getPageDetails", async (payload) => {
   const response = await axiosInstance.get(`${payload?.page_id}/insights?metric=${payload?.metric}&access_token=${payload?.access_token}`);
   return response.data;
 });
@@ -47,13 +47,17 @@ export const UpdateUserProfifleImg = createAsyncThunk("UpdateUserProfifle", asyn
   const response = await axiosInstances.post(`api/update-user-profile/${payload?.id}`,payload?.data);
   return response.data;
 });
+export const ForgetPassword = createAsyncThunk("ForgetPassword", async (payload) => {
+  const response = await axiosInstance.post(`api/forgot-password`,payload);
+  return response.data;
+});
 
 
-export const LoginActions = createAsyncThunk("Postjob", async (payload) => {
+export const LoginActions = createAsyncThunk("LoginActions", async (payload) => {
   const response = await axiosInstance.post(`api/register`, payload);
   return response.data;
 });
-export const userLoginAction = createAsyncThunk("Postjob", async (payload) => {
+export const userLoginAction = createAsyncThunk("userLoginAction", async (payload) => {
   const response = await axiosInstance.post(`api/login`, payload);
   return response.data;
 });
@@ -94,7 +98,7 @@ export const Deleteplan = createAsyncThunk("Deleteplan", async (payload) => {
 });
 
 export const UpdateHelp = createAsyncThunk("UpdateHelp", async (payload) => {
-  const response = await axiosInstances.post(`api/update-help/${payload?.id}`,payload?.data);
+  const response = await axiosInstance.post(`api/update-help/${payload?.id}`,payload?.data);
   return response.data;
 });
 // export const SignleHelp = createAsyncThunk("SignleHelp", async (payload) => {
@@ -207,7 +211,13 @@ export const getHelpTicket = createAsyncThunk("HelpTicket", async (payload) => {
   const response = await axiosInstance.get(`api/help`);
   return response.data;
 });
+ 
 export const SaveHelpTicket = createAsyncThunk("SaveHelpTicket", async (payload) => {
   const response = await axiosInstances.post(`api/create-help`, payload);
+  return response.data;
+});
+
+export const singleUserHelp = createAsyncThunk("singleUserHelp", async (payload) => {
+  const response = await axiosInstances.get(`api/user-help`);
   return response.data;
 });

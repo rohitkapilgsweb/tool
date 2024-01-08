@@ -29,6 +29,25 @@ function Createone() {
   
   }
 
+    
+  const validate = (values) => {
+    const errors = {};
+
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+
+    if (!values.email) {
+      errors.email = "Email is required";
+    }
+
+    if (!values.password) {
+      errors.password = "Password is required";
+    }
+
+    return errors;
+  };
+
   return (
     <div className="bg-login ">
       <Container>
@@ -39,36 +58,53 @@ function Createone() {
             <h1 className="mb-3">REGISTER</h1>
             <Form
               onSubmit={onSubmit}
+              validate={validate}
               render={({ handleSubmit, form, submitting, pristine, values }) => (
                 <form onSubmit={handleSubmit}>
                    <Col sm={12} className="mb-4">
                     <Field
-                        className="form-control"
                         name="name"
                         component="input"
-                        type="text"
-                        placeholder="Name"
-                      />
+                      >
+                          {({ input, meta }) => (
+                         <>
+                          <input {...input} placeholder="Name" type="text" className="form-control" />
+                          {meta.touched && meta.error && (
+                            <span className="d-block text-start text-danger mt-2">{meta.error}</span>
+                          )}
+                          </>
+                         )}
+                        </Field>
                       </Col>
                     <Col sm={12} className="mb-4">
-                  
-                      <Field
-                        className="form-control"
+                    <Field
                         name="email"
-                        component="input"
-                        type="email"
-                        placeholder="Email"
-                      />
+                      >
+                         {({ input, meta }) => (
+                         <>
+                          <input {...input} placeholder="Email" type="email" className="form-control" />
+                          {meta.touched && meta.error && (
+                            <span className="d-block text-start text-danger mt-2">{meta.error}</span>
+                          )}
+                          </>
+                         )}
+                        </Field>
                    
                     </Col>
                     <Col sm={12} className="mb-4">
                     <Field
-                        className="form-control"
                         name="password"
-                        component="input"
-                        type="password"
-                        placeholder="Create Password"
-                      />
+                        component={"input"}
+                      >
+                          {({ input, meta }) => (
+                         <>
+                          <input {...input} placeholder="Password" type="password" className="form-control" />
+                          {meta.touched && meta.error && (
+                            <span className="d-block text-start text-danger mt-2">{meta.error}</span>
+                          )}
+                          </>
+                         )}
+                        </Field>
                     </Col>
                     <Col sm={{ span: 12 }}>
                      <button  className="w-100 bg-black btn text-white" type="submit" disabled={submitting || pristine}>

@@ -9,10 +9,7 @@ import { Field, Form } from "react-final-form";
 import { LoginActions, userLoginAction } from "../redux/actions/LoginAction";
 import Loader from "./Components/Loader";
 import { toast } from "react-toastify";
-// import GoogleLogo from '../assets/img/pngwing.com.png'
-// import { useGoogleOneTapLogin, GoogleLogin, useGoogleLogin, hasGrantedAnyScopeGoogle } from "@react-oauth/google";
-// import jwtDecode from "jwt-decode";
-// import axios from "axios";
+
 function Login(props) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -44,71 +41,19 @@ function Login(props) {
   };
 
   
+  const validate = (values) => {
+    const errors = {};
 
+    if (!values.email) {
+      errors.email = "Email is required";
+    }
 
-//   const login =  useGoogleLogin({
-//     onSuccess: async tokenResponse  => {
-//       setGoogleLoginToken(JSON.stringify(tokenResponse?.access_token))
-  
-//       localStorage.setItem('GoogleLogin' ,JSON.stringify(tokenResponse.access_token))
-//       localStorage.setItem('GoogleLogin111' ,JSON.stringify(tokenResponse))
-//       setLogedIn(tokenResponse?.access_token ? true : false)
-//      try{
-//       const dataPlace = await axios({
-//         method: "GET",
-//         url: `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${JSON.stringify(tokenResponse?.access_token)}`,
-//         headers: { "Accept": "application/json" },
-//     });
-//   const saveDestails = {
-//     username : dataPlace?.data?.name,
-//     email:dataPlace?.data?.email,
-//     Profile_img:dataPlace?.data?.picture
-//   }
-//   dispatch(LoginActions(saveDestails))
-//   .then((res)=>{
+    if (!values.password) {
+      errors.password = "Password is required";
+    }
 
-//  const IfAlreadyExtst = {
-//   email: res?.payload?.dataUser?.email,
-//   password:  res?.payload?.dataUser?.password
-//  }
-//  const IfNOtRegister = {
-//   email: res?.payload?.dataToSave?.email,
-//   password:  res?.payload?.dataToSave?.password
-//  }
-
-
-//  dispatch(userLoginAction(IfNOtRegister?.email ?IfNOtRegister : IfAlreadyExtst ))
-//  .then((res) => {
-//   let success = res?.payload?.success;
-//   let status = res?.payload?.status;
-//   if (success === true) {
-//     if (res.meta.requestStatus === "fulfilled") {
-//       localStorage.setItem("token", res.payload.token);
-//       // navigate("/");
-//       // localStorage.setItem('google',JSON.stringify(res))
-//       // window.location.reload();
-//     }
-//   } else {
-//     if (success === false && !status) {
-//       let msg = "User Not Registered";
-//       notify(msg);
-//     } else if (success === false && status) {
-//       let msg = "Wrong Password";
-//       notify(msg);
-//     }
-//   }
-// });
-//   })
-//      }catch{
-//       console.log("faild") 
-  
-//      }
-//     },
-    
-//   });
-
-
-
+    return errors;
+  };
 
   return (
     <div className="bg-login">
@@ -118,11 +63,10 @@ function Login(props) {
           <Row className=" new_google_form d-flex align-items-center justify-content-center ">
             <Col sm={4} className="new_form ">
              <div className="google-btn">
-             {/* <button disabled={logedIn}  className="login-with-google-btn w-100 py-2 fs-4" onClick={() =>  login()}>
-            <img src={GoogleLogo} alt="Login With google" className="img-fluid" width={30}/> Sign in with Google 
-            </button> */}
+           
              </div>
               <Form
+              validate={validate}
                 onSubmit={onSubmit}
                 render={({
                   handleSubmit,
@@ -136,22 +80,33 @@ function Login(props) {
 
                     <Col sm={12} className="mb-4">
                       <Field
-                        className="form-control"
                         name="email"
-                        component="input"
-                        type="email"
-                        placeholder="Email"
-                      />
+                      >
+                         {({ input, meta }) => (
+                         <>
+                          <input {...input} placeholder="Email" type="email" className="form-control" />
+                          {meta.touched && meta.error && (
+                            <span className="d-block text-start text-danger mt-2">{meta.error}</span>
+                          )}
+                          </>
+                         )}
+                        </Field>
                     </Col>
 
                     <Col sm={12} className="mb-4">
                       <Field
-                        className="form-control"
                         name="password"
-                        component="input"
-                        type="password"
-                        placeholder="Password"
-                      />
+                        component={"input"}
+                      >
+                          {({ input, meta }) => (
+                         <>
+                          <input {...input} placeholder="Password" type="password" className="form-control" />
+                          {meta.touched && meta.error && (
+                            <span className="d-block text-start text-danger mt-2">{meta.error}</span>
+                          )}
+                          </>
+                         )}
+                        </Field>
                     </Col>
                     
 

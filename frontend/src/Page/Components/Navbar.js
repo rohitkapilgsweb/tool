@@ -10,7 +10,7 @@ import { MdLocalOffer,MdOutlineContactSupport, MdOutlinePermMedia } from "react-
 import { getUserId } from '../../utils/auth';
 import IconImg from '../../assets/img/optimizsync.jpg'
 import { userGetProfile } from '../../redux/actions/LoginAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function Navbar() {
 
@@ -22,6 +22,7 @@ function Navbar() {
   const handleShow = () => setShow(true);
 
   const [userDetails,setUserDetails] = useState();
+  const userData = useSelector((state)=>state?.getUserDetails?.data?.data);
 
   const dispatch = useDispatch();
 
@@ -380,7 +381,7 @@ function Navbar() {
 
             <li className="nav-item ">
               <Link  to="/user-profile">
-                <img src={`https://api.optimizsync.com/social/public/images/user/${userDetails?.image}`} alt="" width="35" height="35" className="rounded-circle border"/>
+                <img src={`https://api.optimizsync.com/social/public/images/user/${userData?.image}`} alt="" width="35" height="35" className="rounded-circle border"/>
                 </Link>
             {/* <Link className="nav-link nav-icon-hover" to="/user-profile"  id="drop2" data-bs-toggle="dropdown"
               aria-expanded="false">
